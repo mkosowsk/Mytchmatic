@@ -1,22 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import mitch_kosowski from './mitch_kosowski.jpg';
 import './App.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <h1>Mytchmatic™</h1>
+        <h2>The BEST GUI for Ethereum 2.0</h2>
+        <img src={mitch_kosowski} className="App-logo" alt="logo" />
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://twitter.com/Mitch_Kosowski"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          -@Mitch_Kosowski #GreatestTraderOfALLTIME
+          <span role="img" aria-label="Flexed Biceps"> 💪</span>
+          <span role="img" aria-label="Smiling Face With Sunglasses">😎</span>
+          <span role="img" aria-label="Thumbs Up">👍</span>
         </a>
       </header>
     </div>
