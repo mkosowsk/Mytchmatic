@@ -1,6 +1,7 @@
 import React from 'react';
 import mitch_kosowski from './mitch_kosowski.jpg';
 import './App.css';
+import validators from './mock/validators.json';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,14 @@ const App: React.FC = () => {
           <span role="img" aria-label="Thumbs Up">👍</span>
         </a>
       </header>
+      <div>
+        Active Validators
+        <ul>
+          <li>{validators.validators[0]["public_key"]}</li>
+          <li>{validators.validators[1]["public_key"]}</li>
+          <li>{validators.validators[2]["public_key"]}</li>
+        </ul>
+      </div>
     </div>
   );
 }
