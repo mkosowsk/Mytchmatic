@@ -8,7 +8,7 @@ type ValidatorCardProps = {
 const ValidatorCard: FunctionComponent<ValidatorCardProps> = ({ public_key, effective_balance }) => <aside>
   <h2>{ public_key }</h2>
   <p>
-    { effective_balance }
+    Effective Balance: { effective_balance }
   </p>
 </aside>
 
