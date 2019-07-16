@@ -1,3 +1,37 @@
+# Mytchmatic™: Ethereum 2.0 GUI
+
+**Mytchmatic™** is an analytics web interface for understanding Ethereum 2.0 system statistics as well as individual validator performance. This project is built on [Ethereum APIs](https://github.com/prysmaticlabs/ethereumapis) and is ETH2 client agnostic.
+
+**This design is a work-in-progress where your INPUT matters!!1!**
+
+
+**Mytchmatic™** was created and is maintained by
+
+the **EVER** impressive 💪
+
+the **LONG** contained 🎁
+
+the **OFTEN** imitated ™
+
+but **NEVER** duplicated 👯‍♂️
+
+[**@Mitch_Kosowski #GreatestTraderOfALLTIME 💪😎👍**](https://twitter.com/Mitch_Kosowski)
+
+## Features 👀
+
+[@Mitch_Kosowski](https://twitter.com/Mitch_Kosowski)'s **HARDASS** boss [Preston Van Loon](https://twitter.com/preston_vanloon) is **GRILLING** my **ASS** to **SHIP** and **GIVE** daily Monday thru Friday updates! 🍑🔥🛳️📆 
+
+
+That's why the **GREATEST** feature of **Mytchmatic™** is **COMMUNITY INPUT**! 👀
+
+**Mytchmatic™** is like a Choose Your Own Adventure Book for #CryptoTwitter, y'all decide the **DIRECTION** of the **PROJECT**!
+
+**Mytchmatic™** **WILL BE** an Ethereum 2.0 web interface to **VISUALLY** understand how the **SYSTEM** and **VALIDATORS** are **PERFORMING** that will be **LAUNCHED** by Devcon 2019!
+
+But other than that **GENERAL ROADMAP**, all the **SPECIFICS** for **Mytchmatic™** will be **DECIDED** on #Twitter! **HELL YEAH** 💪😎👍
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
