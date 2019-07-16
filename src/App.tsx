@@ -2,6 +2,7 @@ import React from 'react';
 import mitch_kosowski from './mitch_kosowski.jpg';
 import './App.css';
 import validators from './mock/validators.json';
+import ValidatorCard from './components/validators';
 
 const App: React.FC = () => {
   return (
@@ -21,15 +22,16 @@ const App: React.FC = () => {
           <span role="img" aria-label="Smiling Face With Sunglasses">😎</span>
           <span role="img" aria-label="Thumbs Up">👍</span>
         </a>
+        <div>
+          <h2>Active Validators</h2>
+          <ul>
+            <li><ValidatorCard public_key={validators.validators[0]["public_key"]} effective_balance={validators.validators[0]["effective_balance"]} /></li>
+            <li><ValidatorCard public_key={validators.validators[1]["public_key"]} effective_balance={validators.validators[1]["effective_balance"]} /></li>
+            <li><ValidatorCard public_key={validators.validators[2]["public_key"]} effective_balance={validators.validators[2]["effective_balance"]} /></li>
+          </ul>
+        </div>
       </header>
-      <div>
-        Active Validators
-        <ul>
-          <li>{validators.validators[0]["public_key"]}</li>
-          <li>{validators.validators[1]["public_key"]}</li>
-          <li>{validators.validators[2]["public_key"]}</li>
-        </ul>
-      </div>
+      
     </div>
   );
 }

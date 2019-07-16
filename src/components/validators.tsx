@@ -1,7 +1,17 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 
-export class Welcome extends React.Component {
-    render() {
-      return <h1>Hello, {this.props.name}</h1>;
-    }
-  }
+type ValidatorCardProps = {
+  public_key: string,
+  effective_balance: string
+}
+
+const ValidatorCard: FunctionComponent<ValidatorCardProps> = ({ public_key, effective_balance }) => <aside>
+  <h2>{ public_key }</h2>
+  <p>
+    { effective_balance }
+  </p>
+</aside>
+
+// const el = <ValidatorCard title="Welcome!" paragraph="To this example" />
+
+export default ValidatorCard;
