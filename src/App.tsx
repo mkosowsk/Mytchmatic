@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import mitch_kosowski from './mitch_kosowski.jpg';
 import './App.css';
 import validators from './mock/validators.json';
 import ValidatorCard from './components/validators';
+
+type EmptyType = {
+}
+
+const About: FunctionComponent<EmptyType> = () => <h2>About</h2>;
+
 
 const App: React.FC = () => {
   return (
@@ -31,7 +38,10 @@ const App: React.FC = () => {
           </ul>
         </div>
       </header>
-      
+      <Router> 
+        <Link to="/about/">About</Link>
+        <Route path="/about/" component={About} />
+      </Router>
     </div>
   );
 }
