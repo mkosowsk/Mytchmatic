@@ -3,11 +3,23 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import About from './components/about';
 import Validators from './components/Validators';
+import 'semantic-ui-css/semantic.min.css';
 
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
+        <div className="ui green three item inverted menu">
+          <a className="active item">
+            Home
+          </a>
+          <a className="item">
+            Messages
+          </a>
+          <a className="item">
+            Friends
+          </a>
+        </div>
         <nav>
           <ul>
             <li>
