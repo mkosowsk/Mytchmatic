@@ -1,12 +1,17 @@
 import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 import mitch_kosowski from '../mitch_kosowski.jpg';
+import { Header } from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react'
+import '../App.css';
 
 type EmptyType = {}
 
-const About: FunctionComponent<EmptyType> = () => <div>
-<h1>Mytchmatic™</h1>
-<h2>The BEST GUI for Ethereum 2.0</h2>
-<img src={mitch_kosowski} className="App-logo" alt="logo" />
+const About: FunctionComponent<EmptyType> = () => <div className='white'>
+<Header as='h1' className='white'>Mytchmatic™</Header>
+<Header as='h2' className='white'>The BEST GUI for Ethereum 2.0</Header>
+<div className="App-logo-div">
+  <Image src={mitch_kosowski} className="App-logo" alt="logo" size='small' centered/>
+</div>
 <a
   className="App-link"
   href="https://twitter.com/Mitch_Kosowski"
