@@ -1,13 +1,69 @@
 import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 import ValidatorCard from './ValidatorCard';
 import validators from '../mock/validators.json';
-import { Icon, Label, Menu, Table } from 'semantic-ui-react';
+import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
 
 //TODO: pull out ValidatorCard.tsx parts that make sense to use
 // like ValidatorCardProps?
 
+const data = [
+  { name: "10jan", key: "10jan" },
+  { name: "12jan", key: "12jan" },
+  { name: "14jan", key: "14jan" },
+];
+
+const panes = data.map(d => ({
+  menuItem: d.name,
+  render: () => <Tab.Pane> {d.key}</Tab.Pane>
+}));
+
+// validators[0]
+
+const cells = validators.validators.map(data => ({
+  menuItem: data["public_key"],
+  render: () => <Table.Cell> {data.public_key}</Table.Cell>
+}));
+
+const App = () => (
+  <div>
+    <Tab panes={panes} />
+  </div>
+);
+
+//want to repeat the Table.row
+// want to repeat the rows
+
+const tableData = [
+  { name: undefined, status: undefined, notes: undefined },
+  { name: 'Jimmy', status: 'Requires Action', notes: undefined },
+  { name: 'Jamie', status: undefined, notes: 'Hostile' },
+  { name: 'Jill', status: undefined, notes: undefined },
+]
+
+const headerRow = ['Name', 'Status', 'Notes']
+
+function test({a} : { a: any}) {
+
+}
+
+const renderBodyRow = ({ name, status, notes} : {name: any, status: any, notes: any}, i : number) => ({
+  key: name || `row-${i}`,
+  warning: !!(status && status.match('Requires Action')),
+  cells: [
+    name || 'No name specified',
+    status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
+    notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+  ],
+})
+
+// const TableExampleWarningShorthand = () => (
+//   <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
+// )
+
+
 const Validators = () =>
   <div>
+    <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
     <Table celled>
       <Table.Header>
         <Table.Row>
@@ -24,11 +80,6 @@ const Validators = () =>
 
       <Table.Body>
         <Table.Row>
-          <Table.Cell>
-            <Label ribbon>First</Label>
-          </Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>Cell</Table.Cell>
@@ -61,6 +112,10 @@ const Validators = () =>
         </Table.Row>
       </Table.Footer>
     </Table>
+
+    <div>
+      <Tab panes={panes} />
+    </div>
 
     <h2>Active Validators</h2>
     <ul>
