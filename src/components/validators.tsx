@@ -52,6 +52,9 @@ const renderBodyRow = ({
   ],
 })
 
+//TODO: join these two tables into one
+// never learned SQL tho :/
+
 const Validators = () =>
   <div>
     <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
