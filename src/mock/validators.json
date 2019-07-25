@@ -3,12 +3,12 @@
     "validators": [
       {
         "public_key": "Satoshi",
-        "withdrawal_credentials": "string",
+        "withdrawal_credentials": "Satoshi's Withdrawal Credential",
         "activation_eligiblity_epoch": "string",
         "activation_epoch": "string",
         "exit_epoch": "string",
         "withdrawable_epoch": "string",
-        "slashed": true,
+        "slashed": "true",
         "effective_balance": "Reasonable bags 💰"
       },
       {
@@ -18,17 +18,17 @@
         "activation_epoch": "string",
         "exit_epoch": "string",
         "withdrawable_epoch": "string",
-        "slashed": true,
+        "slashed": "true",
         "effective_balance": "Reasonable bags 💰"
       },
       {
-        "public_key": "@Mitch_Kosowski #GreatestTraderOfALLTIME 💪😎👍",
+        "public_key": "@Mitch_Kosowski",
         "withdrawal_credentials": "string",
         "activation_eligiblity_epoch": "string",
         "activation_epoch": "string",
         "exit_epoch": "string",
         "withdrawable_epoch": "string",
-        "slashed": true,
+        "slashed": "true",
         "effective_balance": "Absolutely MASSIVE bags WTF 💰🚀📈👀"
       }
     ]

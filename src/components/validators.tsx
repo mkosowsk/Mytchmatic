@@ -42,14 +42,47 @@ const App = () => (
 
 const tableData = validators.validators;
 
-const headerRow = ['Public Key', 'Withdrawal Credentials', 'Effective Balance', 'Slashed', 
-  'Activation Eligibility Epoch', 'Activation Epoch', 'Exit Epoch', 'Withdrawal Epoch'
+const headerRow = [
+  'Public Key', 
+  'Withdrawal Credentials',
+  'Activation Eligibility Epoch', 
+  'Activation Epoch', 
+  'Exit Epoch', 
+  'Withdrawal Epoch',
+  'Slashed',
+  'Effective Balance'
 ]
 
-const renderBodyRow = ({ public_key, status, notes} : {public_key: string, status: any, notes: any}, i : number) => ({
+const renderBodyRow = ({ 
+  public_key, 
+  withdrawal_credentials, 
+  activation_eligiblity_epoch,
+  activation_epoch,
+  exit_epoch,
+  withdrawable_epoch,
+  slashed,
+  effective_balance
+} : {
+  public_key: string, 
+  withdrawal_credentials: string, 
+  activation_eligiblity_epoch: string,
+  activation_epoch: string,
+  exit_epoch: string,
+  withdrawable_epoch: string,
+  slashed: boolean,
+  effective_balance: string
+}, 
+  i : number) => ({
   key: public_key || `row-${i}`,
   cells: [
-    public_key
+    public_key,
+    withdrawal_credentials,
+    activation_eligiblity_epoch,
+    activation_epoch,
+    exit_epoch,
+    withdrawable_epoch,
+    slashed,
+    effective_balance
   ],
 })
 
