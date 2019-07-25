@@ -6,40 +6,6 @@ import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
 //TODO: pull out ValidatorCard.tsx parts that make sense to use
 // like ValidatorCardProps?
 
-const data = [
-  { name: "10jan", key: "10jan" },
-  { name: "12jan", key: "12jan" },
-  { name: "14jan", key: "14jan" },
-];
-
-const panes = data.map(d => ({
-  menuItem: d.name,
-  render: () => <Tab.Pane> {d.key}</Tab.Pane>
-}));
-
-// validators[0]
-
-const cells = validators.validators.map(data => ({
-  menuItem: data["public_key"],
-  render: () => <Table.Cell> {data.public_key}</Table.Cell>
-}));
-
-const App = () => (
-  <div>
-    <Tab panes={panes} />
-  </div>
-);
-
-//want to repeat the Table.row
-// want to repeat the rows
-
-// const tableData = [
-//   { name: undefined, status: undefined, notes: undefined },
-//   { name: 'Jimmy', status: 'Requires Action', notes: undefined },
-//   { name: 'Jamie', status: undefined, notes: 'Hostile' },
-//   { name: 'Jill', status: undefined, notes: undefined },
-// ]
-
 const tableData = validators.validators;
 
 const headerRow = [
@@ -90,21 +56,6 @@ const Validators = () =>
   <div>
     <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
     <Table celled>
-      <Table.Body>
-        <Table.Row>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-      </Table.Body>
-
       <Table.Footer>
         <Table.Row>
           <Table.HeaderCell colSpan='3'>
@@ -124,17 +75,6 @@ const Validators = () =>
         </Table.Row>
       </Table.Footer>
     </Table>
-
-    <div>
-      <Tab panes={panes} />
-    </div>
-
-    <h2>Active Validators</h2>
-    <ul>
-      <li><ValidatorCard public_key={validators.validators[0]["public_key"]} effective_balance={validators.validators[0]["effective_balance"]} /></li>
-      <li><ValidatorCard public_key={validators.validators[1]["public_key"]} effective_balance={validators.validators[1]["effective_balance"]} /></li>
-      <li><ValidatorCard public_key={validators.validators[2]["public_key"]} effective_balance={validators.validators[2]["effective_balance"]} /></li>
-    </ul>
   </div>
 
 
