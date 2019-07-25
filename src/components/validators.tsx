@@ -33,51 +33,30 @@ const App = () => (
 //want to repeat the Table.row
 // want to repeat the rows
 
-const tableData = [
-  { name: undefined, status: undefined, notes: undefined },
-  { name: 'Jimmy', status: 'Requires Action', notes: undefined },
-  { name: 'Jamie', status: undefined, notes: 'Hostile' },
-  { name: 'Jill', status: undefined, notes: undefined },
+// const tableData = [
+//   { name: undefined, status: undefined, notes: undefined },
+//   { name: 'Jimmy', status: 'Requires Action', notes: undefined },
+//   { name: 'Jamie', status: undefined, notes: 'Hostile' },
+//   { name: 'Jill', status: undefined, notes: undefined },
+// ]
+
+const tableData = validators.validators;
+
+const headerRow = ['Public Key', 'Withdrawal Credentials', 'Effective Balance', 'Slashed', 
+  'Activation Eligibility Epoch', 'Activation Epoch', 'Exit Epoch', 'Withdrawal Epoch'
 ]
 
-const headerRow = ['Name', 'Status', 'Notes']
-
-function test({a} : { a: any}) {
-
-}
-
-const renderBodyRow = ({ name, status, notes} : {name: any, status: any, notes: any}, i : number) => ({
-  key: name || `row-${i}`,
-  warning: !!(status && status.match('Requires Action')),
+const renderBodyRow = ({ public_key, status, notes} : {public_key: string, status: any, notes: any}, i : number) => ({
+  key: public_key || `row-${i}`,
   cells: [
-    name || 'No name specified',
-    status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
-    notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+    public_key
   ],
 })
-
-// const TableExampleWarningShorthand = () => (
-//   <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
-// )
-
 
 const Validators = () =>
   <div>
     <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
     <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Public Key</Table.HeaderCell>
-          <Table.HeaderCell>Withdrawal Credentials</Table.HeaderCell>
-          <Table.HeaderCell>Effective Balance</Table.HeaderCell>
-          <Table.HeaderCell>Slashed</Table.HeaderCell>
-          <Table.HeaderCell>Activation Eligibility Epoch</Table.HeaderCell>
-          <Table.HeaderCell>Activation Epoch</Table.HeaderCell>
-          <Table.HeaderCell>Exit Epoch</Table.HeaderCell>
-          <Table.HeaderCell>Withdrawal Epoch</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-
       <Table.Body>
         <Table.Row>
         </Table.Row>
