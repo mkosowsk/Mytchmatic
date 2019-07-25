@@ -3,32 +3,32 @@
     "validators": [
       {
         "public_key": "Satoshi",
-        "withdrawal_credentials": "Satoshi's Withdrawal Credential",
-        "activation_eligiblity_epoch": "string",
-        "activation_epoch": "string",
-        "exit_epoch": "string",
-        "withdrawable_epoch": "string",
-        "slashed": "true",
+        "withdrawal_credentials": "Satoshi's Withdrawal Credentials",
+        "activation_eligiblity_epoch": "what is this lol",
+        "activation_epoch": "what is this lol",
+        "exit_epoch": "what is this lol",
+        "withdrawable_epoch": "what is this lol",
+        "slashed": "✅",
         "effective_balance": "Reasonable bags 💰"
       },
       {
         "public_key": "Vitalik",
-        "withdrawal_credentials": "string",
+        "withdrawal_credentials": "Vitalik's Withdrawal Credentials",
         "activation_eligiblity_epoch": "string",
-        "activation_epoch": "string",
-        "exit_epoch": "string",
-        "withdrawable_epoch": "string",
-        "slashed": "true",
+        "activation_epoch": "what is this lol",
+        "exit_epoch": "what is this lol",
+        "withdrawable_epoch": "what is this lol",
+        "slashed": "✅",
         "effective_balance": "Reasonable bags 💰"
       },
       {
         "public_key": "@Mitch_Kosowski",
-        "withdrawal_credentials": "string",
-        "activation_eligiblity_epoch": "string",
-        "activation_epoch": "string",
-        "exit_epoch": "string",
-        "withdrawable_epoch": "string",
-        "slashed": "true",
+        "withdrawal_credentials": "aint need no credentials",
+        "activation_eligiblity_epoch": "what is this lol",
+        "activation_epoch": "what is this lol",
+        "exit_epoch": "ain't never leaving #cryptotwitter",
+        "withdrawable_epoch": "epoch is a weird word",
+        "slashed": "NOPE",
         "effective_balance": "Absolutely MASSIVE bags WTF 💰🚀📈👀"
       }
     ]
