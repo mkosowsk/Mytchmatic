@@ -10,17 +10,17 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <div className="ui green three item inverted menu">
-          <a className="active item">
-            <Link to="/about">About</Link>
-          </a>
+        <Menu className="ui green three item inverted menu">
+          <Menu.Item as={Link} to="/about" Î>
+            About
+          </Menu.Item>
           <Menu.Item as={Link} to="/eth/validators" Î>
             Active Validators
           </Menu.Item>
-          <a className="item">
+          <Menu.Item>
             Friends (this space intentionally left blank 😢)
-          </a>
-        </div>
+          </Menu.Item>
+        </Menu>
         <header>
           <Route path="/about" component={About} />
           <Route path="/eth/validators" component={Validators} />
