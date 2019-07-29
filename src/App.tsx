@@ -4,7 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import About from './components/about';
 import Validators from './components/Validators';
-
+import { Menu } from 'semantic-ui-react';
 
 const App: React.FC = () => {
   return (
@@ -14,9 +14,9 @@ const App: React.FC = () => {
           <a className="active item">
             <Link to="/about">About</Link>
           </a>
-          <a className="item">
-            <Link to="/eth/validators">Active Validators</Link>
-          </a>
+          <Menu.Item as={Link} to="/eth/validators" Î>
+            Active Validators
+          </Menu.Item>
           <a className="item">
             Friends (this space intentionally left blank 😢)
           </a>
@@ -26,7 +26,7 @@ const App: React.FC = () => {
           <Route path="/eth/validators" component={Validators} />
         </header>
       </div>
-    </Router>
+    </Router >
   );
 }
 
