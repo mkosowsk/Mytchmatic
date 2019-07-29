@@ -9,60 +9,61 @@ import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
 const tableData = validators.validators;
 
 const headerRow = [
-  'Public Key', 
+  'Public Key',
   'Withdrawal Credentials',
-  'Activation Eligibility Epoch', 
-  'Activation Epoch', 
-  'Exit Epoch', 
+  'Activation Eligibility Epoch',
+  'Activation Epoch',
+  'Exit Epoch',
   'Withdrawal Epoch',
   'Slashed',
   'Effective Balance'
 ]
 
-const renderBodyRow = ({ 
-  public_key, 
-  withdrawal_credentials, 
+const renderBodyRow = ({
+  public_key,
+  withdrawal_credentials,
   activation_eligiblity_epoch,
   activation_epoch,
   exit_epoch,
   withdrawable_epoch,
   slashed,
   effective_balance
-} : {
-  public_key: string, 
-  withdrawal_credentials: string, 
+}: {
+  public_key: string,
+  withdrawal_credentials: string,
   activation_eligiblity_epoch: string,
   activation_epoch: string,
   exit_epoch: string,
   withdrawable_epoch: string,
   slashed: boolean,
   effective_balance: string
-}, 
-  i : number) => ({
-  key: public_key || `row-${i}`,
-  cells: [
-    public_key,
-    withdrawal_credentials,
-    activation_eligiblity_epoch,
-    activation_epoch,
-    exit_epoch,
-    withdrawable_epoch,
-    slashed,
-    effective_balance
-  ],
-})
-
-//TODO: join these two tables into one
-// never learned SQL tho :/
+},
+  i: number) => ({
+    key: public_key || `row-${i}`,
+    cells: [
+      public_key,
+      withdrawal_credentials,
+      activation_eligiblity_epoch,
+      activation_epoch,
+      exit_epoch,
+      withdrawable_epoch,
+      slashed,
+      effective_balance
+    ],
+  })
 
 const Validators = () =>
   <div>
-    <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
-    <Table celled>
+    <Table
+      celled headerRow={headerRow}
+      renderBodyRow={renderBodyRow}
+      tableData={tableData}
+    />
+    <div className="ui one column padded centered grid">
       <Table.Footer>
         <Table.Row>
-          <Table.HeaderCell colSpan='3'>
-            <Menu floated='right' pagination>
+          <Table.HeaderCell>
+            <Menu>
               <Menu.Item as='a' icon>
                 <Icon name='chevron left' />
               </Menu.Item>
@@ -77,7 +78,7 @@ const Validators = () =>
           </Table.HeaderCell>
         </Table.Row>
       </Table.Footer>
-    </Table>
+    </div>
   </div>
 
 
