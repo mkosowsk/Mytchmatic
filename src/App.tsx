@@ -21,10 +21,8 @@ const App: React.FC = () => {
             Friends (this space intentionally left blank 😢)
           </Menu.Item>
         </Menu>
-        <header>
-          <Route path="/about" component={About} />
-          <Route path="/eth/validators" component={Validators} />
-        </header>
+        <Route path="/about" component={About} />
+        <Route path="/eth/validators" component={Validators} />
       </div>
     </Router >
   );
