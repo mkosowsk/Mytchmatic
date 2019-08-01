@@ -5,19 +5,19 @@
       "data": {
         "beacon_block_root": "beacon_block_root",
         "source": {
-          "epoch": "string",
-          "root": "string"
+          "epoch": "epoch",
+          "root": "root"
         },
         "target": {
-          "epoch": "string",
-          "root": "string"
+          "epoch": "epoch",
+          "root": "root"
         },
         "crosslink": {
-          "shard": "string",
-          "parent_root": "string",
-          "start_epoch": "string",
-          "end_epoch": "string",
-          "data_root": "string"
+          "shard": "shard",
+          "parent_root": "parent_root",
+          "start_epoch": "start_epoch",
+          "end_epoch": "end_epoch",
+          "data_root": "data_root"
         }
       },
       "custody_bits": "custody_bits",

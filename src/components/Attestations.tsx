@@ -3,21 +3,24 @@ import ValidatorCard from './ValidatorCard';
 import validators from '../mock/validators.json';
 import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
 
-//TODO: pull out ValidatorCard.tsx parts that make sense to use
-// like ValidatorCardProps?
+// make a complex structured table
 
 const tableData = validators.validators;
 
-const headerRow = [
-  'Public Key',
-  'Withdrawal Credentials',
-  'Activation Eligibility Epoch',
-  'Activation Epoch',
-  'Exit Epoch',
-  'Withdrawal Epoch',
-  'Slashed',
-  'Effective Balance'
-]
+const headerRows = <Table.Header>
+  <Table.Row>
+    <Table.HeaderCell rowSpan='2'>Name</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2'>Type</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2'>Files</Table.HeaderCell>
+    <Table.HeaderCell colSpan='3'>Languages</Table.HeaderCell>
+  </Table.Row>
+  <Table.Row>
+    <Table.HeaderCell>Ruby</Table.HeaderCell>
+    <Table.HeaderCell>JavaScript</Table.HeaderCell>
+    <Table.HeaderCell>Python</Table.HeaderCell>
+  </Table.Row>
+</Table.Header>
+
 
 const renderBodyRow = ({
   public_key,
@@ -52,13 +55,41 @@ const renderBodyRow = ({
     ],
   })
 
+
+// 13 total columns
+
 const Validators = () =>
   <div>
+    <Table celled>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>
+          <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
+          <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
+          <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
+          <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
+          <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
+          <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
+        </Table.Row>
+        <Table.Row>
+          <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
+          <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+    </Table>
     <Table
-      celled headerRow={headerRow}
+      celled structured
       renderBodyRow={renderBodyRow}
       tableData={tableData}
-    />
+    >
+    </Table>
     <div className="ui one column padded centered grid">
       <Table.Footer>
         <Table.Row>
