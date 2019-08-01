@@ -1,9 +1,9 @@
 {
   "attestations": [
     {
-      "aggregation_bits": "string",
+      "aggregation_bits": "aggregation_bits",
       "data": {
-        "beacon_block_root": "string",
+        "beacon_block_root": "beacon_block_root",
         "source": {
           "epoch": "string",
           "root": "string"
@@ -20,8 +20,8 @@
           "data_root": "string"
         }
       },
-      "custody_bits": "string",
-      "signature": "string"
+      "custody_bits": "custody_bits",
+      "signature": "signature"
     }
   ]
 }
