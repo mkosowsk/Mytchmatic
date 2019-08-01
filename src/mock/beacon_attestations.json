@@ -1,0 +1,27 @@
+{
+  "attestations": [
+    {
+      "aggregation_bits": "string",
+      "data": {
+        "beacon_block_root": "string",
+        "source": {
+          "epoch": "string",
+          "root": "string"
+        },
+        "target": {
+          "epoch": "string",
+          "root": "string"
+        },
+        "crosslink": {
+          "shard": "string",
+          "parent_root": "string",
+          "start_epoch": "string",
+          "end_epoch": "string",
+          "data_root": "string"
+        }
+      },
+      "custody_bits": "string",
+      "signature": "string"
+    }
+  ]
+}
