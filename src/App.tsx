@@ -5,14 +5,17 @@ import './App.css';
 import About from './components/about';
 import Attestations from './components/Attestations';
 import Validators from './components/Validators';
-import ValidatorsAssignments from './components/ValidatorsAssignments';
+import ValidatorAssignments from './components/ValidatorAssignments';
 import { Menu } from 'semantic-ui-react';
+
+//TODO: fix hitting both eth/validators and eth/validators/assignments
+//which causes 2 tables to render
 
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Menu className="ui green three item inverted menu">
+        <Menu className="ui green four item inverted menu">
           <Menu.Item as={Link} to="/about">
             About
           </Menu.Item>
