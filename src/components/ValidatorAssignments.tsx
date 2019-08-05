@@ -5,15 +5,42 @@ import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
 
 // fetch data in componentDidMount
 
-const API = 'https://hn.algolia.com/api/v1/search?query=';
-const DEFAULT_QUERY = 'redux';
+const API = 'http://api.prylabs.network/eth/v1alpha1/validators/assignments';
+const DEFAULT_QUERY = '';
+
+// {
+//   "epoch": "0",
+//   "assignments": [
+//     {
+//       "crosslinkCommittees": [
+//         "23",
+//         "8",
+//         "18",
+//         "60",
+//         "51",
+//         "10",
+//         "0",
+//         "47"
+//       ],
+//       "shard": "6",
+//       "slot": "6",
+//       "proposer": false,
+//       "publicKey": "sao25T46/2oUBPjzBKa+U0K2lEptQjPxxmPhX5h6ZJj97fNVaIWyFqfHXafGBmoY"
+//     },
 
 interface IState {
-  hits: Array<{
-    objectID: number,
-    url: string,
-    title: string
-  }>;
+  response: {
+    "epoch": string,
+    "assignments": [
+      {
+        "crosslinkCommittees": Array<string>,
+        "shard": string,
+        "slot": string,
+        "proposer": boolean,
+        "publicKey": string
+      }
+    ]
+  }
 }
 
 interface IProps {}
@@ -23,27 +50,34 @@ class ValidatorAssignments extends Component<IProps, IState> {
     super(props);
 
     this.state = {
-      hits: [],
+      response: {
+        "epoch": '',
+        "assignments": [
+          {
+            "crosslinkCommittees": [''],
+            "shard": '',
+            "slot": '',
+            "proposer": false,
+            "publicKey": ''
+          }
+        ]
+      }
     };
   }
 
   componentDidMount() {
     fetch(API + DEFAULT_QUERY)
       .then(response => response.json())
-      .then(data => this.setState({ hits: data.hits }));
+      .then(data => this.setState({ response: data.response }));
   }
 
   render() {
-    const { hits } = this.state;
+    const { response } = this.state;
 
     return (
-      <ul>
-        {hits.map(hit  =>
-          <li key={hit.objectID}>
-            <a href={hit.url}>{hit.title}</a>
-          </li>
-        )}
-      </ul>
+      <div>
+        {response.epoch}
+      </div>
     );
   }
 }
@@ -51,6 +85,14 @@ class ValidatorAssignments extends Component<IProps, IState> {
 
 export default ValidatorAssignments;
 
+
+{/* <ul>
+        {hits.map(hit  =>
+          <li key={hit.objectID}>
+            <a href={hit.url}>{hit.title}</a>
+          </li>
+        )}
+      </ul> */}
 
 // const tableData = validators.validators;
 
