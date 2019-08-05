@@ -29,7 +29,7 @@ const DEFAULT_QUERY = '';
 //     },
 
 interface IState {
-  response: {
+  data: {
     "epoch": string,
     "assignments": [
       {
@@ -50,7 +50,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
     super(props);
 
     this.state = {
-      response: {
+      data: {
         "epoch": '',
         "assignments": [
           {
@@ -67,16 +67,20 @@ class ValidatorAssignments extends Component<IProps, IState> {
 
   componentDidMount() {
     fetch(API + DEFAULT_QUERY)
-      .then(response => response.json())
-      .then(data => this.setState({ response: data.response }));
+      .then(response => {
+        // console.log('response in then', response.json())
+        return response.json();
+      })
+      .then(data => this.setState({ data: data }))
   }
-
+  
   render() {
-    const { response } = this.state;
+    const { data } = this.state;
+    console.log(data);
 
     return (
       <div>
-        {response.epoch}
+        {data["epoch"]}
       </div>
     );
   }
