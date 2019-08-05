@@ -9,11 +9,11 @@ const API = 'https://hn.algolia.com/api/v1/search?query=';
 const DEFAULT_QUERY = 'redux';
 
 interface IState {
-  hits: [{
+  hits: Array<{
     objectID: number,
     url: string,
     title: string
-  }];
+  }>;
 }
 
 interface IProps {}
