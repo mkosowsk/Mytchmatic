@@ -52,13 +52,24 @@ const renderBodyRow = ({
   i: number) => ({
     key: publicKey || `row-${i}`,
     cells: [
-      publicKey,
+      publicKey ? { key: 'publicKey', content: publicKey, collapsing: true } : 'None',
       crosslinkCommittees,
       shard,
       slot,
       proposer
     ],
-  })
+  });
+
+  // const renderBodyRow = ({ name, status, notes }, i) => ({
+  //   key: name || `row-${i}`,
+  //   warning: !!(status && status.match('Requires Action')),
+  //   cells: [
+  //     name || 'No name specified',
+  //     status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
+  //     notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+  //   ],
+  // })
+  
 
 interface IState {
   data: {
