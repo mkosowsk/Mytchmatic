@@ -1,4 +1,4 @@
-import React, {Component, FunctionComponent } from 'react'; // importing FunctionComponent
+import React, { Component, FunctionComponent } from 'react'; // importing FunctionComponent
 import ValidatorCard from './ValidatorCard';
 import validators from '../mock/validators.json';
 import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
@@ -60,35 +60,6 @@ const renderBodyRow = ({
     ],
   })
 
-const ValidatorAssignments = () =>
-  <div>
-    <Table
-      celled headerRow={headerRow}
-      renderBodyRow={renderBodyRow}
-      tableData={tableData}
-    />
-    <div className="ui one column padded centered grid">
-      <Table.Footer>
-        <Table.Row>
-          <Table.HeaderCell>
-            <Menu>
-              <Menu.Item as='a' icon>
-                <Icon name='chevron left' />
-              </Menu.Item>
-              <Menu.Item as='a'>1</Menu.Item>
-              <Menu.Item as='a'>2</Menu.Item>
-              <Menu.Item as='a'>3</Menu.Item>
-              <Menu.Item as='a'>4</Menu.Item>
-              <Menu.Item as='a' icon>
-                <Icon name='chevron right' />
-              </Menu.Item>
-            </Menu>
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Footer>
-    </div>
-  </div>
-
 interface IState {
   data: {
     "epoch": string,
@@ -104,7 +75,7 @@ interface IState {
   }
 }
 
-interface IProps {}
+interface IProps { }
 
 class ValidatorAssignments extends Component<IProps, IState> {
   constructor(props: any) {
@@ -134,14 +105,44 @@ class ValidatorAssignments extends Component<IProps, IState> {
       })
       .then(data => this.setState({ data: data }))
   }
-  
+
   render() {
     const { data } = this.state;
     console.log(data);
 
+    // return (
+    //   <div>
+    //     {data["epoch"]}
+    //   </div>
+    // );
+
     return (
       <div>
-        {data["epoch"]}
+        <Table
+          celled headerRow={headerRow}
+          renderBodyRow={renderBodyRow}
+          tableData={data.assignments}
+        />
+        <div className="ui one column padded centered grid">
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell>
+                <Menu>
+                  <Menu.Item as='a' icon>
+                    <Icon name='chevron left' />
+                  </Menu.Item>
+                  <Menu.Item as='a'>1</Menu.Item>
+                  <Menu.Item as='a'>2</Menu.Item>
+                  <Menu.Item as='a'>3</Menu.Item>
+                  <Menu.Item as='a'>4</Menu.Item>
+                  <Menu.Item as='a' icon>
+                    <Icon name='chevron right' />
+                  </Menu.Item>
+                </Menu>
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        </div>
       </div>
     );
   }
