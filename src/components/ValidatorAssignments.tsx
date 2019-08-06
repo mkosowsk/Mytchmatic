@@ -68,7 +68,7 @@ interface IState {
         "crosslinkCommittees": Array<string>,
         "shard": string,
         "slot": string,
-        "proposer": boolean,
+        "proposer": boolean | string,
         "publicKey": string
       }
     ]
@@ -110,11 +110,15 @@ class ValidatorAssignments extends Component<IProps, IState> {
     const { data } = this.state;
     console.log(data);
 
+    data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString())
+
+
     // return (
     //   <div>
     //     {data["epoch"]}
     //   </div>
     // );
+
 
     return (
       <div>
