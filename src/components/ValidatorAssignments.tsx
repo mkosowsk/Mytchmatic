@@ -3,30 +3,8 @@ import ValidatorCard from './ValidatorCard';
 import validators from '../mock/validators.json';
 import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
 
-// fetch data in componentDidMount
-
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/assignments';
 const DEFAULT_QUERY = '';
-
-// {
-//   "epoch": "0",
-//   "assignments": [
-//     {
-//       "crosslinkCommittees": [
-//         "23",
-//         "8",
-//         "18",
-//         "60",
-//         "51",
-//         "10",
-//         "0",
-//         "47"
-//       ],
-//       "shard": "6",
-//       "slot": "6",
-//       "proposer": false,
-//       "publicKey": "sao25T46/2oUBPjzBKa+U0K2lEptQjPxxmPhX5h6ZJj97fNVaIWyFqfHXafGBmoY"
-//     },
 
 const headerRow = [
   'Public Key',
