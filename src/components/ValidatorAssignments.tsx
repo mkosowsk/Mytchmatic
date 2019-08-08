@@ -1,7 +1,5 @@
 import React, { Component, FunctionComponent } from 'react'; // importing FunctionComponent
-import ValidatorCard from './ValidatorCard';
-import validators from '../mock/validators.json';
-import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
+import { Icon, Header, Menu, Table, Tab } from 'semantic-ui-react';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/assignments';
 const DEFAULT_QUERY = '';
@@ -89,10 +87,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
 
   componentDidMount() {
     fetch(API + DEFAULT_QUERY)
-      .then(response => {
-        // console.log('response in then', response.json())
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => this.setState({ data: data }))
   }
 
@@ -103,15 +98,9 @@ class ValidatorAssignments extends Component<IProps, IState> {
     data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString());
     data.assignments.map(assignment => assignment.crosslinkCommittees = assignment.crosslinkCommittees.join(", "));
 
-    // return (
-    //   <div>
-    //     {data["epoch"]}
-    //   </div>
-    // );
-
-
     return (
       <div>
+        <Header as='h1' className='white'>Validator Assignments</Header>
         <Table
           celled headerRow={headerRow}
           renderBodyRow={renderBodyRow}
