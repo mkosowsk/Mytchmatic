@@ -90,7 +90,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
     return (
       <div>
         <Header as='h1' className='white'>Validator Assignments</Header>
-        <Table striped inverted
+        <Table striped inverted textAlign="center"
           celled headerRow={headerRow}
           renderBodyRow={renderBodyRow}
           tableData={data.assignments}
