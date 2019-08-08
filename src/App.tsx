@@ -30,8 +30,8 @@ const App: React.FC = () => {
           </Menu.Item>
         </Menu>
         <Route path="/about" component={About} />
-        <Route path="/beacon/attestations" component={Attestations} />
-        <Route path="/eth/validators" component={Validators} />
+        <Route exact path="/beacon/attestations" component={Attestations} />
+        <Route exact path="/eth/validators" component={Validators} />
         <Route path="/eth/validators/assignments" component={ValidatorAssignments} />
       </div>
     </Router >
