@@ -34,18 +34,7 @@ const renderBodyRow = ({
       slot,
       proposer
     ],
-  });
-
-  // const renderBodyRow = ({ name, status, notes }, i) => ({
-  //   key: name || `row-${i}`,
-  //   warning: !!(status && status.match('Requires Action')),
-  //   cells: [
-  //     name || 'No name specified',
-  //     status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
-  //     notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
-  //   ],
-  // })
-  
+  });  
 
 interface IState {
   data: {
@@ -131,16 +120,4 @@ class ValidatorAssignments extends Component<IProps, IState> {
   }
 }
 
-
 export default ValidatorAssignments;
-
-
-{/* <ul>
-        {hits.map(hit  =>
-          <li key={hit.objectID}>
-            <a href={hit.url}>{hit.title}</a>
-          </li>
-        )}
-      </ul> */}
-
-// const tableData = validators.validators;
