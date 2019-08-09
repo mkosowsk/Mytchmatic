@@ -85,6 +85,8 @@ class ValidatorAssignments extends Component<IProps, IState> {
     console.log(data);
 
     data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString());
+    // TODO: can you pipe this like in Angular, this should be view layer!
+    // or run type assertion BEFORE join
     data.assignments.map(assignment => assignment.crosslinkCommittees = assignment.crosslinkCommittees.join(", "));
 
     return (
