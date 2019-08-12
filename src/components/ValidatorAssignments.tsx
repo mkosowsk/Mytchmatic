@@ -89,10 +89,8 @@ class ValidatorAssignments extends Component<IProps, IState> {
     // or run type assertion BEFORE join
     data.assignments.map(assignment => assignment.crosslinkCommittees = assignment.crosslinkCommittees.join(", "));
 
-    // sort based on slot and THEN shard in UI
-    // slot 1, shard 1
-    // slot 1, shard 2
-    // ...
+    // sort assignments based on slot and then shard
+    data.assignments.sort((a, b) => Number(a.slot) - Number(b.slot) || Number(a.shard) - Number(b.shard));
 
     return (
       <div>
