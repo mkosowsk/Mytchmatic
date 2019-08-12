@@ -10,6 +10,7 @@
     "@types/react-router-dom": "^4.3.4",
     "ethereum-blockies": "^0.1.1",
     "react": "^16.8.6",
+    "react-blockies": "^1.4.1",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
