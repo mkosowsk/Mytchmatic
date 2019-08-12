@@ -1,5 +1,7 @@
 import React, { Component, FunctionComponent } from 'react'; // importing FunctionComponent
 import { Icon, Header, Menu, Table, Tab } from 'semantic-ui-react';
+import blockies from 'ethereum-blockies';
+
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/assignments';
 const DEFAULT_QUERY = '';
@@ -91,6 +93,8 @@ class ValidatorAssignments extends Component<IProps, IState> {
 
     // sort assignments based on slot and then shard
     data.assignments.sort((a, b) => Number(a.slot) - Number(b.slot) || Number(a.shard) - Number(b.shard));
+
+    var icon = blockies.create();
 
     return (
       <div>
