@@ -7,22 +7,22 @@ const DEFAULT_QUERY = '';
 const headerRow = [
   'Public Key',
   'Crosslink Committees',
-  'Shard',
   'Slot',
+  'Shard',
   'Proposer'
 ]
 
 const renderBodyRow = ({
   publicKey,
   crosslinkCommittees,
-  shard,
   slot,
+  shard,
   proposer
 }: {
   publicKey: string,
   crosslinkCommittees: Array<string>,
-  shard: string,
   slot: string,
+  shard: string,
   proposer: string
 },
   i: number) => ({
@@ -30,8 +30,8 @@ const renderBodyRow = ({
     cells: [
       publicKey ? { key: 'publicKey', content: publicKey, collapsing: true } : 'None',
       crosslinkCommittees,
-      shard,
       slot,
+      shard,
       proposer
     ],
   });  
