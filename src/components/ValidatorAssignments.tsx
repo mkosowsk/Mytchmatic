@@ -34,7 +34,7 @@ const renderBodyRow = ({
     key: publicKey || `row-${i}`,
     cells: [
       <Blockies seed={publicKey}></Blockies>,
-      publicKey ? { key: 'publicKey', content: publicKey, collapsing: true } : 'None',
+      publicKey,
       crosslinkCommittees,
       slot,
       shard,
@@ -91,8 +91,8 @@ class ValidatorAssignments extends Component<IProps, IState> {
     console.log(data);
 
     data.assignments.map(assignment => {
-      const publicKeyStart = assignment.publicKey.substring(0, 3);
-      const publicKeyEnd = assignment.publicKey.substring(assignment.publicKey.length - 3);
+      const publicKeyStart = assignment.publicKey.substring(0, 4);
+      const publicKeyEnd = assignment.publicKey.substring(assignment.publicKey.length - 4);
 
       assignment.publicKey = publicKeyStart + '...' + publicKeyEnd;
     });
