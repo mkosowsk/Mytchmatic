@@ -7,6 +7,7 @@ const API = 'http://api.prylabs.network/eth/v1alpha1/validators/assignments';
 const DEFAULT_QUERY = '';
 
 const headerRow = [
+  '',
   'Public Key',
   'Crosslink Committees',
   'Slot',
@@ -15,12 +16,14 @@ const headerRow = [
 ]
 
 const renderBodyRow = ({
+  blockie,
   publicKey,
   crosslinkCommittees,
   slot,
   shard,
   proposer
 }: {
+  blockie: string,
   publicKey: string,
   crosslinkCommittees: Array<string>,
   slot: string,
@@ -30,6 +33,7 @@ const renderBodyRow = ({
   i: number) => ({
     key: publicKey || `row-${i}`,
     cells: [
+      <Blockies seed={publicKey}></Blockies>,
       publicKey ? { key: 'publicKey', content: publicKey, collapsing: true } : 'None',
       crosslinkCommittees,
       slot,
@@ -86,6 +90,13 @@ class ValidatorAssignments extends Component<IProps, IState> {
     const { data } = this.state;
     console.log(data);
 
+    data.assignments.map(assignment => {
+      const publicKeyStart = assignment.publicKey.substring(0, 3);
+      const publicKeyEnd = assignment.publicKey.substring(assignment.publicKey.length - 3);
+
+      assignment.publicKey = publicKeyStart + '...' + publicKeyEnd;
+    });
+
     data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString());
     // TODO: can you pipe this like in Angular, this should be view layer!
     // or run type assertion BEFORE join
@@ -94,9 +105,10 @@ class ValidatorAssignments extends Component<IProps, IState> {
     // sort assignments based on slot and then shard
     data.assignments.sort((a, b) => Number(a.slot) - Number(b.slot) || Number(a.shard) - Number(b.shard));
 
+    // TODO: show full publicKey on hover
+
     return (
       <div>
-        <Blockies></Blockies>
         <Header as='h1' className='white'>Validator Assignments</Header>
         <Table striped inverted textAlign="center"
           celled headerRow={headerRow}
