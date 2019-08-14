@@ -1,5 +1,5 @@
-import React, { Component, FunctionComponent } from 'react'; // importing FunctionComponent
-import { Icon, Header, Menu, Table, Tab } from 'semantic-ui-react';
+import React, { Component } from 'react'; // importing FunctionComponent
+import { Header, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
 
 
