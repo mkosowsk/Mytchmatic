@@ -33,7 +33,9 @@ const renderBodyRow = ({
   i: number) => ({
     key: publicKey || `row-${i}`,
     cells: [
-      <Blockies key={publicKey + 'Blockie'} seed={publicKey}></Blockies>,
+      <td>
+        <Blockies key={publicKey + 'Blockie'} seed={publicKey}></Blockies>
+      </td>,
       publicKey,
       crosslinkCommittees,
       slot,
