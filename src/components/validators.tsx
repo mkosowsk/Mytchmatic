@@ -1,7 +1,6 @@
-import React, { FunctionComponent } from 'react'; // importing FunctionComponent
-import ValidatorCard from './ValidatorCard';
+import React from 'react'; // importing FunctionComponent
 import validators from '../mock/validators.json';
-import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
+import { Icon, Menu, Table } from 'semantic-ui-react';
 
 //TODO: pull out ValidatorCard.tsx parts that make sense to use
 // like ValidatorCardProps?

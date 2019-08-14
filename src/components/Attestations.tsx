@@ -1,26 +1,10 @@
-import React, { FunctionComponent } from 'react'; // importing FunctionComponent
-import ValidatorCard from './ValidatorCard';
+import React from 'react'; // importing FunctionComponent
 import validators from '../mock/validators.json';
-import { Icon, Label, Menu, Table, Tab } from 'semantic-ui-react';
+import { Icon, Menu, Table } from 'semantic-ui-react';
 
 // make a complex structured table
 
 const tableData = validators.validators;
-
-const headerRows = <Table.Header>
-  <Table.Row>
-    <Table.HeaderCell rowSpan='2'>Name</Table.HeaderCell>
-    <Table.HeaderCell rowSpan='2'>Type</Table.HeaderCell>
-    <Table.HeaderCell rowSpan='2'>Files</Table.HeaderCell>
-    <Table.HeaderCell colSpan='3'>Languages</Table.HeaderCell>
-  </Table.Row>
-  <Table.Row>
-    <Table.HeaderCell>Ruby</Table.HeaderCell>
-    <Table.HeaderCell>JavaScript</Table.HeaderCell>
-    <Table.HeaderCell>Python</Table.HeaderCell>
-  </Table.Row>
-</Table.Header>
-
 
 const renderBodyRow = ({
   public_key,
