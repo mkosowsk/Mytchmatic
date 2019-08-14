@@ -94,7 +94,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
       const publicKeyStart = assignment.publicKey.substring(0, 4);
       const publicKeyEnd = assignment.publicKey.substring(assignment.publicKey.length - 4);
 
-      assignment.publicKey = publicKeyStart + '...' + publicKeyEnd;
+      return assignment.publicKey = publicKeyStart + '...' + publicKeyEnd;
     });
 
     data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString());

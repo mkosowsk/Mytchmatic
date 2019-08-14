@@ -16,7 +16,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Menu className="ui green four item inverted menu">
+        <Menu className="ui green five item inverted menu">
           <Menu.Item as={Link} to="/about">
             About
           </Menu.Item>
