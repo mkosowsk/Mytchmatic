@@ -186,7 +186,11 @@ function mapOntoTableData(blocks: any) {
 
     const tableData = [
         {key: 'Slot', value: blocks[0]["slot"]},
-        {key: 'Parent Root', value: blocks[0]["parentRoot"]}
+        {key: 'Parent Root', value: blocks[0]["parentRoot"]},
+        {key: 'Eth 1 Data: Deposit Root', value: blocks[0]["body"]["eth1Data"]["depositRoot"]},
+        {key: 'Eth 1 Data: Deposit Count', value: blocks[0]["body"]["eth1Data"]["depositCount"]},
+        {key: 'Eth 1 Data: Block Hash', value: blocks[0]["body"]["eth1Data"]["blockHash"]},
+        // make proposerSlashings, attesterSlashings, transfers the number for list view
     ];
     return tableData;
 }
@@ -211,7 +215,14 @@ interface IState {
         "blocks": [
             {
                 slot: string,
-                parentRoot: string
+                parentRoot: string,
+                body: {
+                    eth1Data: {
+                        depositRoot: string,
+                        depositCount: string,
+                        blockHash: string
+                    }
+                }
             }
         ]
     }
@@ -228,7 +239,14 @@ class Blocks extends Component<IProps, IState> {
                 "blocks": [
                     {
                         slot: '',
-                        parentRoot: ''
+                        parentRoot: '',
+                        body: {
+                            eth1Data: {
+                                depositRoot: '',
+                                depositCount: '',
+                                blockHash: ''
+                            }
+                        }
                     }
                 ]
             }

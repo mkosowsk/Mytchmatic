@@ -92,13 +92,17 @@ class ValidatorAssignments extends Component<IProps, IState> {
     const { data } = this.state;
     console.log(data);
 
+
+    // map this onto a TableData variable so as to not overwrite good data
     // TODO: make this so we don't lose data on the publicKey
+
     data.assignments.map(assignment => {
       const publicKeyStart = assignment.publicKey.substring(0, 4);
       const publicKeyEnd = assignment.publicKey.substring(assignment.publicKey.length - 4);
 
       return assignment.publicKey = publicKeyStart + '...' + publicKeyEnd;
     });
+
 
     data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString());
     // TODO: can you pipe this like in Angular, this should be view layer!
