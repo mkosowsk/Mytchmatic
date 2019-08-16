@@ -2,7 +2,7 @@ import React, { Component } from 'react'; // importing FunctionComponent
 import { Header, Table } from 'semantic-ui-react';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/blocks';
-const DEFAULT_QUERY = '?slot=500';
+const DEFAULT_QUERY = '?slot=5000';
 
 // const headerRow = [
 //     'Slot',
@@ -174,10 +174,22 @@ const stubBlocksPartial = {
     ]
 };
 
-const tableData = [
-    { key: 'Slot', value: stubBlocksPartial["blocks"][0]["slot"] },
-    { key: 'Parent Root', value: stubBlocksPartial["blocks"][0]["parent_root"] },
-  ]
+// const tableData = [
+//     { key: 'Slot', value: stubBlocksPartial["blocks"][0]["slot"] },
+//     { key: 'Parent Root', value: stubBlocksPartial["blocks"][0]["parent_root"] },
+//   ]
+
+// want to map this into an array of objects with key/value pairs?
+
+function mapOntoTableData(blocks: any) {
+    // make tableData key/value pairs
+
+    const tableData = [
+        {key: 'Slot', value: blocks[0]["slot"]},
+        {key: 'Parent Root', value: blocks[0]["parentRoot"]}
+    ];
+    return tableData;
+}
 
 const renderBodyRow = ({
     key, 
@@ -199,7 +211,7 @@ interface IState {
         "blocks": [
             {
                 slot: string,
-                parent_root: string
+                parentRoot: string
             }
         ]
     }
@@ -216,7 +228,7 @@ class Blocks extends Component<IProps, IState> {
                 "blocks": [
                     {
                         slot: '',
-                        parent_root: ''
+                        parentRoot: ''
                     }
                 ]
             }
@@ -232,6 +244,8 @@ class Blocks extends Component<IProps, IState> {
     render() {
         const { data } = this.state;
         console.log(data);
+        
+        const tableData = mapOntoTableData(data.blocks)
 
         return (
             <div>
