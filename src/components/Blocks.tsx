@@ -181,6 +181,7 @@ function mapOntoTableData(data: any) {
         { key: 'Proposer Slashings', value: blocks[0]["body"]["proposerSlashings"].length },
         { key: 'Attester Slashings', value: blocks[0]["body"]["attesterSlashings"].length },
         { key: 'Randao reveal', value: blocks[0]["body"]["randaoReveal"] },
+        { key: 'Deposits', value: blocks[0]["body"]["deposits"].length },
         { key: 'Transfers', value: blocks[0]["body"]["transfers"].length },
         { key: 'Next Page Token', value: data["nextPageToken"] },
         { key: 'Total Size', value: data["totalSize"] },
@@ -221,6 +222,7 @@ interface IState {
                     proposerSlashings: Array<string>, //TODO: fill this out with full proposerSlashings model
                     attesterSlashings: Array<string>, //TODO: fill this out with full attesterSlashings model
                     randaoReveal: string,
+                    deposits: Array<string> //TODO: fill this out with full deposits model
                     transfers: Array<string>, //TODO: fill this out with full attesterSlashings model
                 }
             }
@@ -254,6 +256,7 @@ class Blocks extends Component<IProps, IState> {
                             proposerSlashings: [],
                             attesterSlashings: [],
                             randaoReveal: '',
+                            deposits: [],
                             transfers: [],
                         },
                     }
