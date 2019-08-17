@@ -175,6 +175,7 @@ function mapOntoTableData(blocks: any) {
         {key: 'Eth 1 Data: Deposit Count', value: blocks[0]["body"]["eth1Data"]["depositCount"]},
         {key: 'Eth 1 Data: Block Hash', value: blocks[0]["body"]["eth1Data"]["blockHash"]},
         {key: 'Proposer Slashings', value: blocks[0]["body"]["proposerSlashings"].length},
+        {key: 'Attester Slashings', value: blocks[0]["body"]["attesterSlashings"].length},
         // make proposerSlashings, attesterSlashings, transfers the number for list view
     ];
     return tableData;
@@ -207,7 +208,8 @@ interface IState {
                         depositCount: string,
                         blockHash: string
                     },
-                    proposerSlashings: Array<string>
+                    proposerSlashings: Array<string>, //TODO: fill this out with full proposerSlashings model
+                    attesterSlashings: Array<string> //TODO: fill this out with full proposerSlashings model
                 }
             }
         ]
@@ -232,7 +234,8 @@ class Blocks extends Component<IProps, IState> {
                                 depositCount: '',
                                 blockHash: ''
                             },
-                            proposerSlashings: []
+                            proposerSlashings: [],
+                            attesterSlashings: []
                         }
                     }
                 ]
