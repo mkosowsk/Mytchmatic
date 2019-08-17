@@ -165,22 +165,6 @@ const stubBlocksFull = {
     "total_size": 0
 };
 
-const stubBlocksPartial = {
-    "blocks": [
-        {
-            "slot": "string",
-            "parent_root": "string",
-        }
-    ]
-};
-
-// const tableData = [
-//     { key: 'Slot', value: stubBlocksPartial["blocks"][0]["slot"] },
-//     { key: 'Parent Root', value: stubBlocksPartial["blocks"][0]["parent_root"] },
-//   ]
-
-// want to map this into an array of objects with key/value pairs?
-
 function mapOntoTableData(blocks: any) {
     // make tableData key/value pairs
 
@@ -190,6 +174,7 @@ function mapOntoTableData(blocks: any) {
         {key: 'Eth 1 Data: Deposit Root', value: blocks[0]["body"]["eth1Data"]["depositRoot"]},
         {key: 'Eth 1 Data: Deposit Count', value: blocks[0]["body"]["eth1Data"]["depositCount"]},
         {key: 'Eth 1 Data: Block Hash', value: blocks[0]["body"]["eth1Data"]["blockHash"]},
+        {key: 'Proposer Slashings', value: blocks[0]["body"]["proposerSlashings"].length},
         // make proposerSlashings, attesterSlashings, transfers the number for list view
     ];
     return tableData;
@@ -221,7 +206,8 @@ interface IState {
                         depositRoot: string,
                         depositCount: string,
                         blockHash: string
-                    }
+                    },
+                    proposerSlashings: Array<string>
                 }
             }
         ]
@@ -245,7 +231,8 @@ class Blocks extends Component<IProps, IState> {
                                 depositRoot: '',
                                 depositCount: '',
                                 blockHash: ''
-                            }
+                            },
+                            proposerSlashings: []
                         }
                     }
                 ]
