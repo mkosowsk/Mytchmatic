@@ -171,6 +171,7 @@ function mapOntoTableData(blocks: any) {
     const tableData = [
         {key: 'Slot', value: blocks[0]["slot"]},
         {key: 'Parent Root', value: blocks[0]["parentRoot"]},
+        {key: 'Attestations', value: blocks[0]["body"]["attestations"].length},
         {key: 'Eth 1 Data: Deposit Root', value: blocks[0]["body"]["eth1Data"]["depositRoot"]},
         {key: 'Eth 1 Data: Deposit Count', value: blocks[0]["body"]["eth1Data"]["depositCount"]},
         {key: 'Eth 1 Data: Block Hash', value: blocks[0]["body"]["eth1Data"]["blockHash"]},
@@ -208,6 +209,7 @@ interface IState {
                         depositCount: string,
                         blockHash: string
                     },
+                    attestations: Array<string>, //TODO: fill this out with full attestations model
                     proposerSlashings: Array<string>, //TODO: fill this out with full proposerSlashings model
                     attesterSlashings: Array<string>, //TODO: fill this out with full attesterSlashings model
                     transfers: Array<string>, //TODO: fill this out with full attesterSlashings model
@@ -231,6 +233,7 @@ class Blocks extends Component<IProps, IState> {
                         slot: '',
                         parentRoot: '',
                         body: {
+                            attestations: [],
                             eth1Data: {
                                 depositRoot: '',
                                 depositCount: '',
