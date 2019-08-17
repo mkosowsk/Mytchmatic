@@ -165,25 +165,28 @@ const stubBlocksFull = {
     "total_size": 0
 };
 
-function mapOntoTableData(blocks: any) {
+function mapOntoTableData(data: any) {
     // make tableData key/value pairs
+    const blocks = data.blocks;
 
     const tableData = [
-        {key: 'Slot', value: blocks[0]["slot"]},
-        {key: 'Parent Root', value: blocks[0]["parentRoot"]},
-        {key: 'Attestations', value: blocks[0]["body"]["attestations"].length},
-        {key: 'Eth 1 Data: Deposit Root', value: blocks[0]["body"]["eth1Data"]["depositRoot"]},
-        {key: 'Eth 1 Data: Deposit Count', value: blocks[0]["body"]["eth1Data"]["depositCount"]},
-        {key: 'Eth 1 Data: Block Hash', value: blocks[0]["body"]["eth1Data"]["blockHash"]},
-        {key: 'Proposer Slashings', value: blocks[0]["body"]["proposerSlashings"].length},
-        {key: 'Attester Slashings', value: blocks[0]["body"]["attesterSlashings"].length},
-        {key: 'Transfers', value: blocks[0]["body"]["transfers"].length},
+        { key: 'Slot', value: blocks[0]["slot"] },
+        { key: 'Parent Root', value: blocks[0]["parentRoot"] },
+        { key: 'Attestations', value: blocks[0]["body"]["attestations"].length },
+        { key: 'Eth 1 Data: Deposit Root', value: blocks[0]["body"]["eth1Data"]["depositRoot"] },
+        { key: 'Eth 1 Data: Deposit Count', value: blocks[0]["body"]["eth1Data"]["depositCount"] },
+        { key: 'Eth 1 Data: Block Hash', value: blocks[0]["body"]["eth1Data"]["blockHash"] },
+        { key: 'Proposer Slashings', value: blocks[0]["body"]["proposerSlashings"].length },
+        { key: 'Attester Slashings', value: blocks[0]["body"]["attesterSlashings"].length },
+        { key: 'Transfers', value: blocks[0]["body"]["transfers"].length },
+        { key: 'Next Page Token', value: data["nextPageToken"] },
+        { key: 'Total Size', value: data["totalSize"] },
     ];
     return tableData;
 }
 
 const renderBodyRow = ({
-    key, 
+    key,
     value
 }: {
     key: string,
@@ -213,10 +216,11 @@ interface IState {
                     proposerSlashings: Array<string>, //TODO: fill this out with full proposerSlashings model
                     attesterSlashings: Array<string>, //TODO: fill this out with full attesterSlashings model
                     transfers: Array<string>, //TODO: fill this out with full attesterSlashings model
-                
                 }
             }
-        ]
+        ],
+        nextPageToken: string,
+        totalSize: number
     }
 }
 
@@ -242,9 +246,11 @@ class Blocks extends Component<IProps, IState> {
                             proposerSlashings: [],
                             attesterSlashings: [],
                             transfers: [],
-                        }
+                        },
                     }
-                ]
+                ],
+                nextPageToken: '',
+                totalSize: 0
             }
         };
     }
@@ -258,8 +264,8 @@ class Blocks extends Component<IProps, IState> {
     render() {
         const { data } = this.state;
         console.log(data);
-        
-        const tableData = mapOntoTableData(data.blocks)
+
+        const tableData = mapOntoTableData(data)
 
         return (
             <div>
