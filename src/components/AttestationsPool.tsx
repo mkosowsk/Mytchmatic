@@ -36,6 +36,29 @@ const renderBodyRow = ({
     ],
   });
 
+const headerRow = <Table.Header>
+  <Table.Row>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
+    <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
+  </Table.Row>
+  <Table.Row>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
+  </Table.Row>
+</Table.Header>
+
 
 // const tableData = [
 //   { name: undefined, status: undefined, notes: undefined },
@@ -102,32 +125,8 @@ class AttestationsPool extends Component<IProps, IState> {
 
     return (
       <div>
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>
-              <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
-              <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
-              <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
-              <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
-              <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
-              <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
-            </Table.Row>
-            <Table.Row>
-              <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
-              <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-        </Table>
-        <Table
-          celled
+        <Table celled structured
+          headerRow={headerRow}
           renderBodyRow={renderBodyRow}
           tableData={tableData}
         >
