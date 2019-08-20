@@ -4,6 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import About from './components/about';
 import Attestations from './components/Attestations';
+import AttestationsPool from './components/AttestationsPool';
 import Validators from './components/Validators';
 import ValidatorAssignments from './components/ValidatorAssignments';
 import { Menu } from 'semantic-ui-react';
@@ -26,6 +27,9 @@ const App: React.FC = () => {
           <Menu.Item as={Link} to="/beacon/attestations">
             Beacon Attestations
           </Menu.Item>
+          <Menu.Item as={Link} to="/beacon/attestations/pool">
+            Beacon Attestations Pool
+          </Menu.Item>
           <Menu.Item as={Link} to="/beacon/blocks">
             Beacon Blocks
           </Menu.Item>
@@ -35,6 +39,7 @@ const App: React.FC = () => {
         </Menu>
         <Route path="/about" component={About} />
         <Route exact path="/beacon/attestations" component={Attestations} />
+        <Route exact path="/beacon/attestations/pool" component={AttestationsPool} />
         <Route exact path="/beacon/blocks" component={Blocks} />
         <Route exact path="/eth/validators" component={Validators} />
         <Route path="/eth/validators/assignments" component={ValidatorAssignments} />
