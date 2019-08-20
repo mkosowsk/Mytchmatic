@@ -1,13 +1,13 @@
 import React from 'react'; // importing FunctionComponent
-import validators from '../mock/validators.json';
+import Attestations from '../mock/beacon_attestations.json';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 
 // make a complex structured table
 
-const tableData = validators.validators;
+const tableData = Attestations.attestations;
 
 const renderBodyRow = ({
-  public_key,
+  aggregation_bits,
   withdrawal_credentials,
   activation_eligiblity_epoch,
   activation_epoch,
@@ -16,7 +16,7 @@ const renderBodyRow = ({
   slashed,
   effective_balance
 }: {
-  public_key: string,
+  aggregation_bits: string,
   withdrawal_credentials: string,
   activation_eligiblity_epoch: string,
   activation_epoch: string,
@@ -26,9 +26,9 @@ const renderBodyRow = ({
   effective_balance: string
 },
   i: number) => ({
-    key: public_key || `row-${i}`,
+    key: aggregation_bits || `row-${i}`,
     cells: [
-      public_key,
+      aggregation_bits,
       withdrawal_credentials,
       activation_eligiblity_epoch,
       activation_epoch,
