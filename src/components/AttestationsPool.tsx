@@ -6,31 +6,50 @@ import { Icon, Menu, Table } from 'semantic-ui-react';
 
 // map tableData onto an array
 
-const tableData = Attestations.attestations;
+// const tableData = Attestations.attestations;
 
 function mapOntoTableData(data: any) {
   // make tableData key/value pairs
   const attestations = data.attestations;
 
   const tableData = [
-      attestations[0]["aggregation_bits"],
-      attestations[0]["data"]["beacon_block_root"]
+    attestations[0]["aggregation_bits"],
+    attestations[0]["data"]["beacon_block_root"]
   ];
   return tableData;
 }
 
-const renderBodyRow = ({
-  aggregation_bits,
-}: {
-  aggregation_bits: string,
-},
-  i: number) => ({
-    key: aggregation_bits || `row-${i}`,
-    cells: [
-      aggregation_bits,
-    ],
-  })
+// const renderBodyRow = ({
+//   publicKey,
+// }: {
+//   publicKey: string,
+// },
+//   i: number) => ({
+//     key: publicKey || `row-${i}`,
+//     cells: [
+//       publicKey,
+//     ],
+//   });
 
+
+const tableData = [
+  { name: undefined, status: undefined, notes: undefined },
+  { name: 'Jimmy', status: 'Requires Action', notes: undefined },
+  { name: 'Jamie', status: undefined, notes: 'Hostile' },
+  { name: 'Jill', status: undefined, notes: undefined },
+]
+
+const headerRow = ['Name', 'Status', 'Notes']
+
+const renderBodyRow = ({ name, status, notes }: any, i: number) => ({
+  key: name || `row-${i}`,
+  warning: !!(status && status.match('Requires Action')),
+  cells: [
+    name || 'No name specified',
+    status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
+    notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+  ],
+})
 interface IState {
   data: {
     attestations: [
@@ -74,7 +93,7 @@ class AttestationsPool extends Component<IProps, IState> {
     console.log(data);
 
     // const tableData = mapOntoTableData(data);
-    const tableData = ["hello"];
+    // const tableData = ["hello"];
     console.log(tableData);
 
     return (
@@ -104,7 +123,7 @@ class AttestationsPool extends Component<IProps, IState> {
           </Table.Header>
         </Table>
         <Table
-          celled structured
+          celled
           renderBodyRow={renderBodyRow}
           tableData={tableData}
         >
