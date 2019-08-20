@@ -6,50 +6,48 @@ import { Icon, Menu, Table } from 'semantic-ui-react';
 
 // map tableData onto an array
 
-// const tableData = Attestations.attestations;
+const tableData = Attestations;
 
 function mapOntoTableData(data: any) {
   // make tableData key/value pairs
   const attestations = data.attestations;
 
   const tableData = [
-    attestations[0]["aggregation_bits"],
-    attestations[0]["data"]["beacon_block_root"]
+    {aggregation_bits: attestations[0]["aggregation_bits"]},
   ];
   return tableData;
 }
 
-// const renderBodyRow = ({
-//   publicKey,
-// }: {
-//   publicKey: string,
-// },
-//   i: number) => ({
-//     key: publicKey || `row-${i}`,
-//     cells: [
-//       publicKey,
-//     ],
-//   });
+const renderBodyRow = ({
+  aggregation_bits,
+}: {
+  aggregation_bits: string,
+},
+  i: number) => ({
+    key: aggregation_bits || `row-${i}`,
+    cells: [
+      aggregation_bits,
+    ],
+  });
 
 
-const tableData = [
-  { name: undefined, status: undefined, notes: undefined },
-  { name: 'Jimmy', status: 'Requires Action', notes: undefined },
-  { name: 'Jamie', status: undefined, notes: 'Hostile' },
-  { name: 'Jill', status: undefined, notes: undefined },
-]
+// const tableData = [
+//   { name: undefined, status: undefined, notes: undefined },
+//   { name: 'Jimmy', status: 'Requires Action', notes: undefined },
+//   { name: 'Jamie', status: undefined, notes: 'Hostile' },
+//   { name: 'Jill', status: undefined, notes: undefined },
+// ]
 
-const headerRow = ['Name', 'Status', 'Notes']
+// const renderBodyRow = ({ name, status, notes }: any, i: number) => ({
+//   key: name || `row-${i}`,
+//   warning: !!(status && status.match('Requires Action')),
+//   cells: [
+//     name || 'No name specified',
+//     status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
+//     notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+//   ],
+// })
 
-const renderBodyRow = ({ name, status, notes }: any, i: number) => ({
-  key: name || `row-${i}`,
-  warning: !!(status && status.match('Requires Action')),
-  cells: [
-    name || 'No name specified',
-    status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
-    notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
-  ],
-})
 interface IState {
   data: {
     attestations: [
@@ -92,7 +90,7 @@ class AttestationsPool extends Component<IProps, IState> {
     const data = Attestations;
     console.log(data);
 
-    // const tableData = mapOntoTableData(data);
+    const tableData = mapOntoTableData(data);
     // const tableData = ["hello"];
     console.log(tableData);
 
