@@ -13,41 +13,21 @@ function mapOntoTableData(data: any) {
   const attestations = data.attestations;
 
   const tableData = [
-      { key: 'Slot', value: attestations[0]["aggregation_bits"] },
+      attestations[0]["aggregation_bits"],
+      attestations[0]["data"]["beacon_block_root"]
   ];
   return tableData;
 }
 
 const renderBodyRow = ({
   aggregation_bits,
-  withdrawal_credentials,
-  activation_eligiblity_epoch,
-  activation_epoch,
-  exit_epoch,
-  withdrawable_epoch,
-  slashed,
-  effective_balance
 }: {
   aggregation_bits: string,
-  withdrawal_credentials: string,
-  activation_eligiblity_epoch: string,
-  activation_epoch: string,
-  exit_epoch: string,
-  withdrawable_epoch: string,
-  slashed: boolean,
-  effective_balance: string
 },
   i: number) => ({
     key: aggregation_bits || `row-${i}`,
     cells: [
       aggregation_bits,
-      withdrawal_credentials,
-      activation_eligiblity_epoch,
-      activation_epoch,
-      exit_epoch,
-      withdrawable_epoch,
-      slashed,
-      effective_balance
     ],
   })
 
@@ -93,7 +73,9 @@ class AttestationsPool extends Component<IProps, IState> {
     const data = Attestations;
     console.log(data);
 
-    const tableData = mapOntoTableData(data)
+    // const tableData = mapOntoTableData(data);
+    const tableData = ["hello"];
+    console.log(tableData);
 
     return (
       <div>

@@ -1,9 +1,9 @@
 {
   "attestations": [
     {
-      "aggregation_bits": "aggregation_bits",
+      "aggregation_bits": "aggregation_bits_value",
       "data": {
-        "beacon_block_root": "beacon_block_root",
+        "beacon_block_root": "beacon_block_root_value",
         "source": {
           "epoch": "epoch",
           "root": "root"
