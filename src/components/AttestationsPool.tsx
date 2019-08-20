@@ -8,6 +8,16 @@ import { Icon, Menu, Table } from 'semantic-ui-react';
 
 const tableData = Attestations.attestations;
 
+function mapOntoTableData(data: any) {
+  // make tableData key/value pairs
+  const attestations = data.attestations;
+
+  const tableData = [
+      { key: 'Slot', value: attestations[0]["aggregation_bits"] },
+  ];
+  return tableData;
+}
+
 const renderBodyRow = ({
   aggregation_bits,
   withdrawal_credentials,
@@ -45,7 +55,7 @@ interface IState {
   data: {
     attestations: [
       {
-        "aggregation_bits": string
+        aggregation_bits: string
       }
     ]
   }
@@ -55,8 +65,35 @@ interface IProps { }
 
 // 13 total columns
 class AttestationsPool extends Component<IProps, IState> {
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      data: {
+        attestations: [
+          {
+            aggregation_bits: ''
+          }
+        ]
+      }
+    };
+  }
+
+  // TODO: add this in later to get real results from API
+  // componentDidMount() {
+  //   fetch(API + DEFAULT_QUERY)
+  //     .then(response => response.json())
+  //     .then(data => this.setState({ data: data }))
+  // }
 
   render() {
+    // TODO: add the following back in
+    // const { data } = this.state;
+
+    const data = Attestations;
+    console.log(data);
+
+    const tableData = mapOntoTableData(data)
 
     return (
       <div>
@@ -90,26 +127,6 @@ class AttestationsPool extends Component<IProps, IState> {
           tableData={tableData}
         >
         </Table>
-        <div className="ui one column padded centered grid">
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell>
-                <Menu>
-                  <Menu.Item as='a' icon>
-                    <Icon name='chevron left' />
-                  </Menu.Item>
-                  <Menu.Item as='a'>1</Menu.Item>
-                  <Menu.Item as='a'>2</Menu.Item>
-                  <Menu.Item as='a'>3</Menu.Item>
-                  <Menu.Item as='a'>4</Menu.Item>
-                  <Menu.Item as='a' icon>
-                    <Icon name='chevron right' />
-                  </Menu.Item>
-                </Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </div>
       </div>
     )
   }
