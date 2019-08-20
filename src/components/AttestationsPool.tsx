@@ -13,20 +13,26 @@ function mapOntoTableData(data: any) {
   const attestations = data.attestations;
 
   const tableData = [
-    {aggregation_bits: attestations[0]["aggregation_bits"]},
+    {
+      aggregation_bits: attestations[0]["aggregation_bits"],
+      beacon_block_root: attestations[0]["data"]["beacon_block_root"]
+    },
   ];
   return tableData;
 }
 
 const renderBodyRow = ({
   aggregation_bits,
+  beacon_block_root
 }: {
   aggregation_bits: string,
+  beacon_block_root: string
 },
   i: number) => ({
     key: aggregation_bits || `row-${i}`,
     cells: [
       aggregation_bits,
+      beacon_block_root
     ],
   });
 
