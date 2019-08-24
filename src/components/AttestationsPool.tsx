@@ -24,7 +24,9 @@ function mapOntoTableData(data: any) {
       crosslink_parent_root: attestations[0]["data"]["crosslink"]["parent_root"],
       crosslink_start_epoch: attestations[0]["data"]["crosslink"]["start_epoch"],
       crosslink_end_epoch: attestations[0]["data"]["crosslink"]["end_epoch"],
-      crosslink_data_root: attestations[0]["data"]["crosslink"]["data_root"]
+      crosslink_data_root: attestations[0]["data"]["crosslink"]["data_root"],
+      custody_bits: attestations[0]["custody_bits"],
+      signature: attestations[0]["signature"]
     },
   ];
   return tableData;
@@ -41,7 +43,9 @@ const renderBodyRow = ({
   crosslink_parent_root,
   crosslink_start_epoch,
   crosslink_end_epoch,
-  crosslink_data_root
+  crosslink_data_root,
+  custody_bits,
+  signature
 
 }: {
   aggregation_bits: string,
@@ -54,7 +58,9 @@ const renderBodyRow = ({
   crosslink_parent_root: string,
   crosslink_start_epoch: string,
   crosslink_end_epoch: string,
-  crosslink_data_root: string
+  crosslink_data_root: string,
+  custody_bits: string,
+  signature: string
 },
   i: number) => ({
     key: aggregation_bits || `row-${i}`,
@@ -69,7 +75,9 @@ const renderBodyRow = ({
       crosslink_parent_root,
       crosslink_start_epoch,
       crosslink_end_epoch,
-      crosslink_data_root
+      crosslink_data_root,
+      custody_bits,
+      signature
     ],
   });
 
