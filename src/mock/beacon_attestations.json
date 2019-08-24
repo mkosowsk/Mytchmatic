@@ -14,10 +14,10 @@
         },
         "crosslink": {
           "shard": "crosslink_shard",
-          "parent_root": "parent_root",
-          "start_epoch": "start_epoch",
-          "end_epoch": "end_epoch",
-          "data_root": "data_root"
+          "parent_root": "crosslink_parent_root",
+          "start_epoch": "crosslink_start_epoch",
+          "end_epoch": "crosslink_end_epoch",
+          "data_root": "crosslink_data_root"
         }
       },
       "custody_bits": "custody_bits",

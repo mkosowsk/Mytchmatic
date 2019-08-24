@@ -20,7 +20,11 @@ function mapOntoTableData(data: any) {
       source_root: attestations[0]["data"]["source"]["root"],
       target_epoch: attestations[0]["data"]["target"]["epoch"],
       target_root: attestations[0]["data"]["target"]["root"],
-      crosslink_shard: attestations[0]["data"]["crosslink"]["shard"]
+      crosslink_shard: attestations[0]["data"]["crosslink"]["shard"],
+      crosslink_parent_root: attestations[0]["data"]["crosslink"]["parent_root"],
+      crosslink_start_epoch: attestations[0]["data"]["crosslink"]["start_epoch"],
+      crosslink_end_epoch: attestations[0]["data"]["crosslink"]["end_epoch"],
+      crosslink_data_root: attestations[0]["data"]["crosslink"]["data_root"]
     },
   ];
   return tableData;
@@ -33,7 +37,12 @@ const renderBodyRow = ({
   source_root,
   target_epoch,
   target_root,
-  crosslink_shard
+  crosslink_shard,
+  crosslink_parent_root,
+  crosslink_start_epoch,
+  crosslink_end_epoch,
+  crosslink_data_root
+
 }: {
   aggregation_bits: string,
   beacon_block_root: string,
@@ -41,7 +50,11 @@ const renderBodyRow = ({
   source_root: string,
   target_epoch: string,
   target_root: string,
-  crosslink_shard: string
+  crosslink_shard: string,
+  crosslink_parent_root: string,
+  crosslink_start_epoch: string,
+  crosslink_end_epoch: string,
+  crosslink_data_root: string
 },
   i: number) => ({
     key: aggregation_bits || `row-${i}`,
@@ -52,7 +65,11 @@ const renderBodyRow = ({
       source_root,
       target_epoch,
       target_root,
-      crosslink_shard
+      crosslink_shard,
+      crosslink_parent_root,
+      crosslink_start_epoch,
+      crosslink_end_epoch,
+      crosslink_data_root
     ],
   });
 
