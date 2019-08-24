@@ -5,8 +5,8 @@
       "data": {
         "beacon_block_root": "beacon_block_root_value",
         "source": {
-          "epoch": "epoch",
-          "root": "root"
+          "epoch": "source_epoch",
+          "root": "source_root"
         },
         "target": {
           "epoch": "epoch",
