@@ -9,11 +9,11 @@
           "root": "source_root"
         },
         "target": {
-          "epoch": "epoch",
-          "root": "root"
+          "epoch": "target_epoch",
+          "root": "target_root"
         },
         "crosslink": {
-          "shard": "shard",
+          "shard": "crosslink_shard",
           "parent_root": "parent_root",
           "start_epoch": "start_epoch",
           "end_epoch": "end_epoch",

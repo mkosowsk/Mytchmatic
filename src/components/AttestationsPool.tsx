@@ -19,7 +19,8 @@ function mapOntoTableData(data: any) {
       source_epoch: attestations[0]["data"]["source"]["epoch"],
       source_root: attestations[0]["data"]["source"]["root"],
       target_epoch: attestations[0]["data"]["target"]["epoch"],
-      target_root: attestations[0]["data"]["target"]["root"]
+      target_root: attestations[0]["data"]["target"]["root"],
+      crosslink_shard: attestations[0]["data"]["crosslink"]["shard"]
     },
   ];
   return tableData;
@@ -31,14 +32,16 @@ const renderBodyRow = ({
   source_epoch,
   source_root,
   target_epoch,
-  target_root
+  target_root,
+  crosslink_shard
 }: {
   aggregation_bits: string,
   beacon_block_root: string,
   source_epoch: string,
   source_root: string,
   target_epoch: string,
-  target_root: string
+  target_root: string,
+  crosslink_shard: string
 },
   i: number) => ({
     key: aggregation_bits || `row-${i}`,
@@ -48,27 +51,32 @@ const renderBodyRow = ({
       source_epoch,
       source_root,
       target_epoch,
-      target_root
+      target_root,
+      crosslink_shard
     ],
   });
 
-const headerRow = [
-  <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>,
-  <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>,
-  <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>,
-  <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>,
-  <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>,
-  <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>,
-  <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>,
-  <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
+const headerRows = [
+  <Table.Row>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
+    <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
+  </Table.Row>,
+  <Table.Row>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
+  </Table.Row>
 ]
 
 // const headerRow = <Table.Header>
@@ -161,7 +169,7 @@ class AttestationsPool extends Component<IProps, IState> {
     return (
       <div>
         <Table celled structured
-          headerRow={headerRow}
+          headerRows={headerRows}
           renderBodyRow={renderBodyRow}
           tableData={tableData}
         >
