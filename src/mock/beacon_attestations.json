@@ -1,26 +1,26 @@
 {
   "attestations": [
     {
-      "aggregation_bits": "aggregation_bits_value",
+      "aggregation_bits": "aggregation bits value",
       "data": {
-        "beacon_block_root": "beacon_block_root_value",
+        "beacon_block_root": "beacon block root value",
         "source": {
-          "epoch": "source_epoch",
-          "root": "source_root"
+          "epoch": "source epoch",
+          "root": "source root"
         },
         "target": {
-          "epoch": "target_epoch",
-          "root": "target_root"
+          "epoch": "target epoch",
+          "root": "target root"
         },
         "crosslink": {
-          "shard": "crosslink_shard",
-          "parent_root": "crosslink_parent_root",
-          "start_epoch": "crosslink_start_epoch",
-          "end_epoch": "crosslink_end_epoch",
-          "data_root": "crosslink_data_root"
+          "shard": "crosslink shard",
+          "parent_root": "crosslink parent root",
+          "start_epoch": "crosslink start epoch",
+          "end_epoch": "crosslink end epoch",
+          "data_root": "crosslink data root"
         }
       },
-      "custody_bits": "custody_bits",
+      "custody_bits": "custody bits",
       "signature": "signature"
     }
   ]
