@@ -33,8 +33,8 @@ const renderBodyRow = ({
       epoch,
       finalized + '',
       (globalParticipationRate * 100).toFixed(3) + '%',
-      votedEther,
-      eligibleEther
+      Number(votedEther).toLocaleString(),
+      Number(eligibleEther).toLocaleString()
     ],
   });
 
