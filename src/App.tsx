@@ -7,6 +7,7 @@ import Attestations from './components/Attestations';
 import AttestationsPool from './components/AttestationsPool';
 import Validators from './components/Validators';
 import ValidatorAssignments from './components/ValidatorAssignments';
+import ValidatorParticipation from './components/ValidatorParticipation';
 import { Menu } from 'semantic-ui-react';
 import Blocks from './components/Blocks'
 
@@ -17,7 +18,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Menu className="ui green six item inverted menu">
+        <Menu className="ui green seven item inverted menu">
           <Menu.Item as={Link} to="/about">
             About
           </Menu.Item>
@@ -36,13 +37,17 @@ const App: React.FC = () => {
           <Menu.Item as={Link} to="/eth/validators/assignments">
             Validator Assignments
           </Menu.Item>
+          <Menu.Item as={Link} to="/eth/validators/participation">
+            Validator Participation
+          </Menu.Item>
         </Menu>
         <Route path="/about" component={About} />
         <Route exact path="/beacon/attestations" component={Attestations} />
         <Route exact path="/beacon/attestations/pool" component={AttestationsPool} />
         <Route exact path="/beacon/blocks" component={Blocks} />
         <Route exact path="/eth/validators" component={Validators} />
-        <Route path="/eth/validators/assignments" component={ValidatorAssignments} />
+        <Route exact path="/eth/validators/assignments" component={ValidatorAssignments} />
+        <Route exact path="/eth/validators/participation" component={ValidatorParticipation} />
       </div>
     </Router >
   );
