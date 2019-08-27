@@ -12,23 +12,25 @@ function mapOntoTableData(data: any) {
   // make tableData key/value pairs
   const attestations = data.attestations;
 
-  const tableData = [
-    {
-      aggregation_bits: attestations[0]["aggregation_bits"],
-      beacon_block_root: attestations[0]["data"]["beacon_block_root"],
-      source_epoch: attestations[0]["data"]["source"]["epoch"],
-      source_root: attestations[0]["data"]["source"]["root"],
-      target_epoch: attestations[0]["data"]["target"]["epoch"],
-      target_root: attestations[0]["data"]["target"]["root"],
-      crosslink_shard: attestations[0]["data"]["crosslink"]["shard"],
-      crosslink_parent_root: attestations[0]["data"]["crosslink"]["parent_root"],
-      crosslink_start_epoch: attestations[0]["data"]["crosslink"]["start_epoch"],
-      crosslink_end_epoch: attestations[0]["data"]["crosslink"]["end_epoch"],
-      crosslink_data_root: attestations[0]["data"]["crosslink"]["data_root"],
-      custody_bits: attestations[0]["custody_bits"],
-      signature: attestations[0]["signature"]
-    },
-  ];
+  const tableData = attestations.map((currentValue: any, i: number) => {
+    const currAttestationPool = {
+      aggregation_bits: attestations[i]["aggregation_bits"],
+      beacon_block_root: attestations[i]["data"]["beacon_block_root"],
+      source_epoch: attestations[i]["data"]["source"]["epoch"],
+      source_root: attestations[i]["data"]["source"]["root"],
+      target_epoch: attestations[i]["data"]["target"]["epoch"],
+      target_root: attestations[i]["data"]["target"]["root"],
+      crosslink_shard: attestations[i]["data"]["crosslink"]["shard"],
+      crosslink_parent_root: attestations[i]["data"]["crosslink"]["parent_root"],
+      crosslink_start_epoch: attestations[i]["data"]["crosslink"]["start_epoch"],
+      crosslink_end_epoch: attestations[i]["data"]["crosslink"]["end_epoch"],
+      crosslink_data_root: attestations[i]["data"]["crosslink"]["data_root"],
+      custody_bits: attestations[i]["custody_bits"],
+      signature: attestations[i]["signature"]
+    };
+    return currAttestationPool;
+  });
+
   return tableData;
 }
 
