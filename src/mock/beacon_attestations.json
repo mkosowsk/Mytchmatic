@@ -1,27 +1,50 @@
 {
   "attestations": [
     {
-      "aggregation_bits": "aggregation bits value",
+      "aggregation_bits": "first aggregation bits value",
       "data": {
-        "beacon_block_root": "beacon block root value",
+        "beacon_block_root": "first beacon block root value",
         "source": {
-          "epoch": "source epoch",
-          "root": "source root"
+          "epoch": "first source epoch",
+          "root": "first source root"
         },
         "target": {
-          "epoch": "target epoch",
-          "root": "target root"
+          "epoch": "first target epoch",
+          "root": "first target root"
         },
         "crosslink": {
-          "shard": "crosslink shard",
-          "parent_root": "crosslink parent root",
-          "start_epoch": "crosslink start epoch",
-          "end_epoch": "crosslink end epoch",
-          "data_root": "crosslink data root"
+          "shard": "first crosslink shard",
+          "parent_root": "first crosslink parent root",
+          "start_epoch": "first crosslink start epoch",
+          "end_epoch": "first crosslink end epoch",
+          "data_root": "first crosslink data root"
         }
       },
-      "custody_bits": "custody bits",
-      "signature": "signature"
+      "custody_bits": "first custody bits",
+      "signature": "first signature"
+    },
+    {
+      "aggregation_bits": "second aggregation bits value",
+      "data": {
+        "beacon_block_root": "second beacon block root value",
+        "source": {
+          "epoch": "second source epoch",
+          "root": "second source root"
+        },
+        "target": {
+          "epoch": "second target epoch",
+          "root": "second target root"
+        },
+        "crosslink": {
+          "shard": "second crosslink shard",
+          "parent_root": "second crosslink parent root",
+          "start_epoch": "second crosslink start epoch",
+          "end_epoch": "second crosslink end epoch",
+          "data_root": "second crosslink data root"
+        }
+      },
+      "custody_bits": "second custody bits",
+      "signature": "second signature"
     }
   ]
 }
