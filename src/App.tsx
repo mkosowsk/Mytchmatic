@@ -23,10 +23,10 @@ const App: React.FC = () => {
             About
           </Menu.Item>
           <Menu.Item>
-            <Dropdown text='File'>
+            <Dropdown text='Beacon'>
               <Dropdown.Menu>
-                <Dropdown.Item text='New' />
-                <Dropdown.Item text='Open...' description='ctrl + o' />
+                <Dropdown.Item as={Link} to="/beacon/attestations" text='Beacon Attestations' />
+                <Dropdown.Item as={Link} to="/beacon/attestations/pool" text='Beacon Attestations Pool' description='ctrl + o' />
                 <Dropdown.Item text='Save as...' description='ctrl + s' />
                 <Dropdown.Item text='Rename' description='ctrl + r' />
                 <Dropdown.Item text='Make a copy' />
@@ -41,12 +41,6 @@ const App: React.FC = () => {
           </Menu.Item>
           <Menu.Item as={Link} to="/eth/validators">
             Active Validators
-          </Menu.Item>
-          <Menu.Item as={Link} to="/beacon/attestations">
-            Beacon Attestations
-          </Menu.Item>
-          <Menu.Item as={Link} to="/beacon/attestations/pool">
-            Beacon Attestations Pool
           </Menu.Item>
           <Menu.Item as={Link} to="/beacon/blocks">
             Beacon Blocks
