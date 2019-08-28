@@ -61,19 +61,19 @@ const renderBodyRow = ({
   i: number) => ({
     key: aggregationBits || `row-${i}`,
     cells: [
-      aggregationBits,
-      beaconBlockRoot,
+      truncateString(aggregationBits),
+      truncateString(beaconBlockRoot),
       sourceEpoch,
-      sourceRoot,
+      truncateString(sourceRoot),
       targetEpoch,
-      targetRoot,
+      truncateString(targetRoot),
       crosslinkShard,
-      crosslinkParentRoot,
+      truncateString(crosslinkParentRoot),
       crosslinkStartEpoch,
       crosslinkEndEpoch,
-      crosslinkDataRoot,
-      custodyBits,
-      signature
+      truncateString(crosslinkDataRoot),
+      truncateString(custodyBits),
+      truncateString(signature)
     ],
   });
 
