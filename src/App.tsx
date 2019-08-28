@@ -18,7 +18,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Menu className="ui green eight item inverted menu">
+        <Menu className="ui green three item inverted menu">
           <Menu.Item as={Link} to="/about">
             About
           </Menu.Item>
@@ -32,14 +32,14 @@ const App: React.FC = () => {
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
-          <Menu.Item as={Link} to="/eth/validators">
-            Active Validators
-          </Menu.Item>
-          <Menu.Item as={Link} to="/eth/validators/assignments">
-            Validator Assignments
-          </Menu.Item>
-          <Menu.Item as={Link} to="/eth/validators/participation">
-            Validator Participation
+          <Menu.Item>
+            <Dropdown text='Validators'>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to="/eth/validators" text='Active Validators' />
+                <Dropdown.Item as={Link} to="/eth/validators/assignments" text='Validator Assignments' />
+                <Dropdown.Item as={Link} to="/eth/validators/participation" text='Validator Participation' />
+              </Dropdown.Menu>
+            </Dropdown>
           </Menu.Item>
         </Menu>
         <Route path="/about" component={About} />
