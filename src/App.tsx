@@ -8,7 +8,7 @@ import AttestationsPool from './components/AttestationsPool';
 import Validators from './components/Validators';
 import ValidatorAssignments from './components/ValidatorAssignments';
 import ValidatorParticipation from './components/ValidatorParticipation';
-import { Menu } from 'semantic-ui-react';
+import { Dropdown, Menu } from 'semantic-ui-react';
 import Blocks from './components/Blocks'
 
 //TODO: fix hitting both eth/validators and eth/validators/assignments
@@ -18,9 +18,26 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Menu className="ui green seven item inverted menu">
+        <Menu className="ui green eight item inverted menu">
           <Menu.Item as={Link} to="/about">
             About
+          </Menu.Item>
+          <Menu.Item>
+            <Dropdown text='File'>
+              <Dropdown.Menu>
+                <Dropdown.Item text='New' />
+                <Dropdown.Item text='Open...' description='ctrl + o' />
+                <Dropdown.Item text='Save as...' description='ctrl + s' />
+                <Dropdown.Item text='Rename' description='ctrl + r' />
+                <Dropdown.Item text='Make a copy' />
+                <Dropdown.Item icon='folder' text='Move to folder' />
+                <Dropdown.Item icon='trash' text='Move to trash' />
+                <Dropdown.Divider />
+                <Dropdown.Item text='Download As...' />
+                <Dropdown.Item text='Publish To Web' />
+                <Dropdown.Item text='E-mail Collaborators' />
+              </Dropdown.Menu>
+            </Dropdown>
           </Menu.Item>
           <Menu.Item as={Link} to="/eth/validators">
             Active Validators
