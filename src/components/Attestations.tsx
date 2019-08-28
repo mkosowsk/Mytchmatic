@@ -2,10 +2,8 @@ import React, { Component } from 'react'; // importing FunctionComponent
 import validators from '../mock/validators.json';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 
-import AttestationsMock from '../mock/beacon_attestations.json';
-
-
-const tableData = AttestationsMock;
+const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/attestations';
+const DEFAULT_QUERY = '';
 
 const headerRows = [
   <Table.Row>
@@ -108,7 +106,27 @@ interface IState {
   data: {
     attestations: [
       {
-        aggregation_bits: string
+        aggregation_bits: string,
+        data: {
+          beaconBlockRoot: string,
+          source: {
+            epoch: string,
+            root: string
+          },
+          target: {
+            epoch: string,
+            root: string
+          },
+          crosslink: {
+            shard: string,
+            parentRoot: string,
+            startEpoch: string,
+            endEpoch: string,
+            dataRoot: string
+          }
+        },
+        custodyBits: string,
+        signature: string
       }
     ]
   }
@@ -124,25 +142,42 @@ class Attestations extends Component<IProps, IState> {
       data: {
         attestations: [
           {
-            aggregation_bits: ''
+            aggregation_bits: '',
+            data: {
+              beaconBlockRoot: '',
+              source: {
+                epoch: '',
+                root: ''
+              },
+              target: {
+                epoch: '',
+                root: ''
+              },
+              crosslink: {
+                shard: '',
+                parentRoot: '',
+                startEpoch: '',
+                endEpoch: '',
+                dataRoot: ''
+              }
+            },
+            custodyBits: '',
+            signature: ''
           }
         ]
       }
     };
   }
 
-  // TODO: add this in later to get real results from API
-  // componentDidMount() {
-  //   fetch(API + DEFAULT_QUERY)
-  //     .then(response => response.json())
-  //     .then(data => this.setState({ data: data }))
-  // }
+  componentDidMount() {
+    fetch(API + DEFAULT_QUERY)
+      .then(response => response.json())
+      .then(data => this.setState({ data: data }))
+  }
 
   render() {
-    // TODO: add the following back in
-    // const { data } = this.state;
+    const { data } = this.state;
 
-    const data = AttestationsMock;
     console.log(data);
 
     const tableData = mapOntoTableData(data);
@@ -158,6 +193,6 @@ class Attestations extends Component<IProps, IState> {
       </Table>
     )
   }
-} 
+}
 
 export default Attestations;
