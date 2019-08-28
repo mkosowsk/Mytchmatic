@@ -2,14 +2,10 @@ import React, { Component } from 'react'; // importing FunctionComponent
 import Attestations from '../mock/beacon_attestations.json';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 
-// make a complex structured table
-
-// map tableData onto an array
 
 const tableData = Attestations;
 
 function mapOntoTableData(data: any) {
-  // make tableData key/value pairs
   const attestations = data.attestations;
 
   const tableData = attestations.map((currentValue: any) => {
@@ -118,7 +114,6 @@ interface IState {
 
 interface IProps { }
 
-// 13 total columns
 class AttestationsPool extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);

@@ -1,98 +1,163 @@
-import React from 'react'; // importing FunctionComponent
+import React, { Component } from 'react'; // importing FunctionComponent
 import validators from '../mock/validators.json';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 
-const tableData = validators.validators;
+import AttestationsMock from '../mock/beacon_attestations.json';
+
+
+const tableData = AttestationsMock;
+
+const headerRows = [
+  <Table.Row>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
+    <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
+  </Table.Row>,
+  <Table.Row>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
+  </Table.Row>
+];
 
 const renderBodyRow = ({
-  public_key,
-  withdrawal_credentials,
-  activation_eligiblity_epoch,
-  activation_epoch,
-  exit_epoch,
-  withdrawable_epoch,
-  slashed,
-  effective_balance
+  aggregation_bits,
+  beacon_block_root,
+  source_epoch,
+  source_root,
+  target_epoch,
+  target_root,
+  crosslink_shard,
+  crosslink_parent_root,
+  crosslink_start_epoch,
+  crosslink_end_epoch,
+  crosslink_data_root,
+  custody_bits,
+  signature
+
 }: {
-  public_key: string,
-  withdrawal_credentials: string,
-  activation_eligiblity_epoch: string,
-  activation_epoch: string,
-  exit_epoch: string,
-  withdrawable_epoch: string,
-  slashed: boolean,
-  effective_balance: string
+  aggregation_bits: string,
+  beacon_block_root: string,
+  source_epoch: string,
+  source_root: string,
+  target_epoch: string,
+  target_root: string,
+  crosslink_shard: string,
+  crosslink_parent_root: string,
+  crosslink_start_epoch: string,
+  crosslink_end_epoch: string,
+  crosslink_data_root: string,
+  custody_bits: string,
+  signature: string
 },
   i: number) => ({
-    key: public_key || `row-${i}`,
+    key: aggregation_bits || `row-${i}`,
     cells: [
-      public_key,
-      withdrawal_credentials,
-      activation_eligiblity_epoch,
-      activation_epoch,
-      exit_epoch,
-      withdrawable_epoch,
-      slashed,
-      effective_balance
+      aggregation_bits,
+      beacon_block_root,
+      source_epoch,
+      source_root,
+      target_epoch,
+      target_root,
+      crosslink_shard,
+      crosslink_parent_root,
+      crosslink_start_epoch,
+      crosslink_end_epoch,
+      crosslink_data_root,
+      custody_bits,
+      signature
     ],
-  })
+  });
 
+function mapOntoTableData(data: any) {
+  const attestations = data.attestations;
 
-// 13 total columns
+  const tableData = attestations.map((currentValue: any) => {
+    const currAttestationPool = {
+      aggregation_bits: currentValue["aggregation_bits"],
+      beacon_block_root: currentValue["data"]["beacon_block_root"],
+      source_epoch: currentValue["data"]["source"]["epoch"],
+      source_root: currentValue["data"]["source"]["root"],
+      target_epoch: currentValue["data"]["target"]["epoch"],
+      target_root: currentValue["data"]["target"]["root"],
+      crosslink_shard: currentValue["data"]["crosslink"]["shard"],
+      crosslink_parent_root: currentValue["data"]["crosslink"]["parent_root"],
+      crosslink_start_epoch: currentValue["data"]["crosslink"]["start_epoch"],
+      crosslink_end_epoch: currentValue["data"]["crosslink"]["end_epoch"],
+      crosslink_data_root: currentValue["data"]["crosslink"]["data_root"],
+      custody_bits: currentValue["custody_bits"],
+      signature: currentValue["signature"]
+    };
+    return currAttestationPool;
+  });
 
-const Validators = () =>
-  <div>
-    <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>
-          <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
-          <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
-          <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
-          <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
-          <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
-          <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
-        </Table.Row>
-        <Table.Row>
-          <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
-          <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-    </Table>
-    <Table
-      celled structured
-      renderBodyRow={renderBodyRow}
-      tableData={tableData}
-    >
-    </Table>
-    <div className="ui one column padded centered grid">
-      <Table.Footer>
-        <Table.Row>
-          <Table.HeaderCell>
-            <Menu>
-              <Menu.Item as='a' icon>
-                <Icon name='chevron left' />
-              </Menu.Item>
-              <Menu.Item as='a'>1</Menu.Item>
-              <Menu.Item as='a'>2</Menu.Item>
-              <Menu.Item as='a'>3</Menu.Item>
-              <Menu.Item as='a'>4</Menu.Item>
-              <Menu.Item as='a' icon>
-                <Icon name='chevron right' />
-              </Menu.Item>
-            </Menu>
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Footer>
-    </div>
-  </div>
+  return tableData;
+}
 
+interface IState {
+  data: {
+    attestations: [
+      {
+        aggregation_bits: string
+      }
+    ]
+  }
+}
 
-export default Validators;
+interface IProps { }
+
+class Attestations extends Component<IProps, IState> {
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      data: {
+        attestations: [
+          {
+            aggregation_bits: ''
+          }
+        ]
+      }
+    };
+  }
+
+  // TODO: add this in later to get real results from API
+  // componentDidMount() {
+  //   fetch(API + DEFAULT_QUERY)
+  //     .then(response => response.json())
+  //     .then(data => this.setState({ data: data }))
+  // }
+
+  render() {
+    // TODO: add the following back in
+    // const { data } = this.state;
+
+    const data = AttestationsMock;
+    console.log(data);
+
+    const tableData = mapOntoTableData(data);
+    // const tableData = ["hello"];
+    console.log(tableData);
+
+    return (
+      <Table celled structured compact
+        headerRows={headerRows}
+        renderBodyRow={renderBodyRow}
+        tableData={tableData}
+      >
+      </Table>
+    )
+  }
+} 
+
+export default Attestations;
