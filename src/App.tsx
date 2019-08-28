@@ -26,24 +26,14 @@ const App: React.FC = () => {
             <Dropdown text='Beacon'>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to="/beacon/attestations" text='Beacon Attestations' />
-                <Dropdown.Item as={Link} to="/beacon/attestations/pool" text='Beacon Attestations Pool' description='ctrl + o' />
-                <Dropdown.Item text='Save as...' description='ctrl + s' />
-                <Dropdown.Item text='Rename' description='ctrl + r' />
-                <Dropdown.Item text='Make a copy' />
-                <Dropdown.Item icon='folder' text='Move to folder' />
-                <Dropdown.Item icon='trash' text='Move to trash' />
+                <Dropdown.Item as={Link} to="/beacon/attestations/pool" text='Beacon Attestations Pool' />
                 <Dropdown.Divider />
-                <Dropdown.Item text='Download As...' />
-                <Dropdown.Item text='Publish To Web' />
-                <Dropdown.Item text='E-mail Collaborators' />
+                <Dropdown.Item as={Link} to="/beacon/blocks" text='Beacon Blocks' />
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
           <Menu.Item as={Link} to="/eth/validators">
             Active Validators
-          </Menu.Item>
-          <Menu.Item as={Link} to="/beacon/blocks">
-            Beacon Blocks
           </Menu.Item>
           <Menu.Item as={Link} to="/eth/validators/assignments">
             Validator Assignments
