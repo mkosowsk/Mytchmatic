@@ -22,24 +22,20 @@ const App: React.FC = () => {
           <Menu.Item as={Link} to="/about">
             About
           </Menu.Item>
-          <Menu.Item>
-            <Dropdown text='Beacon'>
-              <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/beacon/attestations" text='Beacon Attestations' />
-                <Dropdown.Item as={Link} to="/beacon/attestations/pool" text='Beacon Attestations Pool' />
-                <Dropdown.Divider />
-                <Dropdown.Item as={Link} to="/beacon/blocks" text='Beacon Blocks' />
-              </Dropdown.Menu>
-            </Dropdown>
+          <Menu.Item as={Dropdown} text='Beacon'>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/beacon/attestations" text='Beacon Attestations'/>
+              <Dropdown.Item as={Link} to="/beacon/attestations/pool" text='Beacon Attestations Pool' />
+              <Dropdown.Divider />
+              <Dropdown.Item as={Link} to="/beacon/blocks" text='Beacon Blocks' />
+            </Dropdown.Menu>
           </Menu.Item>
-          <Menu.Item>
-            <Dropdown text='Validators'>
+          <Menu.Item as={Dropdown} text='Validators'>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to="/eth/validators" text='Active Validators' />
                 <Dropdown.Item as={Link} to="/eth/validators/assignments" text='Validator Assignments' />
                 <Dropdown.Item as={Link} to="/eth/validators/participation" text='Validator Participation' />
               </Dropdown.Menu>
-            </Dropdown>
           </Menu.Item>
         </Menu>
         <Route path="/about" component={About} />
