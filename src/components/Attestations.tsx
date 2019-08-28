@@ -2,8 +2,6 @@ import React from 'react'; // importing FunctionComponent
 import validators from '../mock/validators.json';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 
-// make a complex structured table
-
 const tableData = validators.validators;
 
 const renderBodyRow = ({
