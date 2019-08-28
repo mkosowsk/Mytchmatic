@@ -29,13 +29,13 @@ const headerRows = [
 ];
 
 const renderBodyRow = ({
-  aggregation_bits,
-  beacon_block_root,
-  source_epoch,
-  source_root,
-  target_epoch,
-  target_root,
-  crosslink_shard,
+  aggregationBits,
+  beaconBlockRoot,
+  sourceEpoch,
+  sourceRoot,
+  targetEpoch,
+  targetRoot,
+  crosslinkShard,
   crosslink_parent_root,
   crosslink_start_epoch,
   crosslink_end_epoch,
@@ -62,7 +62,7 @@ const renderBodyRow = ({
     key: aggregation_bits || `row-${i}`,
     cells: [
       aggregation_bits,
-      beacon_block_root,
+      '...',
       source_epoch,
       source_root,
       target_epoch,
@@ -78,11 +78,14 @@ const renderBodyRow = ({
   });
 
 function truncateString(currString: string) {
+  if (!currString) return;
+
+  console.log("this here's the currString", currString)
   const stringStart = currString.substring(0, 4);
   const stringEnd = currString.substring(currString.length - 4);
 
   return stringStart + '...' + stringEnd;
-});
+};
 
 function mapOntoTableData(data: any) {
   const attestations = data.attestations;
@@ -113,7 +116,7 @@ interface IState {
   data: {
     attestations: [
       {
-        aggregation_bits: string,
+        aggregationBits: string,
         data: {
           beaconBlockRoot: string,
           source: {
@@ -149,7 +152,7 @@ class Attestations extends Component<IProps, IState> {
       data: {
         attestations: [
           {
-            aggregation_bits: '',
+            aggregationBits: '',
             data: {
               beaconBlockRoot: '',
               source: {
