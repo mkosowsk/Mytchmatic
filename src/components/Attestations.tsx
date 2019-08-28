@@ -92,18 +92,18 @@ function mapOntoTableData(data: any) {
 
   const tableData = attestations.map((currentValue: any) => {
     const currAttestationPool = {
-      aggregation_bits: currentValue["aggregation_bits"],
-      beacon_block_root: currentValue["data"]["beacon_block_root"],
-      source_epoch: currentValue["data"]["source"]["epoch"],
-      source_root: currentValue["data"]["source"]["root"],
-      target_epoch: currentValue["data"]["target"]["epoch"],
-      target_root: currentValue["data"]["target"]["root"],
-      crosslink_shard: currentValue["data"]["crosslink"]["shard"],
-      crosslink_parent_root: currentValue["data"]["crosslink"]["parent_root"],
-      crosslink_start_epoch: currentValue["data"]["crosslink"]["start_epoch"],
-      crosslink_end_epoch: currentValue["data"]["crosslink"]["end_epoch"],
-      crosslink_data_root: currentValue["data"]["crosslink"]["data_root"],
-      custody_bits: currentValue["custody_bits"],
+      aggregationBits: currentValue["aggregationBits"],
+      beaconBlockRoot: currentValue["data"]["beaconBlockRoot"],
+      sourceEpoch: currentValue["data"]["source"]["epoch"],
+      sourceRoot: currentValue["data"]["source"]["root"],
+      targetEpoch: currentValue["data"]["target"]["epoch"],
+      targetRoot: currentValue["data"]["target"]["root"],
+      crosslinkShard: currentValue["data"]["crosslink"]["shard"],
+      crosslinkParentRoot: currentValue["data"]["crosslink"]["parentRoot"],
+      crosslinkStartEpoch: currentValue["data"]["crosslink"]["startEpoch"],
+      crosslinkEndEpoch: currentValue["data"]["crosslink"]["endEpoch"],
+      crosslinkDataRoot: currentValue["data"]["crosslink"]["dataRoot"],
+      custodyBits: currentValue["custodyBits"],
       signature: currentValue["signature"]
     };
     return currAttestationPool;
