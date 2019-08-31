@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; // importing FunctionComponent
 import validators from '../mock/validators.json';
 import { Icon, Menu, Table } from 'semantic-ui-react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Blocks from './Blocks';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/attestations';
 const DEFAULT_QUERY = '';
@@ -62,7 +64,7 @@ const renderBodyRow = ({
     key: aggregationBits || `row-${i}`,
     cells: [
       truncateString(aggregationBits),
-      truncateString(beaconBlockRoot),
+      <Table.Cell as={Link} to="/beacon/blocks" text='Beacon Blocks'>{truncateString(beaconBlockRoot)}</Table.Cell>,
       sourceEpoch,
       truncateString(sourceRoot),
       targetEpoch,
