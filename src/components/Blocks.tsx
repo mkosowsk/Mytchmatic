@@ -111,11 +111,10 @@ class Blocks extends Component<IProps, IState> {
     }
 
     componentDidMount() {
-        console.log('this is the props', this.props);
 
-        const search = this.props.location.search;
+        const search = this.props.location.search.substring(0, this.props.location.search.length - 1);
         console.log(search);
-        console.log(API + DEFAULT_QUERY + search);
+        console.log(API + search + '%3D&' + DEFAULT_QUERY);
 
         fetch(API + DEFAULT_QUERY + '&' + search)
             .then(response => response.json())
