@@ -65,7 +65,7 @@ const renderBodyRow = ({
     cells: [
       truncateString(aggregationBits),
       <Table.Cell as={Link}
-        to={{pathname: "/beacon/blocks", search: "?root=abc"}}
+        to={{pathname: "/beacon/blocks", search: `root=${beaconBlockRoot}`}}
         text='Beacon Blocks' >{truncateString(beaconBlockRoot)}
       </Table.Cell>,
       sourceEpoch,
