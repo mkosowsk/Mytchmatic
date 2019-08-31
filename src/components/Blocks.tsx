@@ -114,16 +114,18 @@ class Blocks extends Component<IProps, IState> {
 
         const search = this.props.location.search.substring(0, this.props.location.search.length - 1);
         console.log(search);
-        console.log(API + search + '%3D&' + DEFAULT_QUERY);
+        console.log(API + 'blocks?root=OCrN1LNsNlSflgSKF9iUFx%2Boi2kJwcB66xTDMuZi4SA%253D' + DEFAULT_QUERY);
 
-        fetch(API + search + '%3D&' + DEFAULT_QUERY)
-            .then(response => response.json())
+        fetch(API + 'blocks?root=OCrN1LNsNlSflgSKF9iUFx%2Boi2kJwcB66xTDMuZi4SA%253D' + DEFAULT_QUERY)
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
             .then(data => this.setState({ data: data }))
     }
 
     render() {
         const { data } = this.state;
-        console.log(this.props, 'this.props in the render');
 
         const tableData = mapOntoTableData(data)
 
