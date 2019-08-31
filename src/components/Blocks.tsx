@@ -5,7 +5,6 @@ const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/blocks';
 const DEFAULT_QUERY = '?slot=5000';
 
 function mapOntoTableData(data: any) {
-    // make tableData key/value pairs
     const blocks = data.blocks;
 
     const tableData = [
