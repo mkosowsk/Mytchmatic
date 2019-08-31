@@ -64,7 +64,7 @@ const renderBodyRow = ({
     key: aggregationBits || `row-${i}`,
     cells: [
       truncateString(aggregationBits),
-      <Table.Cell as={Link} to="/beacon/blocks" text='Beacon Blocks'>{truncateString(beaconBlockRoot)}</Table.Cell>,
+      <Table.Cell as={Link} to="/beacon/blocks" text='Beacon Blocks' root={'K+JATUsiEnAKE18+99tLZKQMbNY8LxjTqNJjlLvlRMc='}>{truncateString(beaconBlockRoot)}</Table.Cell>,
       sourceEpoch,
       truncateString(sourceRoot),
       targetEpoch,
@@ -144,9 +144,7 @@ interface IState {
   }
 }
 
-interface IProps {
-  root: string
- }
+interface IProps { }
 
 class Attestations extends Component<IProps, IState> {
   constructor(props: any) {
@@ -183,12 +181,10 @@ class Attestations extends Component<IProps, IState> {
     };
   }
 
-  
+
 
   componentDidMount() {
-    const root = this.props.root || '';
-
-    fetch(API + DEFAULT_QUERY + root)
+    fetch(API + DEFAULT_QUERY)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
   }

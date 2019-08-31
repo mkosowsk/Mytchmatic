@@ -72,7 +72,9 @@ interface IState {
     }
 }
 
-interface IProps { }
+interface IProps {
+    root: string
+}
 
 class Blocks extends Component<IProps, IState> {
     constructor(props: any) {
@@ -109,7 +111,9 @@ class Blocks extends Component<IProps, IState> {
     }
 
     componentDidMount() {
-        fetch(API + DEFAULT_QUERY)
+        const root = this.props.root || '';
+
+        fetch(API + DEFAULT_QUERY + root)
             .then(response => response.json())
             .then(data => this.setState({ data: data }))
     }
