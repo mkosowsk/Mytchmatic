@@ -64,7 +64,10 @@ const renderBodyRow = ({
     key: aggregationBits || `row-${i}`,
     cells: [
       truncateString(aggregationBits),
-      <Table.Cell as={Link} to="/beacon/blocks" text='Beacon Blocks' root={'K+JATUsiEnAKE18+99tLZKQMbNY8LxjTqNJjlLvlRMc='}>{truncateString(beaconBlockRoot)}</Table.Cell>,
+      <Table.Cell as={Link}
+        to={{pathname: "/beacon/blocks", search: "?root=abc"}}
+        text='Beacon Blocks' >{truncateString(beaconBlockRoot)}
+      </Table.Cell>,
       sourceEpoch,
       truncateString(sourceRoot),
       targetEpoch,
@@ -82,7 +85,6 @@ const renderBodyRow = ({
 function truncateString(currString: string) {
   if (!currString) return;
 
-  console.log("this here's the currString", currString)
   const stringStart = currString.substring(0, 4);
   const stringEnd = currString.substring(currString.length - 4);
 
@@ -192,11 +194,7 @@ class Attestations extends Component<IProps, IState> {
   render() {
     const { data } = this.state;
 
-    console.log(data);
-
     const tableData = mapOntoTableData(data);
-    // const tableData = ["hello"];
-    console.log(tableData);
 
     return (
       <Table celled structured compact

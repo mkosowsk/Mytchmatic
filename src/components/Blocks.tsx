@@ -72,8 +72,8 @@ interface IState {
     }
 }
 
-interface IProps {
-    root: string
+interface IProps { 
+    location: any
 }
 
 class Blocks extends Component<IProps, IState> {
@@ -111,16 +111,20 @@ class Blocks extends Component<IProps, IState> {
     }
 
     componentDidMount() {
-        const root = this.props.root || '';
+        console.log('this is the props', this.props);
 
-        fetch(API + DEFAULT_QUERY + root)
+        const search = this.props.location.search;
+        console.log(search);
+        console.log(API + DEFAULT_QUERY + search);
+
+        fetch(API + DEFAULT_QUERY + '&' + search)
             .then(response => response.json())
             .then(data => this.setState({ data: data }))
     }
 
     render() {
         const { data } = this.state;
-        console.log(data);
+        console.log(this.props, 'this.props in the render');
 
         const tableData = mapOntoTableData(data)
 
