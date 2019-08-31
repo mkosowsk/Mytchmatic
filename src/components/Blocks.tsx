@@ -116,7 +116,7 @@ class Blocks extends Component<IProps, IState> {
         console.log(search);
         console.log(API + search + '%3D&' + DEFAULT_QUERY);
 
-        fetch(API + DEFAULT_QUERY + '&' + search)
+        fetch(API + search + '%3D&' + DEFAULT_QUERY)
             .then(response => response.json())
             .then(data => this.setState({ data: data }))
     }
