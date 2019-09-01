@@ -2,7 +2,7 @@ import React, { Component } from 'react'; // importing FunctionComponent
 import { Header, Table } from 'semantic-ui-react';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/blocks';
-const DEFAULT_QUERY = '?slot=5000';
+const DEFAULT_QUERY = 'slot=5000';
 
 function mapOntoTableData(data: any) {
     const blocks = data.blocks;
@@ -72,7 +72,7 @@ interface IState {
     }
 }
 
-interface IProps { 
+interface IProps {
     location: any
 }
 
@@ -113,10 +113,12 @@ class Blocks extends Component<IProps, IState> {
     componentDidMount() {
 
         const search = this.props.location.search.substring(0, this.props.location.search.length - 1);
-        console.log(search);
-        console.log(API + 'blocks?root=OCrN1LNsNlSflgSKF9iUFx%2Boi2kJwcB66xTDMuZi4SA%253D' + DEFAULT_QUERY);
+        console.log('search', search);
+        // console.log('decodeURICComponent', decodeURIComponent(search));
 
-        fetch(API + 'blocks?root=OCrN1LNsNlSflgSKF9iUFx%2Boi2kJwcB66xTDMuZi4SA%253D' + DEFAULT_QUERY)
+        console.log(API + search + DEFAULT_QUERY);
+
+        fetch(API + search + "D&" + DEFAULT_QUERY)
             .then(response => {
                 console.log(response);
                 return response.json();

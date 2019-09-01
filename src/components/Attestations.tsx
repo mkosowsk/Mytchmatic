@@ -61,13 +61,14 @@ const renderBodyRow = ({
   signature: string
 },
   i: number) => {
-
+  // console.log('beaconBlockRoot', beaconBlockRoot);
+  const encodedBeaconBlockRoot = encodeURIComponent(beaconBlockRoot);
   return ({
     key: aggregationBits || `row-${i}`,
     cells: [
       truncateString(aggregationBits),
       <Table.Cell as={Link}
-        to={{ pathname: "/beacon/blocks", search: `root=${beaconBlockRoot}` }}
+        to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}
         text='Beacon Blocks' >{truncateString(beaconBlockRoot)}
       </Table.Cell>,
       sourceEpoch,
