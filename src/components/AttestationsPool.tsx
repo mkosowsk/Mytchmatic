@@ -21,8 +21,7 @@ function mapOntoTableData(data: any) {
       crosslink_start_epoch: currentValue["data"]["crosslink"]["start_epoch"],
       crosslink_end_epoch: currentValue["data"]["crosslink"]["end_epoch"],
       crosslink_data_root: currentValue["data"]["crosslink"]["data_root"],
-      custody_bits: currentValue["custody_bits"],
-      signature: currentValue["signature"]
+      custody_bits: currentValue["custody_bits"]
     };
     return currAttestationPool;
   });
@@ -42,8 +41,7 @@ const renderBodyRow = ({
   crosslink_start_epoch,
   crosslink_end_epoch,
   crosslink_data_root,
-  custody_bits,
-  signature
+  custody_bits
 
 }: {
   aggregation_bits: string,
@@ -57,8 +55,7 @@ const renderBodyRow = ({
   crosslink_start_epoch: string,
   crosslink_end_epoch: string,
   crosslink_data_root: string,
-  custody_bits: string,
-  signature: string
+  custody_bits: string
 },
   i: number) => ({
     key: aggregation_bits || `row-${i}`,
@@ -74,8 +71,7 @@ const renderBodyRow = ({
       crosslink_start_epoch,
       crosslink_end_epoch,
       crosslink_data_root,
-      custody_bits,
-      signature
+      custody_bits
     ],
   });
 
@@ -87,7 +83,6 @@ const headerRows = [
     <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
     <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
     <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
-    <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
   </Table.Row>,
   <Table.Row>
     <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
