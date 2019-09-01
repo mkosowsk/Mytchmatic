@@ -15,7 +15,6 @@ const headerRows = [
     <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
     <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
     <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
-    <Table.HeaderCell rowSpan='2' textAlign='center'>Signature</Table.HeaderCell>
   </Table.Row>,
   <Table.Row>
     <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
@@ -43,8 +42,6 @@ const renderBodyRow = ({
   crosslinkEndEpoch,
   crosslinkDataRoot,
   custodyBits,
-  signature
-
 }: {
   aggregationBits: string,
   beaconBlockRoot: string,
@@ -58,7 +55,6 @@ const renderBodyRow = ({
   crosslinkEndEpoch: string,
   crosslinkDataRoot: string,
   custodyBits: string,
-  signature: string
 },
   i: number) => {
   // console.log('beaconBlockRoot', beaconBlockRoot);
@@ -80,8 +76,7 @@ const renderBodyRow = ({
       crosslinkStartEpoch,
       crosslinkEndEpoch,
       truncateString(crosslinkDataRoot),
-      truncateString(custodyBits),
-      truncateString(signature)
+      truncateString(custodyBits)
     ],
   })
 };
@@ -111,8 +106,7 @@ function mapOntoTableData(data: any) {
       crosslinkStartEpoch: currentValue["data"]["crosslink"]["startEpoch"],
       crosslinkEndEpoch: currentValue["data"]["crosslink"]["endEpoch"],
       crosslinkDataRoot: currentValue["data"]["crosslink"]["dataRoot"],
-      custodyBits: currentValue["custodyBits"],
-      signature: currentValue["signature"]
+      custodyBits: currentValue["custodyBits"]
     };
     return currAttestationPool;
   });
@@ -143,8 +137,7 @@ interface IState {
             dataRoot: string
           }
         },
-        custodyBits: string,
-        signature: string
+        custodyBits: string
       }
     ]
   }
@@ -179,8 +172,7 @@ class Attestations extends Component<IProps, IState> {
                 dataRoot: ''
               }
             },
-            custodyBits: '',
-            signature: ''
+            custodyBits: ''
           }
         ]
       }
