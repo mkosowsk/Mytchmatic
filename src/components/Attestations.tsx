@@ -71,10 +71,15 @@ const renderBodyRow = ({
       </Table.Cell >,
       sourceEpoch,
       <Table.Cell>
-        <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedSourceRoot}` }}>
-          {truncateString(sourceRoot)}
-        </Link>
-      </Table.Cell>,
+        <Popup
+          content={sourceRoot}
+          trigger={
+            <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedSourceRoot}` }}>
+              {truncateString(sourceRoot)}
+            </Link>
+          }
+        />
+      </Table.Cell >,
       targetEpoch,
       <Table.Cell>
         <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedTargetRoot}` }}>
