@@ -60,9 +60,14 @@ const renderBodyRow = ({
     cells: [
       aggregationBits,
       <Table.Cell>
-        <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}>
-          {truncateString(beaconBlockRoot)}
-        </Link>
+        <Popup
+          content={beaconBlockRoot}
+          trigger={
+            <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}>
+              {truncateString(beaconBlockRoot)}
+            </Link>
+          }
+        />
       </Table.Cell >,
       sourceEpoch,
       <Table.Cell>
