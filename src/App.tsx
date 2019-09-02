@@ -4,7 +4,6 @@ import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import About from './components/about';
 import Attestations from './components/Attestations';
-import AttestationsPool from './components/AttestationsPool';
 import Validators from './components/Validators';
 import ValidatorAssignments from './components/ValidatorAssignments';
 import ValidatorParticipation from './components/ValidatorParticipation';
