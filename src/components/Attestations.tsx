@@ -1,8 +1,6 @@
-import React, { Component } from 'react'; // importing FunctionComponent
-import validators from '../mock/validators.json';
-import { Icon, Menu, Table } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Popup, Table } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Blocks from './Blocks';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/attestations';
 const DEFAULT_QUERY = '';
@@ -60,12 +58,12 @@ const renderBodyRow = ({
   return ({
     key: aggregationBits || `row-${i}`,
     cells: [
-      truncateString(aggregationBits),
+      aggregationBits,
       <Table.Cell>
         <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}>
           {truncateString(beaconBlockRoot)}
         </Link>
-      </Table.Cell>,
+      </Table.Cell >,
       sourceEpoch,
       <Table.Cell>
         <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedSourceRoot}` }}>
@@ -85,6 +83,10 @@ const renderBodyRow = ({
     ],
   })
 };
+
+{/* <Table.Cell>
+        <Popup content='Add users to your feed' trigger={<a>{aggregationBits}</a>} />
+      </Table.Cell>, */}
 
 function truncateString(currString: string) {
   if (!currString) return;
@@ -184,8 +186,7 @@ class Attestations extends Component<IProps, IState> {
 
   componentDidMount() {
     const api = this.props.api;
-    console.log(this.props);
-    console.log(api);
+
     return fetch(api + DEFAULT_QUERY)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
