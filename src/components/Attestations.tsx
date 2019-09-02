@@ -59,25 +59,30 @@ const renderBodyRow = ({
   i: number) => {
 
   const encodedBeaconBlockRoot = encodeURIComponent(beaconBlockRoot);
+  const encodedSourceRoot = encodeURIComponent(sourceRoot);
   return ({
     key: aggregationBits || `row-${i}`,
     cells: [
       truncateString(aggregationBits),
       <Table.Cell>
         <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}>
-           {truncateString(beaconBlockRoot)}
+          {truncateString(beaconBlockRoot)}
         </Link>
-      </Table.Cell >,
-  sourceEpoch,
-  truncateString(sourceRoot),
-  targetEpoch,
-  truncateString(targetRoot),
-  crosslinkShard,
-  truncateString(crosslinkParentRoot),
-  crosslinkStartEpoch,
-  crosslinkEndEpoch,
-  truncateString(crosslinkDataRoot),
-  truncateString(custodyBits)
+      </Table.Cell>,
+      sourceEpoch,
+      <Table.Cell>
+        <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedSourceRoot}` }}>
+          {truncateString(sourceRoot)}
+        </Link>
+      </Table.Cell>,
+      targetEpoch,
+      truncateString(targetRoot),
+      crosslinkShard,
+      truncateString(crosslinkParentRoot),
+      crosslinkStartEpoch,
+      crosslinkEndEpoch,
+      truncateString(crosslinkDataRoot),
+      truncateString(custodyBits)
     ],
   })
 };
