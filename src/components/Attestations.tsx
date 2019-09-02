@@ -13,8 +13,7 @@ const headerRows = [
     <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
     <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
     <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
-    <Table.HeaderCell colSpan='5' textAlign='center'>CrossLink</Table.HeaderCell>
-    <Table.HeaderCell rowSpan='2' textAlign='center'>Custody Bits</Table.HeaderCell>
+    <Table.HeaderCell colSpan='4' textAlign='center'>CrossLink</Table.HeaderCell>
   </Table.Row>,
   <Table.Row>
     <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
@@ -25,7 +24,6 @@ const headerRows = [
     <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
     <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
     <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
-    <Table.HeaderCell textAlign='center'>Data Root</Table.HeaderCell>
   </Table.Row>
 ];
 
@@ -39,9 +37,7 @@ const renderBodyRow = ({
   crosslinkShard,
   crosslinkParentRoot,
   crosslinkStartEpoch,
-  crosslinkEndEpoch,
-  crosslinkDataRoot,
-  custodyBits,
+  crosslinkEndEpoch
 }: {
   aggregationBits: string,
   beaconBlockRoot: string,
@@ -52,9 +48,7 @@ const renderBodyRow = ({
   crosslinkShard: string,
   crosslinkParentRoot: string,
   crosslinkStartEpoch: string,
-  crosslinkEndEpoch: string,
-  crosslinkDataRoot: string,
-  custodyBits: string,
+  crosslinkEndEpoch: string
 },
   i: number) => {
   
@@ -87,9 +81,7 @@ const renderBodyRow = ({
       crosslinkShard,
       truncateString(crosslinkParentRoot),
       crosslinkStartEpoch,
-      crosslinkEndEpoch,
-      truncateString(crosslinkDataRoot),
-      truncateString(custodyBits)
+      crosslinkEndEpoch
     ],
   })
 };
@@ -117,9 +109,7 @@ function mapOntoTableData(data: any) {
       crosslinkShard: currentValue["data"]["crosslink"]["shard"],
       crosslinkParentRoot: currentValue["data"]["crosslink"]["parentRoot"],
       crosslinkStartEpoch: currentValue["data"]["crosslink"]["startEpoch"],
-      crosslinkEndEpoch: currentValue["data"]["crosslink"]["endEpoch"],
-      crosslinkDataRoot: currentValue["data"]["crosslink"]["dataRoot"],
-      custodyBits: currentValue["custodyBits"]
+      crosslinkEndEpoch: currentValue["data"]["crosslink"]["endEpoch"]
     };
     return currAttestationPool;
   });
@@ -146,11 +136,9 @@ interface IState {
             shard: string,
             parentRoot: string,
             startEpoch: string,
-            endEpoch: string,
-            dataRoot: string
+            endEpoch: string
           }
-        },
-        custodyBits: string
+        }
       }
     ]
   }
@@ -181,11 +169,9 @@ class Attestations extends Component<IProps, IState> {
                 shard: '',
                 parentRoot: '',
                 startEpoch: '',
-                endEpoch: '',
-                dataRoot: ''
+                endEpoch: ''
               }
-            },
-            custodyBits: ''
+            }
           }
         ]
       }
