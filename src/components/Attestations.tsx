@@ -92,7 +92,12 @@ const renderBodyRow = ({
         />
       </Table.Cell >,
       crosslinkShard,
-      truncateString(crosslinkParentRoot),
+      <Table.Cell>
+        <Popup
+          content={crosslinkParentRoot}
+          trigger={<span>{truncateString(crosslinkParentRoot)}</span>}
+        />
+      </Table.Cell>,
       crosslinkStartEpoch,
       crosslinkEndEpoch
     ],
