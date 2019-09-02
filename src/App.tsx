@@ -39,7 +39,9 @@ const App: React.FC = () => {
         <Route exact path="/beacon/attestations"
           render={(props) => <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations' />}
         />
-        <Route exact path="/beacon/attestations/pool" component={AttestationsPool} />
+        <Route exact path="/beacon/attestations/pool"
+          render={(props) => <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations/pool' />}
+        />
         <Route exact path="/beacon/blocks" component={Blocks} />
         <Route exact path="/eth/validators" component={Validators} />
         <Route exact path="/eth/validators/assignments" component={ValidatorAssignments} />
