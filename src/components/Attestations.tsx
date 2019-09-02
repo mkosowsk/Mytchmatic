@@ -82,10 +82,15 @@ const renderBodyRow = ({
       </Table.Cell >,
       targetEpoch,
       <Table.Cell>
-        <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedTargetRoot}` }}>
-          {truncateString(targetRoot)}
-        </Link>
-      </Table.Cell>,
+        <Popup
+          content={targetRoot}
+          trigger={
+            <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedTargetRoot}` }}>
+              {truncateString(targetRoot)}
+            </Link>
+          }
+        />
+      </Table.Cell >,
       crosslinkShard,
       truncateString(crosslinkParentRoot),
       crosslinkStartEpoch,
