@@ -11,9 +11,6 @@ import ValidatorParticipation from './components/ValidatorParticipation';
 import { Dropdown, Menu } from 'semantic-ui-react';
 import Blocks from './components/Blocks'
 
-//TODO: fix hitting both eth/validators and eth/validators/assignments
-//which causes 2 tables to render
-
 const App: React.FC = () => {
   return (
     <Router>
@@ -24,22 +21,24 @@ const App: React.FC = () => {
           </Menu.Item>
           <Menu.Item as={Dropdown} text='Beacon'>
             <Dropdown.Menu>
-              <Dropdown.Item as={Link} to="/beacon/attestations" text='Beacon Attestations'/>
+              <Dropdown.Item as={Link} to="/beacon/attestations" text='Beacon Attestations' />
               <Dropdown.Item as={Link} to="/beacon/attestations/pool" text='Beacon Attestations Pool' />
               <Dropdown.Divider />
               <Dropdown.Item as={Link} to="/beacon/blocks" text='Beacon Blocks' />
             </Dropdown.Menu>
           </Menu.Item>
           <Menu.Item as={Dropdown} text='Validators'>
-              <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/eth/validators" text='Active Validators' />
-                <Dropdown.Item as={Link} to="/eth/validators/assignments" text='Validator Assignments' />
-                <Dropdown.Item as={Link} to="/eth/validators/participation" text='Validator Participation' />
-              </Dropdown.Menu>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/eth/validators" text='Active Validators' />
+              <Dropdown.Item as={Link} to="/eth/validators/assignments" text='Validator Assignments' />
+              <Dropdown.Item as={Link} to="/eth/validators/participation" text='Validator Participation' />
+            </Dropdown.Menu>
           </Menu.Item>
         </Menu>
         <Route path="/about" component={About} />
-        <Route exact path="/beacon/attestations" component={Attestations} />
+        <Route exact path="/beacon/attestations"
+          render={(props) => <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations' />}
+        />
         <Route exact path="/beacon/attestations/pool" component={AttestationsPool} />
         <Route exact path="/beacon/blocks" component={Blocks} />
         <Route exact path="/eth/validators" component={Validators} />

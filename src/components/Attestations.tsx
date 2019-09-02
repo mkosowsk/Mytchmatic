@@ -51,12 +51,12 @@ const renderBodyRow = ({
   crosslinkEndEpoch: string
 },
   i: number) => {
-  
+
   // TODO: make an BlockRootLink component and import and use it here  
   const encodedBeaconBlockRoot = encodeURIComponent(beaconBlockRoot);
   const encodedSourceRoot = encodeURIComponent(sourceRoot);
   const encodedTargetRoot = encodeURIComponent(targetRoot);
-  
+
   return ({
     key: aggregationBits || `row-${i}`,
     cells: [
@@ -95,7 +95,7 @@ function truncateString(currString: string) {
   return stringStart + '...' + stringEnd;
 };
 
-function mapOntoTableData(data: any) {
+function mapDataToTableData(data: any) {
   const attestations = data.attestations;
 
   const tableData = attestations.map((currentValue: any) => {
@@ -144,7 +144,9 @@ interface IState {
   }
 }
 
-interface IProps { }
+interface IProps {
+  api: string
+}
 
 class Attestations extends Component<IProps, IState> {
   constructor(props: any) {
@@ -181,7 +183,10 @@ class Attestations extends Component<IProps, IState> {
 
 
   componentDidMount() {
-    fetch(API + DEFAULT_QUERY)
+    const api = this.props.api;
+    console.log(this.props);
+    console.log(api);
+    return fetch(api + DEFAULT_QUERY)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
   }
@@ -189,7 +194,7 @@ class Attestations extends Component<IProps, IState> {
   render() {
     const { data } = this.state;
 
-    const tableData = mapOntoTableData(data);
+    const tableData = mapDataToTableData(data);
 
     return (
       <Table celled structured compact textAlign="center"
