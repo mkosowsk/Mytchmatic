@@ -57,26 +57,27 @@ const renderBodyRow = ({
   custodyBits: string,
 },
   i: number) => {
-  // console.log('beaconBlockRoot', beaconBlockRoot);
+
   const encodedBeaconBlockRoot = encodeURIComponent(beaconBlockRoot);
   return ({
     key: aggregationBits || `row-${i}`,
     cells: [
       truncateString(aggregationBits),
-      <Table.Cell as={Link}
-        to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}
-        text='Beacon Blocks' >{truncateString(beaconBlockRoot)}
-      </Table.Cell>,
-      sourceEpoch,
-      truncateString(sourceRoot),
-      targetEpoch,
-      truncateString(targetRoot),
-      crosslinkShard,
-      truncateString(crosslinkParentRoot),
-      crosslinkStartEpoch,
-      crosslinkEndEpoch,
-      truncateString(crosslinkDataRoot),
-      truncateString(custodyBits)
+      <Table.Cell>
+        <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}>
+           {truncateString(beaconBlockRoot)}
+        </Link>
+      </Table.Cell >,
+  sourceEpoch,
+  truncateString(sourceRoot),
+  targetEpoch,
+  truncateString(targetRoot),
+  crosslinkShard,
+  truncateString(crosslinkParentRoot),
+  crosslinkStartEpoch,
+  crosslinkEndEpoch,
+  truncateString(crosslinkDataRoot),
+  truncateString(custodyBits)
     ],
   })
 };
@@ -193,7 +194,7 @@ class Attestations extends Component<IProps, IState> {
     const tableData = mapOntoTableData(data);
 
     return (
-      <Table celled structured compact
+      <Table celled structured compact textAlign="center"
         headerRows={headerRows}
         renderBodyRow={renderBodyRow}
         tableData={tableData}
