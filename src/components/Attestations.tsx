@@ -57,9 +57,12 @@ const renderBodyRow = ({
   custodyBits: string,
 },
   i: number) => {
-
+  
+  // TODO: make an BlockRootLink component and import it here  
   const encodedBeaconBlockRoot = encodeURIComponent(beaconBlockRoot);
   const encodedSourceRoot = encodeURIComponent(sourceRoot);
+  const encodedTargetRoot = encodeURIComponent(targetRoot);
+
   return ({
     key: aggregationBits || `row-${i}`,
     cells: [
@@ -76,7 +79,11 @@ const renderBodyRow = ({
         </Link>
       </Table.Cell>,
       targetEpoch,
-      truncateString(targetRoot),
+      <Table.Cell>
+        <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedTargetRoot}` }}>
+          {truncateString(sourceRoot)}
+        </Link>
+      </Table.Cell>,
       crosslinkShard,
       truncateString(crosslinkParentRoot),
       crosslinkStartEpoch,
