@@ -6,12 +6,13 @@ const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
 const DEFAULT_QUERY = '';
 
 const headerRow = [
+  '',
   'Public Key',
   'Withdrawal Credentials',
   'Activation Eligibility Epoch',
   'Activation Epoch',
   'Exit Epoch',
-  'Withdrawal Epoch',
+  'Withdrawable Epoch',
   'Slashed',
   'Effective Balance'
 ]
@@ -20,22 +21,22 @@ const renderBodyRow = ({
   blockie,
   publicKey,
   withdrawalCredentials,
-  activation_eligiblity_epoch,
-  activation_epoch,
-  exit_epoch,
-  withdrawable_epoch,
+  activationEligibilityEpoch,
+  activationEpoch,
+  exitEpoch,
+  withdrawableEpoch,
   slashed,
-  effective_balance
+  effectiveBalance
 }: {
   blockie: string,
   publicKey: string,
   withdrawalCredentials: string,
-  activation_eligiblity_epoch: string,
-  activation_epoch: string,
-  exit_epoch: string,
-  withdrawable_epoch: string,
+  activationEligibilityEpoch: string,
+  activationEpoch: string,
+  exitEpoch: string,
+  withdrawableEpoch: string,
   slashed: boolean,
-  effective_balance: string
+  effectiveBalance: string
 },
   i: number) => ({
     key: publicKey || `row-${i}`,
@@ -55,12 +56,12 @@ const renderBodyRow = ({
           trigger={<span>{truncateString(withdrawalCredentials)}</span>}
         />
       </Table.Cell>,
-      activation_eligiblity_epoch,
-      activation_epoch,
-      exit_epoch,
-      withdrawable_epoch,
-      slashed,
-      effective_balance
+      activationEligibilityEpoch,
+      activationEpoch,
+      exitEpoch,
+      withdrawableEpoch,
+      slashed + '',
+      effectiveBalance
     ],
   })
 
@@ -82,10 +83,10 @@ interface IState {
         public_key: string,
         withdrawal_credentials: string,
         effective_balance: string,
-        slashed: boolean,
-        activation_eligibility_epoch: string,
+        activationEligibilityEpoch: string,
         activation_epoch: string,
         exit_epoch: string,
+        slashed: boolean,
         withdrawable_epoch: string
       }
     ],
@@ -108,10 +109,10 @@ class Validators extends Component<IProps, IState> {
             public_key: '',
             withdrawal_credentials: '',
             effective_balance: '',
-            slashed: false,
-            activation_eligibility_epoch: '',
+            activationEligibilityEpoch: '',
             activation_epoch: '',
             exit_epoch: '',
+            slashed: false,
             withdrawable_epoch: ''
           }
         ],
