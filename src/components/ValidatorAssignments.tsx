@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; // importing FunctionComponent
+import React, { Component } from 'react';
 import { Header, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
 

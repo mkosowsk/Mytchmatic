@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, Popup, Table } from 'semantic-ui-react';
+import { Header, Popup, Table } from 'semantic-ui-react';
+import Blockies from 'react-blockies';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
 const DEFAULT_QUERY = '';
@@ -16,6 +17,7 @@ const headerRow = [
 ]
 
 const renderBodyRow = ({
+  blockie,
   publicKey,
   withdrawalCredentials,
   activation_eligiblity_epoch,
@@ -25,6 +27,7 @@ const renderBodyRow = ({
   slashed,
   effective_balance
 }: {
+  blockie: string,
   publicKey: string,
   withdrawalCredentials: string,
   activation_eligiblity_epoch: string,
@@ -37,6 +40,9 @@ const renderBodyRow = ({
   i: number) => ({
     key: publicKey || `row-${i}`,
     cells: [
+      <Table.Cell>
+        <Blockies key={publicKey + 'Blockie'} seed={publicKey}></Blockies>
+      </Table.Cell>,
       <Table.Cell>
         <Popup
           content={publicKey}
@@ -130,12 +136,15 @@ class Validators extends Component<IProps, IState> {
     console.log(data);
 
     return (
-      <Table celled structured compact textAlign="center"
-        headerRow={headerRow}
-        renderBodyRow={renderBodyRow}
-        tableData={tableData}
-      >
-      </Table>
+      <div>
+        <Header as='h1' className='white'>Validator Assignments</Header>
+        <Table striped inverted celled textAlign="center"
+          headerRow={headerRow}
+          renderBodyRow={renderBodyRow}
+          tableData={tableData}
+        >
+        </Table>
+      </div>
     )
   }
 }
