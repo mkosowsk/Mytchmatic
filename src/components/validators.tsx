@@ -17,7 +17,7 @@ const headerRow = [
 
 const renderBodyRow = ({
   publicKey,
-  withdrawal_credentials,
+  withdrawalCredentials,
   activation_eligiblity_epoch,
   activation_epoch,
   exit_epoch,
@@ -26,7 +26,7 @@ const renderBodyRow = ({
   effective_balance
 }: {
   publicKey: string,
-  withdrawal_credentials: string,
+  withdrawalCredentials: string,
   activation_eligiblity_epoch: string,
   activation_epoch: string,
   exit_epoch: string,
@@ -43,7 +43,12 @@ const renderBodyRow = ({
           trigger={<span>{truncateString(publicKey)}</span>}
         />
       </Table.Cell>,
-      withdrawal_credentials,
+      <Table.Cell>
+        <Popup
+          content={withdrawalCredentials}
+          trigger={<span>{truncateString(withdrawalCredentials)}</span>}
+        />
+      </Table.Cell>,
       activation_eligiblity_epoch,
       activation_epoch,
       exit_epoch,
