@@ -104,10 +104,6 @@ const renderBodyRow = ({
   })
 };
 
-{/* <Table.Cell>
-        <Popup content='Add users to your feed' trigger={<a>{aggregationBits}</a>} />
-      </Table.Cell>, */}
-
 function truncateString(currString: string) {
   if (!currString) return;
 
@@ -201,8 +197,6 @@ class Attestations extends Component<IProps, IState> {
       }
     };
   }
-
-
 
   componentDidMount() {
     const api = this.props.api;

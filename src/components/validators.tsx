@@ -1,11 +1,8 @@
-import React from 'react'; // importing FunctionComponent
-import validators from '../mock/validators.json';
+import React, { Component } from 'react';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 
-//TODO: pull out ValidatorCard.tsx parts that make sense to use
-// like ValidatorCardProps?
-
-const tableData = validators.validators;
+const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
+const DEFAULT_QUERY = '';
 
 const headerRow = [
   'Public Key',
@@ -51,34 +48,79 @@ const renderBodyRow = ({
     ],
   })
 
-const Validators = () =>
-  <div>
-    <Table
-      celled headerRow={headerRow}
-      renderBodyRow={renderBodyRow}
-      tableData={tableData}
-    />
-    <div className="ui one column padded centered grid">
-      <Table.Footer>
-        <Table.Row>
-          <Table.HeaderCell>
-            <Menu>
-              <Menu.Item as='a' icon>
-                <Icon name='chevron left' />
-              </Menu.Item>
-              <Menu.Item as='a'>1</Menu.Item>
-              <Menu.Item as='a'>2</Menu.Item>
-              <Menu.Item as='a'>3</Menu.Item>
-              <Menu.Item as='a'>4</Menu.Item>
-              <Menu.Item as='a' icon>
-                <Icon name='chevron right' />
-              </Menu.Item>
-            </Menu>
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Footer>
-    </div>
+interface IState {
+  data: {
+    epoch: string,
+    validators: [
+      {
+        public_key: string,
+        withdrawal_credentials: string,
+        effective_balance: string,
+        slashed: boolean,
+        activation_eligibility_epoch: string,
+        activation_epoch: string,
+        exit_epoch: string,
+        withdrawable_epoch: string
+      }
+    ],
+    next_page_token: string,
+    total_size: number
+  }
+}
+
+interface IProps { }
+
+class Validators extends Component<IProps, IState> {
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      data: {
+        epoch: '',
+        validators: [
+          {
+            public_key: '',
+            withdrawal_credentials: '',
+            effective_balance: '',
+            slashed: false,
+            activation_eligibility_epoch: '',
+            activation_epoch: '',
+            exit_epoch: '',
+            withdrawable_epoch: ''
+          }
+        ],
+        next_page_token: '',
+        total_size: 0
+      }
+    }
+  }
+}
+<Table
+  celled headerRow={headerRow}
+  renderBodyRow={renderBodyRow}
+  tableData={tableData}
+/>
+  <div className="ui one column padded centered grid">
+    <Table.Footer>
+      <Table.Row>
+        <Table.HeaderCell>
+          <Menu>
+            <Menu.Item as='a' icon>
+              <Icon name='chevron left' />
+            </Menu.Item>
+            <Menu.Item as='a'>1</Menu.Item>
+            <Menu.Item as='a'>2</Menu.Item>
+            <Menu.Item as='a'>3</Menu.Item>
+            <Menu.Item as='a'>4</Menu.Item>
+            <Menu.Item as='a' icon>
+              <Icon name='chevron right' />
+            </Menu.Item>
+          </Menu>
+        </Table.HeaderCell>
+      </Table.Row>
+    </Table.Footer>
   </div>
+  </div >
 
 
 export default Validators;
