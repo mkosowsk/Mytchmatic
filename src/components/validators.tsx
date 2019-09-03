@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table } from 'semantic-ui-react';
+import { Icon, Popup, Table } from 'semantic-ui-react';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
 const DEFAULT_QUERY = '';
@@ -37,7 +37,12 @@ const renderBodyRow = ({
   i: number) => ({
     key: publicKey || `row-${i}`,
     cells: [
-      publicKey,
+      <Table.Cell>
+        <Popup
+          content={publicKey}
+          trigger={<span>{truncateString(publicKey)}</span>}
+        />
+      </Table.Cell>,
       withdrawal_credentials,
       activation_eligiblity_epoch,
       activation_epoch,
@@ -47,6 +52,16 @@ const renderBodyRow = ({
       effective_balance
     ],
   })
+
+// TODO: drop this into a utils file and pull it in
+function truncateString(currString: string) {
+  if (!currString) return;
+
+  const stringStart = currString.substring(0, 4);
+  const stringEnd = currString.substring(currString.length - 4);
+
+  return stringStart + '...' + stringEnd;
+};
 
 interface IState {
   data: {
@@ -108,7 +123,7 @@ class Validators extends Component<IProps, IState> {
     const tableData = data.validators;
 
     console.log(data);
-    
+
     return (
       <Table celled structured compact textAlign="center"
         headerRow={headerRow}
