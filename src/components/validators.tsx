@@ -16,7 +16,7 @@ const headerRow = [
 ]
 
 const renderBodyRow = ({
-  public_key,
+  publicKey,
   withdrawal_credentials,
   activation_eligiblity_epoch,
   activation_epoch,
@@ -25,7 +25,7 @@ const renderBodyRow = ({
   slashed,
   effective_balance
 }: {
-  public_key: string,
+  publicKey: string,
   withdrawal_credentials: string,
   activation_eligiblity_epoch: string,
   activation_epoch: string,
@@ -35,9 +35,9 @@ const renderBodyRow = ({
   effective_balance: string
 },
   i: number) => ({
-    key: public_key || `row-${i}`,
+    key: publicKey || `row-${i}`,
     cells: [
-      public_key,
+      publicKey,
       withdrawal_credentials,
       activation_eligiblity_epoch,
       activation_epoch,
@@ -94,33 +94,30 @@ class Validators extends Component<IProps, IState> {
       }
     }
   }
-}
-<Table
-  celled headerRow={headerRow}
-  renderBodyRow={renderBodyRow}
-  tableData={tableData}
-/>
-  <div className="ui one column padded centered grid">
-    <Table.Footer>
-      <Table.Row>
-        <Table.HeaderCell>
-          <Menu>
-            <Menu.Item as='a' icon>
-              <Icon name='chevron left' />
-            </Menu.Item>
-            <Menu.Item as='a'>1</Menu.Item>
-            <Menu.Item as='a'>2</Menu.Item>
-            <Menu.Item as='a'>3</Menu.Item>
-            <Menu.Item as='a'>4</Menu.Item>
-            <Menu.Item as='a' icon>
-              <Icon name='chevron right' />
-            </Menu.Item>
-          </Menu>
-        </Table.HeaderCell>
-      </Table.Row>
-    </Table.Footer>
-  </div>
-  </div >
 
+  componentDidMount() {
+
+    return fetch(API + DEFAULT_QUERY)
+      .then(response => response.json())
+      .then(data => this.setState({ data: data }))
+  }
+
+  render() {
+    const { data } = this.state;
+
+    const tableData = data.validators;
+
+    console.log(data);
+    
+    return (
+      <Table celled structured compact textAlign="center"
+        headerRow={headerRow}
+        renderBodyRow={renderBodyRow}
+        tableData={tableData}
+      >
+      </Table>
+    )
+  }
+}
 
 export default Validators;
