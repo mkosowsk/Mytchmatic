@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Popup, Table } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import {BitList} from "@chainsafe/bit-utils";
 
-const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/attestations';
 const DEFAULT_QUERY = '';
 
 const headerRows = [

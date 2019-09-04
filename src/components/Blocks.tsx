@@ -21,9 +21,7 @@ function mapOntoTableData(data: any) {
         { key: 'Randao reveal', value: blocks[0]["body"]["randaoReveal"] },
         { key: 'Deposits', value: blocks[0]["body"]["deposits"].length },
         { key: 'Voluntary Exits', value: blocks[0]["body"]["voluntaryExits"].length },
-        { key: 'Transfers', value: blocks[0]["body"]["transfers"].length },
-        { key: 'Next Page Token', value: data["nextPageToken"] },
-        { key: 'Total Size', value: data["totalSize"] },
+        { key: 'Transfers', value: blocks[0]["body"]["transfers"].length }
     ];
     return tableData;
 }
@@ -66,9 +64,7 @@ interface IState {
                     transfers: Array<string>, //TODO: fill this out with full attesterSlashings model
                 }
             }
-        ],
-        nextPageToken: string,
-        totalSize: number
+        ]
     }
 }
 
@@ -103,26 +99,18 @@ class Blocks extends Component<IProps, IState> {
                             transfers: [],
                         },
                     }
-                ],
-                nextPageToken: '',
-                totalSize: 0
+                ]
             }
         };
     }
 
     componentDidMount() {
-
         const search = this.props.location.search;
-        console.log('search', search);
-        // console.log('decodeURICComponent', decodeURIComponent(search));
 
         console.log(API + search + DEFAULT_QUERY);
 
         fetch(API + search + '&' + DEFAULT_QUERY)
-            .then(response => {
-                console.log(response);
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => this.setState({ data: data }))
     }
 
