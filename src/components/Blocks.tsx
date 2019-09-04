@@ -21,10 +21,13 @@ function mapOntoTableData(data: any) {
         { key: 'Attester Slashings', value: blocks[0]["body"]["attesterSlashings"].length },
         {
             key: 'Randao Reveal',
-            value: <Popup
-                content={blocks[0]["body"]["randaoReveal"]}
-                trigger={<span>{Utils.truncateString(blocks[0]["body"]["randaoReveal"])}</span>}
-            />
+            value:
+                <Table.Cell>
+                    <Popup
+                        content={blocks[0]["body"]["randaoReveal"]}
+                        trigger={<span>{Utils.truncateString(blocks[0]["body"]["randaoReveal"])}</span>}
+                    />
+                </Table.Cell>
         },
         { key: 'Deposits', value: blocks[0]["body"]["deposits"].length },
         { key: 'Voluntary Exits', value: blocks[0]["body"]["voluntaryExits"].length },
