@@ -113,6 +113,14 @@ function truncateString(currString: string) {
   return stringStart + '...' + stringEnd;
 };
 
+function handleErrors(response: any) {
+  if (!response.ok) {
+    console.log(response);
+    throw Error(response.statusText);
+  }
+  return response;
+}
+
 function mapDataToTableData(data: any) {
   const attestations = data.attestations;
 
@@ -202,6 +210,7 @@ class Attestations extends Component<IProps, IState> {
     const api = this.props.api;
 
     return fetch(api + DEFAULT_QUERY)
+      .then(handleErrors)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
   }
