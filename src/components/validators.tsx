@@ -62,7 +62,7 @@ const renderBodyRow = ({
       exitEpoch === MAX_UINT_64_STRING ? 'Not Exited' : exitEpoch,
       withdrawableEpoch === MAX_UINT_64_STRING ? 'Not Exited' : withdrawableEpoch,
       slashed + '',
-      effectiveBalance
+      Number(effectiveBalance) / Math.pow(10, 9) + ''
     ],
   })
 
@@ -135,11 +135,9 @@ class Validators extends Component<IProps, IState> {
 
     const tableData = data.validators;
 
-    console.log(data);
-
     return (
       <div>
-        <Header as='h1' className='white'>Validator Assignments</Header>
+        <Header as='h1' className='white'>Active Validators</Header>
         <Table striped inverted celled textAlign="center"
           headerRow={headerRow}
           renderBodyRow={renderBodyRow}
