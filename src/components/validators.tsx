@@ -15,7 +15,7 @@ const headerRow = [
   'Exit Epoch',
   'Withdrawable Epoch',
   'Slashed',
-  'Effective Balance'
+  'Effective Balance (ETH)'
 ]
 
 const renderBodyRow = ({
