@@ -221,7 +221,7 @@ class Attestations extends Component<IProps, IState> {
     const tableData = mapDataToTableData(data);
 
     return (
-      <Table celled structured compact textAlign="center"
+      <Table striped inverted celled structured textAlign="center"
         headerRows={headerRows}
         renderBodyRow={renderBodyRow}
         tableData={tableData}
