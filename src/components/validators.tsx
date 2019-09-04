@@ -4,6 +4,7 @@ import Blockies from 'react-blockies';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
 const DEFAULT_QUERY = '';
+const MAX_UINT_64_STRING = '18446744073709551615';
 
 const headerRow = [
   '',
@@ -58,8 +59,8 @@ const renderBodyRow = ({
       </Table.Cell>,
       activationEligibilityEpoch,
       activationEpoch,
-      exitEpoch,
-      withdrawableEpoch,
+      exitEpoch === MAX_UINT_64_STRING ? 'Not Exited' : exitEpoch,
+      withdrawableEpoch === MAX_UINT_64_STRING ? 'Not Exited' : withdrawableEpoch,
       slashed + '',
       effectiveBalance
     ],
