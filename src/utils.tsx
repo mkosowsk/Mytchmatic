@@ -6,8 +6,7 @@ export default class Utils {
         const stringEnd = currString.substring(currString.length - 4);
       
         return stringStart + '...' + stringEnd;
-      };
-    
+      }; 
 }
 
 

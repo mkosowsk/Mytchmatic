@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; // importing FunctionComponent
-import { Header, Table } from 'semantic-ui-react';
+import { Header, Popup, Table } from 'semantic-ui-react';
+import Utils from '../utils'
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/blocks';
 const DEFAULT_QUERY = 'slot=5000';
@@ -18,7 +19,13 @@ function mapOntoTableData(data: any) {
         { key: 'Graffiti', value: blocks[0]["body"]["graffiti"] },
         { key: 'Proposer Slashings', value: blocks[0]["body"]["proposerSlashings"].length },
         { key: 'Attester Slashings', value: blocks[0]["body"]["attesterSlashings"].length },
-        { key: 'Randao reveal', value: blocks[0]["body"]["randaoReveal"] },
+        {
+            key: 'Randao Reveal',
+            value: <Popup
+                content={blocks[0]["body"]["randaoReveal"]}
+                trigger={<span>{Utils.truncateString(blocks[0]["body"]["randaoReveal"])}</span>}
+            />
+        },
         { key: 'Deposits', value: blocks[0]["body"]["deposits"].length },
         { key: 'Voluntary Exits', value: blocks[0]["body"]["voluntaryExits"].length },
         { key: 'Transfers', value: blocks[0]["body"]["transfers"].length }
