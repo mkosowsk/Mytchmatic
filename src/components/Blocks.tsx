@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; // importing FunctionComponent
 import { Header, Popup, Table } from 'semantic-ui-react';
 import Utils from '../utils'
+import TableCellPopup from './TableCellPopup';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/blocks';
 const DEFAULT_QUERY = 'slot=5000';
@@ -10,13 +11,28 @@ function mapOntoTableData(data: any) {
 
     const tableData = [
         { key: 'Slot', value: blocks[0]["slot"] },
-        { key: 'Parent Root', value: blocks[0]["parentRoot"] },
-        { key: 'Signature', value: blocks[0]["signature"] },
+        {
+            key: 'Parent Root',
+            value: <TableCellPopup content={blocks[0]["parentRoot"]}></TableCellPopup>
+        },
+        {
+            key: 'Signature',
+            value: <TableCellPopup content={blocks[0]["signature"]}></TableCellPopup>
+        },
         { key: 'Attestations', value: blocks[0]["body"]["attestations"].length },
-        { key: 'Eth 1 Data: Deposit Root', value: blocks[0]["body"]["eth1Data"]["depositRoot"] },
+        {
+            key: 'Eth 1 Data: Deposit Root',
+            value: <TableCellPopup content={blocks[0]["body"]["eth1Data"]["depositRoot"]}></TableCellPopup>
+        },
         { key: 'Eth 1 Data: Deposit Count', value: blocks[0]["body"]["eth1Data"]["depositCount"] },
-        { key: 'Eth 1 Data: Block Hash', value: blocks[0]["body"]["eth1Data"]["blockHash"] },
-        { key: 'Graffiti', value: blocks[0]["body"]["graffiti"] },
+        {
+            key: 'Eth 1 Data: Block Hash',
+            value: <TableCellPopup content={blocks[0]["body"]["eth1Data"]["blockHash"]}></TableCellPopup>
+        },
+        {
+            key: 'Graffiti',
+            value: <TableCellPopup content={blocks[0]["body"]["graffiti"]}></TableCellPopup>
+        },
         { key: 'Proposer Slashings', value: blocks[0]["body"]["proposerSlashings"].length },
         { key: 'Attester Slashings', value: blocks[0]["body"]["attesterSlashings"].length },
         {
