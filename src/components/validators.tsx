@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Popup, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
+import Filter from './Filter';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
 const DEFAULT_QUERY = '';
@@ -77,6 +78,8 @@ function truncateString(currString: string) {
 };
 
 interface IState {
+  _sort: string,
+  _order: string
   data: {
     epoch: string,
     validators: [
@@ -103,6 +106,8 @@ class Validators extends Component<IProps, IState> {
     super(props);
 
     this.state = {
+      _sort: 'id',
+      _order: 'asc',
       data: {
         epoch: '',
         validators: [
@@ -130,6 +135,21 @@ class Validators extends Component<IProps, IState> {
       .then(data => this.setState({ data: data }))
   }
 
+  handleSort = (clickedColumn: any) => {
+    const { _sort, _order } = this.state;
+
+    let newOrder = _order === 'asc' ? 'desc' : 'asc';
+    if (_sort !== clickedColumn) {
+      newOrder = 'asc';
+    }
+
+    this.loadData({
+      _sort: clickedColumn,
+      _page: 1,
+      _order: newOrder,
+    });
+  };
+
   render() {
     const { data } = this.state;
 
@@ -142,6 +162,7 @@ class Validators extends Component<IProps, IState> {
           headerRow={headerRow}
           renderBodyRow={renderBodyRow}
           tableData={tableData}
+          handleSort={this.handleSort}
         >
         </Table>
       </div>
