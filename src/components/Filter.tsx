@@ -10,7 +10,8 @@ interface IState {
 
 interface IProps { 
     onSubmitFilter: any,
-    loading: boolean
+    loading: boolean,
+    totalCount: number
 }
 
 export class VehicleFilter extends Component<IProps, IState> {
@@ -24,9 +25,9 @@ export class VehicleFilter extends Component<IProps, IState> {
 
     handleOnChange = (event: any, { name, value }: any) => {
         if (value !== '' && !REGEX.test(value)) {
-            this.setState({ [name]: value, filterValid: false });
+            this.setState({ filter: value, filterValid: false });
         } else {
-            this.setState({ [name]: value, filterValid: true });
+            this.setState({ filter: value, filterValid: true });
             this.props.onSubmitFilter(value);
         }
     };
