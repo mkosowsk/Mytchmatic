@@ -160,7 +160,10 @@ class Validators extends Component<IProps, IState> {
         sorted={column === 'activationEligibilityEpoch' ? direction : undefined}
         onClick={this.handleSort('activationEligibilityEpoch')}
       > Activation Eligibility Epoch </Table.HeaderCell>,
-      'Activation Epoch',
+      <Table.HeaderCell
+        sorted={column === 'activationEpoch' ? direction : undefined}
+        onClick={this.handleSort('activationEpoch')}
+      > Activation Epoch </Table.HeaderCell>,
       'Exit Epoch',
       'Withdrawable Epoch',
       'Slashed',
