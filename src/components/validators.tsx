@@ -172,8 +172,14 @@ class Validators extends Component<IProps, IState> {
         sorted={column === 'withdrawableEpoch' ? direction : undefined}
         onClick={this.handleSort('withdrawableEpoch')}
       > Withdrawable Epoch </Table.HeaderCell>,
-      'Slashed',
-      'Effective Balance (ETH)'
+      <Table.HeaderCell
+        sorted={column === 'slashed' ? direction : undefined}
+        onClick={this.handleSort('slashed')}
+      > Slashed </Table.HeaderCell>,
+      <Table.HeaderCell
+        sorted={column === 'effectiveBalance' ? direction : undefined}
+        onClick={this.handleSort('effectiveBalance')}
+      > Effective Balance (ETH) </Table.HeaderCell>
     ];
 
     const { data } = this.state;
