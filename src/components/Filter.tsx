@@ -4,7 +4,7 @@ import { Form, Popup } from 'semantic-ui-react';
 const REGEX = new RegExp('^[a-zA-Z0-9 ]+$');
 
 interface IState {
-    filter: string,
+    filter?: string,
     filterValid: boolean
 }
 
@@ -25,9 +25,9 @@ export class VehicleFilter extends Component<IProps, IState> {
 
     handleOnChange = (event: any, { name, value }: any) => {
         if (value !== '' && !REGEX.test(value)) {
-            this.setState({ filter: value, filterValid: false });
+            this.setState({ [name]: value, filterValid: false });
         } else {
-            this.setState({ filter: value, filterValid: true });
+            this.setState({ [name]: value, filterValid: true });
             this.props.onSubmitFilter(value);
         }
     };
