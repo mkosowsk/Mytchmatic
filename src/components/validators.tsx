@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Header, Popup, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
@@ -70,17 +70,17 @@ interface IState {
   direction: any,
   data: {
     epoch: string,
-    validators: 
-      {
-        public_key: string,
-        withdrawal_credentials: string,
-        effective_balance: string,
-        activationEligibilityEpoch: string,
-        activation_epoch: string,
-        exit_epoch: string,
-        slashed: boolean,
-        withdrawable_epoch: string
-      }[];
+    validators:
+    {
+      public_key: string,
+      withdrawal_credentials: string,
+      effective_balance: string,
+      activationEligibilityEpoch: string,
+      activation_epoch: string,
+      exit_epoch: string,
+      slashed: boolean,
+      withdrawable_epoch: string
+    }[];
   }
 }
 
@@ -119,25 +119,24 @@ class Validators extends Component<IProps, IState> {
 
   handleSort = (clickedColumn: any) => () => {
     const { column, data, direction } = this.state
-
-    // if (column !== clickedColumn) {
-    //   this.setState({
-    //     column: clickedColumn,
-    //     data: {
-
-    //       _.sortBy(data, [clickedColumn]),
-    //       direction: 'ascending',
-    //     })
-
-    //   return;
-    // }
-
     const validators = data.validators;
-    const epoch = data.epoch
+
+    if (column !== clickedColumn) {
+      this.setState({
+        column: clickedColumn,
+        data: {
+          epoch: data.epoch,
+          validators: _.sortBy(validators, clickedColumn)
+        },
+        direction: 'ascending',
+      })
+
+      return
+    }
 
     this.setState({
       data: {
-        epoch: epoch,
+        epoch: data.epoch,
         validators: validators.reverse()
       },
       direction: direction === 'ascending' ? 'descending' : 'ascending',
