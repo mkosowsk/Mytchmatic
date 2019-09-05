@@ -1,23 +1,11 @@
+import _ from 'lodash'
 import React, { Component } from 'react';
 import { Header, Popup, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
-import Filter from './Filter';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
 const DEFAULT_QUERY = '';
 const MAX_UINT_64_STRING = '18446744073709551615';
-
-const headerRow = [
-  '',
-  'Public Key',
-  'Withdrawal Credentials',
-  'Activation Eligibility Epoch',
-  'Activation Epoch',
-  'Exit Epoch',
-  'Withdrawable Epoch',
-  'Slashed',
-  'Effective Balance (ETH)'
-]
 
 const renderBodyRow = ({
   blockie,
@@ -78,11 +66,11 @@ function truncateString(currString: string) {
 };
 
 interface IState {
-  _sort: string,
-  _order: string
+  column: string,
+  direction: any,
   data: {
     epoch: string,
-    validators: [
+    validators: 
       {
         public_key: string,
         withdrawal_credentials: string,
@@ -92,10 +80,7 @@ interface IState {
         exit_epoch: string,
         slashed: boolean,
         withdrawable_epoch: string
-      }
-    ],
-    next_page_token: string,
-    total_size: number
+      }[];
   }
 }
 
@@ -106,8 +91,8 @@ class Validators extends Component<IProps, IState> {
     super(props);
 
     this.state = {
-      _sort: 'id',
-      _order: 'asc',
+      column: '',
+      direction: '',
       data: {
         epoch: '',
         validators: [
@@ -121,48 +106,76 @@ class Validators extends Component<IProps, IState> {
             slashed: false,
             withdrawable_epoch: ''
           }
-        ],
-        next_page_token: '',
-        total_size: 0
+        ]
       }
     }
   }
 
   componentDidMount() {
-
-    return fetch(API + DEFAULT_QUERY)
+    fetch(API + DEFAULT_QUERY)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
   }
 
-  handleSort = (clickedColumn: any) => {
-    const { _sort, _order } = this.state;
+  handleSort = (clickedColumn: any) => () => {
+    const { column, data, direction } = this.state
 
-    let newOrder = _order === 'asc' ? 'desc' : 'asc';
-    if (_sort !== clickedColumn) {
-      newOrder = 'asc';
-    }
+    // if (column !== clickedColumn) {
+    //   this.setState({
+    //     column: clickedColumn,
+    //     data: {
 
-    this.loadData({
-      _sort: clickedColumn,
-      _page: 1,
-      _order: newOrder,
-    });
-  };
+    //       _.sortBy(data, [clickedColumn]),
+    //       direction: 'ascending',
+    //     })
+
+    //   return;
+    // }
+
+    const validators = data.validators;
+    const epoch = data.epoch
+
+    this.setState({
+      data: {
+        epoch: epoch,
+        validators: validators.reverse()
+      },
+      direction: direction === 'ascending' ? 'descending' : 'ascending',
+    })
+  }
 
   render() {
+    const { column, direction } = this.state
+
+    const headerRow = [
+      '',
+      <Table.HeaderCell
+        sorted={column === 'publicKey' ? direction : undefined}
+        onClick={this.handleSort('publicKey')}
+      >
+        Public Key
+            </Table.HeaderCell>,
+      'Withdrawal Credentials',
+      'Activation Eligibility Epoch',
+      'Activation Epoch',
+      'Exit Epoch',
+      'Withdrawable Epoch',
+      'Slashed',
+      'Effective Balance (ETH)'
+    ];
+
     const { data } = this.state;
 
     const tableData = data.validators;
 
+
     return (
       <div>
         <Header as='h1' className='white'>Active Validators</Header>
-        <Table striped inverted celled textAlign="center"
+        <Table sortable striped inverted celled textAlign="center"
           headerRow={headerRow}
           renderBodyRow={renderBodyRow}
           tableData={tableData}
-          handleSort={this.handleSort}
         >
         </Table>
       </div>
