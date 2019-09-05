@@ -117,7 +117,7 @@ class Validators extends Component<IProps, IState> {
       .then(data => this.setState({ data: data }))
   }
 
-  handleSort = (clickedColumn: any) => () => {
+  handleSort = (clickedColumn: string) => () => {
     const { column, data, direction } = this.state
     const validators = data.validators;
 
@@ -164,8 +164,14 @@ class Validators extends Component<IProps, IState> {
         sorted={column === 'activationEpoch' ? direction : undefined}
         onClick={this.handleSort('activationEpoch')}
       > Activation Epoch </Table.HeaderCell>,
-      'Exit Epoch',
-      'Withdrawable Epoch',
+      <Table.HeaderCell
+        sorted={column === 'exitEpoch' ? direction : undefined}
+        onClick={this.handleSort('exitEpoch')}
+      > Exit Epoch </Table.HeaderCell>,
+      <Table.HeaderCell
+        sorted={column === 'withdrawableEpoch' ? direction : undefined}
+        onClick={this.handleSort('withdrawableEpoch')}
+      > Withdrawable Epoch </Table.HeaderCell>,
       'Slashed',
       'Effective Balance (ETH)'
     ];
