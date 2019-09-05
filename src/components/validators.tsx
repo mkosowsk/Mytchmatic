@@ -151,11 +151,15 @@ class Validators extends Component<IProps, IState> {
       <Table.HeaderCell
         sorted={column === 'publicKey' ? direction : undefined}
         onClick={this.handleSort('publicKey')}
-      >
-        Public Key
-            </Table.HeaderCell>,
-      'Withdrawal Credentials',
-      'Activation Eligibility Epoch',
+      > Public Key </Table.HeaderCell>,
+      <Table.HeaderCell
+        sorted={column === 'withdrawalCredentials' ? direction : undefined}
+        onClick={this.handleSort('withdrawalCredentials')}
+      > Withdrawal Credentials </Table.HeaderCell>,
+      <Table.HeaderCell
+        sorted={column === 'activationEligibilityEpoch' ? direction : undefined}
+        onClick={this.handleSort('activationEligibilityEpoch')}
+      > Activation Eligibility Epoch </Table.HeaderCell>,
       'Activation Epoch',
       'Exit Epoch',
       'Withdrawable Epoch',
