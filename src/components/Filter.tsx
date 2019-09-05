@@ -14,7 +14,7 @@ interface IProps {
     totalCount: number
 }
 
-export class VehicleFilter extends Component<IProps, IState> {
+export class Filter extends Component<IProps, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
