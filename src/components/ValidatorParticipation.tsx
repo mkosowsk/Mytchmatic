@@ -6,7 +6,7 @@ const API = 'http://api.prylabs.network/eth/v1alpha1/validators/participation';
 const DEFAULT_QUERY = '';
 
 const lineData = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: [239, 240, 241, 242, 243, 244, 245],
   datasets: [
     {
       label: 'Global Participation Rate',
@@ -74,7 +74,14 @@ const options = {
         color: 'rgba(255,255,255,1)'
       },
       ticks: {
-        fontColor: 'white'
+        fontColor: 'white',
+        fontSize: '15'
+      },
+      scaleLabel: {
+        display: true,
+        labelString: 'Epoch',
+        fontColor: 'white',
+        fontSize: '18'
       }
     }],
     yAxes: [{
@@ -89,7 +96,8 @@ const options = {
       scaleLabel: {
         display: true,
         labelString: 'Global Participation Rate (percentage)',
-        fontColor: 'white'
+        fontColor: 'white',
+        fontSize: '18'
       },
       ticks: {
         min: 0,
@@ -97,7 +105,8 @@ const options = {
         callback: function (value: number) {
           return (value * 100) + '%'
         },
-        fontColor: 'white'
+        fontColor: 'white',
+        fontSize: '15'
       }
     }, {
       type: 'linear',
