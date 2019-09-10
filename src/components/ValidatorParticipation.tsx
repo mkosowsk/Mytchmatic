@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Table } from 'semantic-ui-react';
-import {Line} from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/participation';
 const DEFAULT_QUERY = '';
@@ -8,16 +8,15 @@ const lineData = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Validator Participation',
       fill: false,
       lineTension: 0.1,
-      backgroundColor: 'rgba(255,255,255,1)',
-      borderColor: 'rgba(75,192,192,1)',
+      borderColor: 'rgba(255,255,255,1)',
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
+      pointBorderColor: 'rgba(255,255,255,1)',
       pointBackgroundColor: '#fff',
       pointBorderWidth: 1,
       pointHoverRadius: 5,
@@ -26,7 +25,28 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
+      data: [65, 59, 80, 81, 56, 55, 40],
+      // yAxisID: 'y-axis-1'
+    },
+    {
+      label: 'Voted Ether',
+      fill: false,
+      lineTension: 0.1,
+      borderColor: 'rgba(255,255,255,1)',
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: 'rgba(255,255,255,1)',
+      pointBackgroundColor: '#fff',
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: [30, 25, 20, 10, 5, 10, 5]
     }
   ]
 };
@@ -108,7 +128,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
           renderBodyRow={renderBodyRow}
           tableData={[data]}
         />
-        <Line data={data} />
+        <Line data={lineData} />
       </div>
     );
   }
