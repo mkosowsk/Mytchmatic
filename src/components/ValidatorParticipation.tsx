@@ -30,7 +30,6 @@ const lineData = {
       lineTension: 0.1,
       borderColor: 'blue',
       backgroundColor: 'blue',
-      borderCapStyle: 'butt',
       pointHoverBackgroundColor: 'blue',
       pointHoverBorderColor: 'blue',
       pointHoverBorderWidth: 2,
@@ -38,6 +37,21 @@ const lineData = {
       pointRadius: 5,
       pointHitRadius: 10,
       data: [30, 25, 20, 10, 5, 10, 5],
+      yAxisID: 'y-axis-2'
+    },
+    {
+      label: 'Eligible Ether',
+      fill: false,
+      lineTension: 0.1,
+      borderColor: 'red',
+      backgroundColor: 'red',
+      pointHoverBackgroundColor: 'blue',
+      pointHoverBorderColor: 'blue',
+      pointHoverBorderWidth: 2,
+      pointStyle: 'rect',
+      pointRadius: 5,
+      pointHitRadius: 10,
+      data: [60, 52.5, 30, 20, 10, 25, 7.5],
       yAxisID: 'y-axis-2'
     }
   ]
