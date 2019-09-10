@@ -14,18 +14,12 @@ const lineData = {
       lineTension: 0.1,
       borderColor: 'green',
       backgroundColor: 'green',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(255,255,255,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
       pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBackgroundColor: 'green',
+      pointHoverBorderColor: 'green',
       pointHoverBorderWidth: 2,
-      pointRadius: 1,
+      pointStyle: 'circle',
+      pointRadius: 5,
       pointHitRadius: 10,
       data: [.105, .59, .80, .81, .56, .55, .40],
       yAxisID: 'y-axis-1'
@@ -37,17 +31,11 @@ const lineData = {
       borderColor: 'blue',
       backgroundColor: 'blue',
       borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(255,255,255,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBackgroundColor: 'blue',
+      pointHoverBorderColor: 'blue',
       pointHoverBorderWidth: 2,
-      pointRadius: 1,
+      pointStyle: 'rect',
+      pointRadius: 5,
       pointHitRadius: 10,
       data: [30, 25, 20, 10, 5, 10, 5],
       yAxisID: 'y-axis-2'
@@ -56,6 +44,7 @@ const lineData = {
 };
 
 const options = {
+  backgroundColor: 'white',
   title: {
     display: true,
     fontColor: 'white',
@@ -115,6 +104,12 @@ const options = {
       id: 'y-axis-2',
       gridLines: {
         drawOnChartArea: false, // only want the grid lines for one axis to show up
+      },
+      scaleLabel: {
+        display: true,
+        labelString: 'Ether',
+        fontColor: 'white',
+        fontSize: '18'
       },
       ticks: {
         fontColor: 'white'
@@ -183,9 +178,9 @@ class ValidatorAssignments extends Component<IProps, IState> {
   }
 
   componentDidMount() {
-    // fetch(API + DEFAULT_QUERY)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ data: data }))
+    fetch(API + DEFAULT_QUERY)
+      .then(response => response.json())
+      .then(data => this.setState({ data: data }))
   }
 
   render() {
