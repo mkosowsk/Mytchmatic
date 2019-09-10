@@ -34,7 +34,8 @@ const lineData = {
       label: 'Voted Ether',
       fill: false,
       lineTension: 0.1,
-      borderColor: 'rgba(255,255,255,1)',
+      borderColor: 'blue',
+      backgroundColor: 'blue',
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
@@ -55,11 +56,26 @@ const lineData = {
 };
 
 const options = {
+  title: {
+    display: true,
+    fontColor: 'white',
+    fontSize: '24',
+    text: 'Global Participation Rate, Voted Ether, and Eligible Ether vs. Epoch'
+  },
+  legend: {
+    labels: {
+      fontColor: 'white',
+      fontSize: 18
+    }
+  },
   scales: {
     xAxes: [{
       gridLines: {
         color: 'rgba(255,255,255,1)'
       },
+      ticks: {
+        fontColor: 'white'
+      }
     }],
     yAxes: [{
       fontColor: 'rgba(255,255,255,1)',
@@ -73,6 +89,7 @@ const options = {
       scaleLabel: {
         display: true,
         labelString: 'Global Participation Rate (percentage)',
+        fontColor: 'white'
       },
       ticks: {
         min: 0,
@@ -80,6 +97,7 @@ const options = {
         callback: function (value: number) {
           return (value * 100) + '%'
         },
+        fontColor: 'white'
       }
     }, {
       type: 'linear',
@@ -89,6 +107,9 @@ const options = {
       gridLines: {
         drawOnChartArea: false, // only want the grid lines for one axis to show up
       },
+      ticks: {
+        fontColor: 'white'
+      }
     }],
   }
 }
@@ -170,7 +191,6 @@ class ValidatorAssignments extends Component<IProps, IState> {
           renderBodyRow={renderBodyRow}
           tableData={[data]}
         />
-        <Header as='h2' className='white'>Global Participation Rate, Voted Ether, and Eligible Ether vs. Epoch</Header>
         <Line data={lineData} options={options} />
       </div>
     );
