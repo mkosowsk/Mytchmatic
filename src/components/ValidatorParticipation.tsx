@@ -99,8 +99,8 @@ const renderBodyRow = ({
       epoch,
       finalized + '',
       (globalParticipationRate * 100).toFixed(3) + '%',
-      Number(votedEther).toLocaleString(),
-      Number(eligibleEther).toLocaleString()
+      (Number(votedEther) / Math.pow(10, 9)).toLocaleString(),
+      (Number(eligibleEther) / Math.pow(10, 9)).toLocaleString()
     ],
   });
 
@@ -132,9 +132,9 @@ class ValidatorAssignments extends Component<IProps, IState> {
   }
 
   componentDidMount() {
-    // fetch(API + DEFAULT_QUERY)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ data: data }))
+    fetch(API + DEFAULT_QUERY)
+      .then(response => response.json())
+      .then(data => this.setState({ data: data }))
   }
 
   render() {
@@ -149,6 +149,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
           renderBodyRow={renderBodyRow}
           tableData={[data]}
         />
+        <Header as='h2' className='white'>Global Participation Rate, Voted Ether, and Eligible Ether vs. Epoch</Header>
         <Line data={lineData} options={options} />
       </div>
     );
