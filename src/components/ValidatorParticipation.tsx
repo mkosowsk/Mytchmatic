@@ -4,6 +4,7 @@ import { Line } from 'react-chartjs-2';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/participation';
 const DEFAULT_QUERY = '';
+
 const lineData = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
@@ -26,7 +27,7 @@ const lineData = {
       pointRadius: 1,
       pointHitRadius: 10,
       data: [65, 59, 80, 81, 56, 55, 40],
-      // yAxisID: 'y-axis-1'
+      yAxisID: 'y-axis-1'
     },
     {
       label: 'Voted Ether',
@@ -46,10 +47,30 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [30, 25, 20, 10, 5, 10, 5]
+      data: [30, 25, 20, 10, 5, 10, 5],
+      yAxisID: 'y-axis-2'
     }
   ]
 };
+
+const options = {
+  scales: {
+    yAxes: [{
+      type: 'linear',
+      display: true,
+      position: 'left',
+      id: 'y-axis-1',
+    }, {
+      type: 'linear',
+      display: true,
+      position: 'right',
+      id: 'y-axis-2',
+      gridLines: {
+        drawOnChartArea: false, // only want the grid lines for one axis to show up
+      },
+    }],
+  }
+}
 
 const headerRow = [
   'Epoch',
@@ -128,7 +149,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
           renderBodyRow={renderBodyRow}
           tableData={[data]}
         />
-        <Line data={lineData} />
+        <Line data={lineData} options={options} />
       </div>
     );
   }
