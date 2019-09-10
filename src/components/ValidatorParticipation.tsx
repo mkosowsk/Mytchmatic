@@ -9,10 +9,11 @@ const lineData = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'Validator Participation',
+      label: 'Global Participation Rate',
       fill: false,
       lineTension: 0.1,
-      borderColor: 'rgba(255,255,255,1)',
+      borderColor: 'green',
+      backgroundColor: 'green',
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
@@ -26,7 +27,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40],
+      data: [.105, .59, .80, .81, .56, .55, .40],
       yAxisID: 'y-axis-1'
     },
     {
@@ -55,11 +56,31 @@ const lineData = {
 
 const options = {
   scales: {
+    xAxes: [{
+      gridLines: {
+        color: 'rgba(255,255,255,1)'
+      },
+    }],
     yAxes: [{
+      fontColor: 'rgba(255,255,255,1)',
       type: 'linear',
       display: true,
       position: 'left',
       id: 'y-axis-1',
+      gridLines: {
+        color: 'rgba(255,255,255,1)'
+      },
+      scaleLabel: {
+        display: true,
+        labelString: 'Global Participation Rate (percentage)',
+      },
+      ticks: {
+        min: 0,
+        max: 1,
+        callback: function (value: number) {
+          return (value * 100) + '%'
+        },
+      }
     }, {
       type: 'linear',
       display: true,
@@ -132,9 +153,9 @@ class ValidatorAssignments extends Component<IProps, IState> {
   }
 
   componentDidMount() {
-    fetch(API + DEFAULT_QUERY)
-      .then(response => response.json())
-      .then(data => this.setState({ data: data }))
+    // fetch(API + DEFAULT_QUERY)
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ data: data }))
   }
 
   render() {
