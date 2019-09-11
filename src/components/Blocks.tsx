@@ -4,7 +4,7 @@ import Utils from '../utils'
 import TableCellPopup from './TableCellPopup';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/blocks';
-const DEFAULT_QUERY = 'slot=5000';
+const DEFAULT_QUERY = '?slot=5000';
 
 function mapOntoTableData(data: any) {
     const blocks = data.blocks;
@@ -132,10 +132,9 @@ class Blocks extends Component<IProps, IState> {
 
     componentDidMount() {
         const search = this.props.location.search;
+        const query = search ? API + search : API + DEFAULT_QUERY;
 
-        console.log(API + search + DEFAULT_QUERY);
-
-        fetch(API + search + '&' + DEFAULT_QUERY)
+        fetch(query)
             .then(response => response.json())
             .then(data => this.setState({ data: data }))
     }

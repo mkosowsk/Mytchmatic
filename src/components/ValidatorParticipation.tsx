@@ -74,7 +74,7 @@ const options = {
   scales: {
     xAxes: [{
       gridLines: {
-        color: 'rgba(255,255,255,1)'
+        color: 'rgba(192,192,192,1)'
       },
       ticks: {
         fontColor: 'white',
@@ -94,7 +94,7 @@ const options = {
       position: 'left',
       id: 'y-axis-1',
       gridLines: {
-        color: 'rgba(255,255,255,1)'
+        color: 'rgba(192,192,192,1)'
       },
       scaleLabel: {
         display: true,
