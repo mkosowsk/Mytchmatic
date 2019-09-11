@@ -135,7 +135,7 @@ class Validators extends Component<IProps, IState> {
   }
 
   render() {
-    const { column, direction } = this.state
+    const { column, data, direction } = this.state
 
     const headerRow = [
       '',
@@ -172,8 +172,6 @@ class Validators extends Component<IProps, IState> {
         onClick={this.handleSort('effectiveBalance')}
       > Effective Balance (ETH) </Table.HeaderCell>
     ];
-
-    const { data } = this.state;
 
     const tableData = data.validators;
 

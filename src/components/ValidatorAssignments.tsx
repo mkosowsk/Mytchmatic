@@ -7,15 +7,6 @@ import Utils from '../utils';
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/assignments';
 const DEFAULT_QUERY = '';
 
-const headerRow = [
-  '',
-  'Public Key',
-  'Crosslink Committees',
-  'Slot',
-  'Shard',
-  'Proposer'
-]
-
 const renderBodyRow = ({
   blockie,
   publicKey,
@@ -52,7 +43,7 @@ const renderBodyRow = ({
 
 interface IState {
   column: string,
-  direction: string,
+  direction: any,
   data: {
     epoch: string,
     assignments:
@@ -124,10 +115,22 @@ class ValidatorAssignments extends Component<IProps, IState> {
   }
 
   render() {
-    const { data } = this.state;
+    const { column, data, direction } = this.state;
 
     // sort assignments based on slot and then shard
     data.assignments.sort((a, b) => Number(a.slot) - Number(b.slot) || Number(a.shard) - Number(b.shard));
+
+    const headerRow = [
+      '',
+      <Table.HeaderCell
+        sorted={column === 'publicKey' ? direction : undefined}
+        onClick={this.handleSort('publicKey')}
+      > Public Key </Table.HeaderCell>,
+      'Crosslink Committees',
+      'Slot',
+      'Shard',
+      'Proposer'
+    ]
 
     return (
       <div>
