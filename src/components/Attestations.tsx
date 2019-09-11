@@ -201,8 +201,10 @@ class Attestations extends Component<IProps, IState> {
   }
 
   handleSort = (clickedColumn: string) => () => {
-    const { column, data, direction } = this.state
-    const attestations = data.attestations;
+    const { column, data, direction } = this.state;
+    const tableData = mapDataToTableData(data);
+
+    const attestations = tableData.attestations;
 
     if (column !== clickedColumn) {
       this.setState({
@@ -229,12 +231,8 @@ class Attestations extends Component<IProps, IState> {
 
     const headerRows = [
       <Table.Row>
-        <Table.HeaderCell
-          rowSpan='2'
-          sorted={column === 'aggregationBits' ? direction : undefined}
-          onClick={this.handleSort('aggregationBits')}
-        > Aggregation Bits </Table.HeaderCell>
-        <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
+        <Table.HeaderCell rowSpan='2'> Aggregation Bits </Table.HeaderCell>
+        <Table.HeaderCell rowSpan='2'>Beacon Block Root</Table.HeaderCell>
         <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
         <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
         <Table.HeaderCell colSpan='4' textAlign='center'>CrossLink</Table.HeaderCell>
