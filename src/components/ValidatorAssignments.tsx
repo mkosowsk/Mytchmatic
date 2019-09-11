@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Header, Popup, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
@@ -37,11 +38,11 @@ const renderBodyRow = ({
         <Blockies key={publicKey + 'Blockie'} seed={publicKey}></Blockies>
       </td>,
       <Table.Cell>
-      <Popup
-        content={publicKey}
-        trigger={<span>{Utils.truncateString(publicKey)}</span>}
-      />
-    </Table.Cell>,
+        <Popup
+          content={publicKey}
+          trigger={<span>{Utils.truncateString(publicKey)}</span>}
+        />
+      </Table.Cell>,
       crosslinkCommittees.join(", "),
       slot,
       shard,
@@ -50,18 +51,19 @@ const renderBodyRow = ({
   });
 
 interface IState {
+  column: string,
+  direction: string,
   data: {
-    "epoch": string,
-    "assignments": [
-      {
-        // "crosslinkCommittees": Array<string> | string, //TODO how to cast these later
-        "crosslinkCommittees": any,
-        "shard": string,
-        "slot": string,
-        "proposer": boolean | string,
-        "publicKey": string
-      }
-    ]
+    epoch: string,
+    assignments:
+    {
+      crosslinkCommittees: Array<string>,
+      shard: string,
+      slot: string,
+      proposer: boolean,
+      publicKey: string
+    }[];
+
   }
 }
 
@@ -72,15 +74,17 @@ class ValidatorAssignments extends Component<IProps, IState> {
     super(props);
 
     this.state = {
+      column: '',
+      direction: '',
       data: {
-        "epoch": '',
-        "assignments": [
+        epoch: '',
+        assignments: [
           {
-            "crosslinkCommittees": [''],
-            "shard": '',
-            "slot": '',
-            "proposer": false,
-            "publicKey": ''
+            crosslinkCommittees: [''],
+            shard: '',
+            slot: '',
+            proposer: false,
+            publicKey: ''
           }
         ]
       }
@@ -91,6 +95,32 @@ class ValidatorAssignments extends Component<IProps, IState> {
     fetch(API + DEFAULT_QUERY)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
+  }
+
+  handleSort = (clickedColumn: string) => () => {
+    const { column, data, direction } = this.state
+    const assignments = data.assignments;
+
+    if (column !== clickedColumn) {
+      this.setState({
+        column: clickedColumn,
+        data: {
+          epoch: data.epoch,
+          assignments: _.sortBy(assignments, clickedColumn)
+        },
+        direction: 'ascending',
+      })
+
+      return;
+    }
+
+    this.setState({
+      data: {
+        epoch: data.epoch,
+        assignments: assignments.reverse()
+      },
+      direction: direction === 'ascending' ? 'descending' : 'ascending',
+    })
   }
 
   render() {
