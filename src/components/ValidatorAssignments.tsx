@@ -42,10 +42,10 @@ const renderBodyRow = ({
         trigger={<span>{Utils.truncateString(publicKey)}</span>}
       />
     </Table.Cell>,
-      crosslinkCommittees,
+      crosslinkCommittees.join(", "),
       slot,
       shard,
-      proposer
+      proposer + ''
     ],
   });
 
@@ -96,15 +96,8 @@ class ValidatorAssignments extends Component<IProps, IState> {
   render() {
     const { data } = this.state;
 
-    data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString());
-    // TODO: can you pipe this like in Angular, this should be view layer!
-    // or run type assertion BEFORE join
-    data.assignments.map(assignment => assignment.crosslinkCommittees = assignment.crosslinkCommittees.join(", "));
-
     // sort assignments based on slot and then shard
     data.assignments.sort((a, b) => Number(a.slot) - Number(b.slot) || Number(a.shard) - Number(b.shard));
-
-    // TODO: show full publicKey on hover
 
     return (
       <div>
