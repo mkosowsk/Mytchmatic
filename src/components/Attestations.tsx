@@ -102,7 +102,7 @@ function handleErrors(response: any) {
   return response;
 }
 
-function mapDataToTableData(data: any) {
+function mapDataToTableData(data: any)  {
   const attestations = data.attestations;
 
   const tableData = attestations.map((currentValue: any) => {
@@ -122,6 +122,7 @@ function mapDataToTableData(data: any) {
   });
 
   return tableData;
+
 }
 
 interface IState {
@@ -131,23 +132,15 @@ interface IState {
     attestations:
     {
       aggregationBits: string,
-      data: {
-        beaconBlockRoot: string,
-        source: {
-          epoch: string,
-          root: string
-        },
-        target: {
-          epoch: string,
-          root: string
-        },
-        crosslink: {
-          shard: string,
-          parentRoot: string,
-          startEpoch: string,
-          endEpoch: string
-        }
-      }
+      beaconBlockRoot: string,
+      sourceEpoch: string,
+      rootEpoch: string,
+      targetEpoch: string,
+      targetRoot: string,
+      crosslinkShard: string,
+      crosslinkParentRoot: string,
+      crossLinkStartEpoch: string,
+      crossLinkEndEpoch: string
     }[]
   }
 }
@@ -168,23 +161,15 @@ class Attestations extends Component<IProps, IState> {
           [
             {
               aggregationBits: '',
-              data: {
-                beaconBlockRoot: '',
-                source: {
-                  epoch: '',
-                  root: ''
-                },
-                target: {
-                  epoch: '',
-                  root: ''
-                },
-                crosslink: {
-                  shard: '',
-                  parentRoot: '',
-                  startEpoch: '',
-                  endEpoch: ''
-                }
-              }
+              beaconBlockRoot: '',
+              sourceEpoch: '',
+              rootEpoch: '',
+              targetEpoch: '',
+              targetRoot: '',
+              crosslinkShard: '',
+              crosslinkParentRoot: '',
+              crossLinkStartEpoch: '',
+              crossLinkEndEpoch: ''
             }
           ]
       }
@@ -197,7 +182,17 @@ class Attestations extends Component<IProps, IState> {
     return fetch(api + DEFAULT_QUERY)
       .then(handleErrors)
       .then(response => response.json())
-      .then(data => this.setState({ data: data }))
+      // TODO: will changing this part of the state to the mappedDataState make it so this table can sort?
+      // mapDataToTableData
+      .then(data => {
+        const flattenedData = mapDataToTableData(data);
+        this.setState(
+          {
+            data: {
+              attestations: flattenedData
+            }
+          });
+      });
   }
 
   handleSort = (clickedColumn: string) => () => {
@@ -229,6 +224,8 @@ class Attestations extends Component<IProps, IState> {
   render() {
     const { column, data, direction } = this.state;
 
+    console.log(data);
+
     const headerRows = [
       <Table.Row>
         <Table.HeaderCell rowSpan='2'> Aggregation Bits </Table.HeaderCell>
@@ -249,13 +246,13 @@ class Attestations extends Component<IProps, IState> {
       </Table.Row>
     ];
 
-    const tableData = mapDataToTableData(data);
+    // const tableData = mapDataToTableData(data);
 
     return (
       <Table sortabled striped inverted celled structured textAlign="center"
         headerRows={headerRows}
         renderBodyRow={renderBodyRow}
-        tableData={tableData}
+        tableData={data.attestations}
       >
       </Table>
     )
