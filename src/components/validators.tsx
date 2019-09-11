@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Header, Popup, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
+import Utils from '../utils';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators'
 const DEFAULT_QUERY = '';
@@ -37,13 +38,13 @@ const renderBodyRow = ({
       <Table.Cell>
         <Popup
           content={publicKey}
-          trigger={<span>{truncateString(publicKey)}</span>}
+          trigger={<span>{Utils.truncateString(publicKey)}</span>}
         />
       </Table.Cell>,
       <Table.Cell>
         <Popup
           content={withdrawalCredentials}
-          trigger={<span>{truncateString(withdrawalCredentials)}</span>}
+          trigger={<span>{Utils.truncateString(withdrawalCredentials)}</span>}
         />
       </Table.Cell>,
       activationEligibilityEpoch,
@@ -54,16 +55,6 @@ const renderBodyRow = ({
       Number(effectiveBalance) / Math.pow(10, 9) + ''
     ],
   })
-
-// TODO: drop this into a utils file and pull it in
-function truncateString(currString: string) {
-  if (!currString) return;
-
-  const stringStart = currString.substring(0, 4);
-  const stringEnd = currString.substring(currString.length - 4);
-
-  return stringStart + '...' + stringEnd;
-};
 
 interface IState {
   column: string,
