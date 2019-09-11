@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; // importing FunctionComponent
 import { Header, Popup, Table } from 'semantic-ui-react';
-import Utils from '../utils'
+import Utils from '../utils';
 import TableCellPopup from './TableCellPopup';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/beacon/blocks';

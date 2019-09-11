@@ -122,7 +122,7 @@ class Validators extends Component<IProps, IState> {
         direction: 'ascending',
       })
 
-      return
+      return;
     }
 
     this.setState({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Table } from 'semantic-ui-react';
+import { Header, Popup, Table } from 'semantic-ui-react';
 import Blockies from 'react-blockies';
-
+import Utils from '../utils';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/assignments';
 const DEFAULT_QUERY = '';
@@ -36,7 +36,12 @@ const renderBodyRow = ({
       <td>
         <Blockies key={publicKey + 'Blockie'} seed={publicKey}></Blockies>
       </td>,
-      publicKey,
+      <Table.Cell>
+      <Popup
+        content={publicKey}
+        trigger={<span>{Utils.truncateString(publicKey)}</span>}
+      />
+    </Table.Cell>,
       crosslinkCommittees,
       slot,
       shard,
@@ -90,19 +95,6 @@ class ValidatorAssignments extends Component<IProps, IState> {
 
   render() {
     const { data } = this.state;
-    console.log(data);
-
-
-    // map this onto a TableData variable so as to not overwrite good data
-    // TODO: make this so we don't lose data on the publicKey
-
-    data.assignments.map(assignment => {
-      const publicKeyStart = assignment.publicKey.substring(0, 4);
-      const publicKeyEnd = assignment.publicKey.substring(assignment.publicKey.length - 4);
-
-      return assignment.publicKey = publicKeyStart + '...' + publicKeyEnd;
-    });
-
 
     data.assignments.map(assignment => assignment.proposer = assignment.proposer.toString());
     // TODO: can you pipe this like in Angular, this should be view layer!
