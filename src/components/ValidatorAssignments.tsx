@@ -34,7 +34,7 @@ const renderBodyRow = ({
           trigger={<span>{Utils.truncateString(publicKey)}</span>}
         />
       </Table.Cell>,
-      crosslinkCommittees.join(", "),
+      crosslinkCommittees.sort().join(", "),
       slot,
       shard,
       proposer + ''
@@ -118,7 +118,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
     const { column, data, direction } = this.state;
 
     // sort assignments based on slot and then shard
-    data.assignments.sort((a, b) => Number(a.slot) - Number(b.slot) || Number(a.shard) - Number(b.shard));
+    // data.assignments.sort((a, b) => Number(a.slot) - Number(b.slot) || Number(a.shard) - Number(b.shard));
 
     const headerRow = [
       '',
@@ -126,18 +126,30 @@ class ValidatorAssignments extends Component<IProps, IState> {
         sorted={column === 'publicKey' ? direction : undefined}
         onClick={this.handleSort('publicKey')}
       > Public Key </Table.HeaderCell>,
-      'Crosslink Committees',
-      'Slot',
-      'Shard',
-      'Proposer'
+      <Table.HeaderCell
+        sorted={column === 'crosslinkCommittees' ? direction : undefined}
+        onClick={this.handleSort('crosslinkCommittees')}
+      > Crosslink Committees </Table.HeaderCell>,
+      <Table.HeaderCell
+        sorted={column === 'slot' ? direction : undefined}
+        onClick={this.handleSort('slot')}
+      > Slot </Table.HeaderCell>,
+      <Table.HeaderCell
+        sorted={column === 'shard' ? direction : undefined}
+        onClick={this.handleSort('shard')}
+      > Shard </Table.HeaderCell>,
+      <Table.HeaderCell
+        sorted={column === 'proposer' ? direction : undefined}
+        onClick={this.handleSort('proposer')}
+      > Proposer </Table.HeaderCell>
     ]
 
     return (
       <div>
         <Header as='h1' className='white'>Validator Assignments</Header>
         <Header as='h2' className='white'>Epoch: {data.epoch}</Header>
-        <Table striped inverted textAlign="center"
-          celled headerRow={headerRow}
+        <Table sortable striped inverted celled textAlign="center"
+          headerRow={headerRow}
           renderBodyRow={renderBodyRow}
           tableData={data.assignments}
         />
