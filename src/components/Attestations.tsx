@@ -1,10 +1,29 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { Popup, Table } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { BitList } from "@chainsafe/bit-utils";
+import {BitList} from "@chainsafe/bit-utils";
 
 const DEFAULT_QUERY = '';
+
+const headerRows = [
+  <Table.Row>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Aggregation Bits</Table.HeaderCell>
+    <Table.HeaderCell rowSpan='2' textAlign='center'>Beacon Block Root</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
+    <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
+    <Table.HeaderCell colSpan='4' textAlign='center'>CrossLink</Table.HeaderCell>
+  </Table.Row>,
+  <Table.Row>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
+    <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
+  </Table.Row>
+];
 
 const renderBodyRow = ({
   aggregationBits,
@@ -102,7 +121,7 @@ function handleErrors(response: any) {
   return response;
 }
 
-function mapDataToTableData(data: any)  {
+function mapDataToTableData(data: any) {
   const attestations = data.attestations;
 
   const tableData = attestations.map((currentValue: any) => {
@@ -122,26 +141,32 @@ function mapDataToTableData(data: any)  {
   });
 
   return tableData;
-
 }
 
 interface IState {
-  column: string,
-  direction: any,
   data: {
-    attestations:
-    {
-      aggregationBits: string,
-      beaconBlockRoot: string,
-      sourceEpoch: string,
-      rootEpoch: string,
-      targetEpoch: string,
-      targetRoot: string,
-      crosslinkShard: string,
-      crosslinkParentRoot: string,
-      crossLinkStartEpoch: string,
-      crossLinkEndEpoch: string
-    }[]
+    attestations: [
+      {
+        aggregationBits: string,
+        data: {
+          beaconBlockRoot: string,
+          source: {
+            epoch: string,
+            root: string
+          },
+          target: {
+            epoch: string,
+            root: string
+          },
+          crosslink: {
+            shard: string,
+            parentRoot: string,
+            startEpoch: string,
+            endEpoch: string
+          }
+        }
+      }
+    ]
   }
 }
 
@@ -154,24 +179,29 @@ class Attestations extends Component<IProps, IState> {
     super(props);
 
     this.state = {
-      column: '',
-      direction: '',
       data: {
-        attestations:
-          [
-            {
-              aggregationBits: '',
+        attestations: [
+          {
+            aggregationBits: '',
+            data: {
               beaconBlockRoot: '',
-              sourceEpoch: '',
-              rootEpoch: '',
-              targetEpoch: '',
-              targetRoot: '',
-              crosslinkShard: '',
-              crosslinkParentRoot: '',
-              crossLinkStartEpoch: '',
-              crossLinkEndEpoch: ''
+              source: {
+                epoch: '',
+                root: ''
+              },
+              target: {
+                epoch: '',
+                root: ''
+              },
+              crosslink: {
+                shard: '',
+                parentRoot: '',
+                startEpoch: '',
+                endEpoch: ''
+              }
             }
-          ]
+          }
+        ]
       }
     };
   }
@@ -182,77 +212,19 @@ class Attestations extends Component<IProps, IState> {
     return fetch(api + DEFAULT_QUERY)
       .then(handleErrors)
       .then(response => response.json())
-      // TODO: will changing this part of the state to the mappedDataState make it so this table can sort?
-      // mapDataToTableData
-      .then(data => {
-        const flattenedData = mapDataToTableData(data);
-        this.setState(
-          {
-            data: {
-              attestations: flattenedData
-            }
-          });
-      });
-  }
-
-  handleSort = (clickedColumn: string) => () => {
-    const { column, data, direction } = this.state;
-    const tableData = mapDataToTableData(data);
-
-    const attestations = tableData.attestations;
-
-    if (column !== clickedColumn) {
-      this.setState({
-        column: clickedColumn,
-        data: {
-          attestations: _.sortBy(attestations, clickedColumn)
-        },
-        direction: 'ascending',
-      })
-
-      return;
-    }
-
-    this.setState({
-      data: {
-        attestations: attestations.reverse()
-      },
-      direction: direction === 'ascending' ? 'descending' : 'ascending',
-    })
+      .then(data => this.setState({ data: data }))
   }
 
   render() {
-    const { column, data, direction } = this.state;
+    const { data } = this.state;
 
-    console.log(data);
-
-    const headerRows = [
-      <Table.Row>
-        <Table.HeaderCell rowSpan='2'> Aggregation Bits </Table.HeaderCell>
-        <Table.HeaderCell rowSpan='2'>Beacon Block Root</Table.HeaderCell>
-        <Table.HeaderCell colSpan='2' textAlign='center'>Source</Table.HeaderCell>
-        <Table.HeaderCell colSpan='2' textAlign='center'>Target</Table.HeaderCell>
-        <Table.HeaderCell colSpan='4' textAlign='center'>CrossLink</Table.HeaderCell>
-      </Table.Row>,
-      <Table.Row>
-        <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center'>Epoch</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center'>Root</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center'>Shard</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center'>Parent Root</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center'>Start Epoch</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center'>End Epoch</Table.HeaderCell>
-      </Table.Row>
-    ];
-
-    // const tableData = mapDataToTableData(data);
+    const tableData = mapDataToTableData(data);
 
     return (
-      <Table sortabled striped inverted celled structured textAlign="center"
+      <Table striped inverted celled structured textAlign="center"
         headerRows={headerRows}
         renderBodyRow={renderBodyRow}
-        tableData={data.attestations}
+        tableData={tableData}
       >
       </Table>
     )
