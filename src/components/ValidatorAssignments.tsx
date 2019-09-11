@@ -132,6 +132,7 @@ class ValidatorAssignments extends Component<IProps, IState> {
     return (
       <div>
         <Header as='h1' className='white'>Validator Assignments</Header>
+        <Header as='h2' className='white'>Epoch: {data.epoch}</Header>
         <Table striped inverted textAlign="center"
           celled headerRow={headerRow}
           renderBodyRow={renderBodyRow}
