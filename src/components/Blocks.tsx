@@ -69,7 +69,7 @@ const renderBodyRow = ({
 
 interface IState {
     data: {
-        "blocks": [
+        blocks: [
             {
                 slot: string,
                 parentRoot: string,
@@ -104,7 +104,7 @@ class Blocks extends Component<IProps, IState> {
 
         this.state = {
             data: {
-                "blocks": [
+                blocks: [
                     {
                         slot: '',
                         parentRoot: '',
@@ -142,7 +142,7 @@ class Blocks extends Component<IProps, IState> {
     render() {
         const { data } = this.state;
 
-        const tableData = mapOntoTableData(data)
+        const tableData = data.blocks.length ? mapOntoTableData(data) : undefined;
 
         return (
             <div>
