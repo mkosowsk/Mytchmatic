@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Popup, Table } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { BitList } from "@chainsafe/bit-utils";
+import Utils from '../utils';
 
 const DEFAULT_QUERY = '';
 
@@ -64,7 +64,7 @@ const renderBodyRow = ({
           content={beaconBlockRoot}
           trigger={
             <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedBeaconBlockRoot}` }}>
-              {truncateString(beaconBlockRoot)}
+              {Utils.truncateString(beaconBlockRoot)}
             </Link>
           }
         />
@@ -75,7 +75,7 @@ const renderBodyRow = ({
           content={sourceRoot}
           trigger={
             <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedSourceRoot}` }}>
-              {truncateString(sourceRoot)}
+              {Utils.truncateString(sourceRoot)}
             </Link>
           }
         />
@@ -86,7 +86,7 @@ const renderBodyRow = ({
           content={targetRoot}
           trigger={
             <Link to={{ pathname: "/beacon/blocks", search: `root=${encodedTargetRoot}` }}>
-              {truncateString(targetRoot)}
+              {Utils.truncateString(targetRoot)}
             </Link>
           }
         />
@@ -95,7 +95,7 @@ const renderBodyRow = ({
       <Table.Cell>
         <Popup
           content={crosslinkParentRoot}
-          trigger={<span>{truncateString(crosslinkParentRoot)}</span>}
+          trigger={<span>{Utils.truncateString(crosslinkParentRoot)}</span>}
         />
       </Table.Cell>,
       crosslinkStartEpoch,
@@ -103,22 +103,6 @@ const renderBodyRow = ({
     ],
   })
 };
-
-function truncateString(currString: string) {
-  if (!currString) return;
-
-  const stringStart = currString.substring(0, 4);
-  const stringEnd = currString.substring(currString.length - 4);
-
-  return stringStart + '...' + stringEnd;
-};
-
-function handleErrors(response: any) {
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return response;
-}
 
 function mapDataToTableData(data: any) {
   const attestations = data.attestations;
@@ -209,7 +193,7 @@ class Attestations extends Component<IProps, IState> {
     const api = this.props.api;
 
     return fetch(api + DEFAULT_QUERY)
-      .then(handleErrors)
+      .then(Utils.handleErrors)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
       .catch(err => console.log(err));
