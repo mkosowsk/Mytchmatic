@@ -116,7 +116,7 @@ function truncateString(currString: string) {
 function handleErrors(response: any) {
   if (!response.ok) {
     console.log(response);
-    throw Error(response.statusText);
+    throw response;
   }
   return response;
 }
@@ -213,6 +213,12 @@ class Attestations extends Component<IProps, IState> {
       .then(handleErrors)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
+      .catch( (err: any) => {
+        throw Error(err);
+        err.text().then( (errorMessage: string) => {
+          console.log(errorMessage)
+        })
+      })
   }
 
   render() {
