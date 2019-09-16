@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Popup, Table } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import {BitList} from "@chainsafe/bit-utils";
+import { BitList } from "@chainsafe/bit-utils";
 
 const DEFAULT_QUERY = '';
 
@@ -115,8 +115,7 @@ function truncateString(currString: string) {
 
 function handleErrors(response: any) {
   if (!response.ok) {
-    console.log(response);
-    throw response;
+    throw new Error(response.statusText);
   }
   return response;
 }
@@ -213,6 +212,7 @@ class Attestations extends Component<IProps, IState> {
       .then(handleErrors)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -227,6 +227,7 @@ class Attestations extends Component<IProps, IState> {
         tableData={tableData}
       >
       </Table>
+
     )
   }
 }

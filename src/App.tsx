@@ -4,6 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import About from './components/about';
 import Attestations from './components/Attestations';
+import ErrorBoundary from './components/ErrorBoundary';
 import Validators from './components/Validators';
 import ValidatorAssignments from './components/ValidatorAssignments';
 import ValidatorParticipation from './components/ValidatorParticipation';
@@ -39,7 +40,11 @@ const App: React.FC = () => {
           render={(props) => <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations' />}
         />
         <Route exact path="/beacon/attestations/pool"
-          render={(props) => <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations/pool' />}
+          render={props =>
+            <ErrorBoundary>
+              <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations/pool' />
+            </ErrorBoundary>
+          }
         />
         <Route exact path="/beacon/blocks" component={Blocks} />
         <Route exact path="/eth/validators" component={Validators} />
