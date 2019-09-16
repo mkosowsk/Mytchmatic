@@ -35,7 +35,13 @@ const App: React.FC = () => {
             </Dropdown.Menu>
           </Menu.Item>
         </Menu>
-        <Route path="/about" component={About} />
+        <Route path="/about"
+          render={props =>
+            <ErrorBoundary>
+              <About />
+            </ErrorBoundary>
+          }
+        />
         <Route exact path="/beacon/attestations"
           render={props =>
             <ErrorBoundary>
