@@ -104,8 +104,10 @@ class Validators extends Component<IProps, IState> {
 
   componentDidMount() {
     fetch(API + DEFAULT_QUERY)
+      .then(Utils.handleErrors)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
+      .catch(err => console.log(err));
   }
 
   handleSort = (clickedColumn: string) => () => {
