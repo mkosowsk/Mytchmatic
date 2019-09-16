@@ -37,7 +37,11 @@ const App: React.FC = () => {
         </Menu>
         <Route path="/about" component={About} />
         <Route exact path="/beacon/attestations"
-          render={(props) => <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations' />}
+          render={props =>
+            <ErrorBoundary>
+              <Attestations {...props} api='http://api.prylabs.network/eth/v1alpha1/beacon/attestations' />
+            </ErrorBoundary>
+          }
         />
         <Route exact path="/beacon/attestations/pool"
           render={props =>
