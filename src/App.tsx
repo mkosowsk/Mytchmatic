@@ -36,7 +36,7 @@ const App: React.FC = () => {
           </Menu.Item>
         </Menu>
         <Route path="/about"
-          render={props =>
+          render={() =>
             <ErrorBoundary>
               <About />
             </ErrorBoundary>
@@ -56,7 +56,13 @@ const App: React.FC = () => {
             </ErrorBoundary>
           }
         />
-        <Route exact path="/beacon/blocks" component={Blocks} />
+        <Route exact path="/beacon/blocks"
+          render={props =>
+            <ErrorBoundary>
+              <Blocks {...props} />
+            </ErrorBoundary>
+          }
+        />
         <Route exact path="/eth/validators" component={Validators} />
         <Route exact path="/eth/validators/assignments" component={ValidatorAssignments} />
         <Route exact path="/eth/validators/participation" component={ValidatorParticipation} />
