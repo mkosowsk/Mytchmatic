@@ -63,9 +63,27 @@ const App: React.FC = () => {
             </ErrorBoundary>
           }
         />
-        <Route exact path="/eth/validators" component={Validators} />
-        <Route exact path="/eth/validators/assignments" component={ValidatorAssignments} />
-        <Route exact path="/eth/validators/participation" component={ValidatorParticipation} />
+        <Route exact path="/eth/validators"
+          render={() =>
+            <ErrorBoundary>
+              <Validators />
+            </ErrorBoundary>
+          }
+        />
+        <Route exact path="/eth/validators/assignments"
+          render={() =>
+            <ErrorBoundary>
+              <ValidatorAssignments />
+            </ErrorBoundary>
+          }
+        />
+        <Route exact path="/eth/validators/participation"
+          render={() =>
+            <ErrorBoundary>
+              <ValidatorParticipation />
+            </ErrorBoundary>
+          }
+          />
       </div>
     </Router >
   );
