@@ -213,12 +213,6 @@ class Attestations extends Component<IProps, IState> {
       .then(handleErrors)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
-      .catch( (err: any) => {
-        throw Error(err);
-        err.text().then( (errorMessage: string) => {
-          console.log(errorMessage)
-        })
-      })
   }
 
   render() {

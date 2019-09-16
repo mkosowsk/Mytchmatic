@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+interface IProps { }
+
 interface IState {
     hasError: boolean
 }
 
-class ErrorBoundary extends Component<IState> {
+class ErrorBoundary extends Component<IProps, IState> {
     constructor(props: any) {
       super(props);
       this.state = { hasError: false };
