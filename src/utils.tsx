@@ -7,6 +7,13 @@ export default class Utils {
       
         return stringStart + '...' + stringEnd;
       }; 
+
+      static handleErrors(response: any) {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response;
+      }
 }
 
 

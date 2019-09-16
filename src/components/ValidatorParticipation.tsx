@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
+import Utils from '../utils';
 
 const API = 'http://api.prylabs.network/eth/v1alpha1/validators/participation';
 const DEFAULT_QUERY = '';
@@ -193,13 +194,14 @@ class ValidatorAssignments extends Component<IProps, IState> {
 
   componentDidMount() {
     fetch(API + DEFAULT_QUERY)
+      .then(Utils.handleErrors)
       .then(response => response.json())
       .then(data => this.setState({ data: data }))
+      .catch(err => console.log(err));
   }
 
   render() {
     const { data } = this.state;
-    console.log(data);
 
     return (
       <div>
