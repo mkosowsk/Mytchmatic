@@ -18,7 +18,7 @@ option java_package = "io.grpc.examples.routeguide";
 option java_outer_classname = "ValidatorProto";
 option objc_class_prefix = "RTG";
 
-package validat;
+package validator;
 
 // Interface exported by the server.
 service Validator {
