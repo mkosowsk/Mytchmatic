@@ -14,7 +14,7 @@
     "chart.js": "^2.8.0",
     "ethereum-blockies": "^0.1.1",
     "grpc": "^1.23.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "protobufjs": "^6.8.8",
     "react": "^16.8.6",
     "react-blockies": "^1.4.1",
